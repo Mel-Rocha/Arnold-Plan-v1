@@ -1,0 +1,7 @@
+Separei em dois apps, o app kcal tem a classe enum,
+e as defs que fazem o calculo das calorias, recebendo 
+como parametros os macros, e também a def que seta
+o valor do enum.
+
+o app macros_sheet tem os parametros que são os macros, e faz
+a chamadas para as funções serem executadas.

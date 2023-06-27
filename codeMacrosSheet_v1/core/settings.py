@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'user',
     'profile_',
     'macros_sheet',
+    'kcal',
 ]
 
 MIDDLEWARE = [
