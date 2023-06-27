@@ -6,3 +6,6 @@
 *quando eu deleto o perfil eu não deleto o usuário
 quando eu deleto o usuario eu deleto o perfil em
 cascata
+
+[Atualmente o sistema permite que o usuário tenha 0 ou 1 perfil
+e cada perfil só tem 1 ou 1 usuário]
