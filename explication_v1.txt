@@ -1,0 +1,8 @@
+* posso ter um usuário e nao ter um perfil
+
+* todo perfil obrigatoriamente tem 1 e somente
+1 usuario
+
+*quando eu deleto o perfil eu não deleto o usuário
+quando eu deleto o usuario eu deleto o perfil em
+cascata
