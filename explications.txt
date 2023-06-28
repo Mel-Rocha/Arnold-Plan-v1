@@ -1,0 +1,21 @@
+<MacrosSheet>
+
+Cada instância de MacrosSheet tem:
+a quantidade em gramas de CHO, PTN e FAT e o resultado em KCAL
+o nivel de cada macro e o nível de kcal.
+
+Portanto falta o week_number.
+
+Acredito que seja possivel fazer uma classe abstrata chamada Macros e fazer 
+ptn, fat e cho herdar dela, mas no momento não fiz essa abstração.
+
+</MacrosSheet>
+
+<Profile>
+
+Defini como valor padrão = 0 para os campos weight e height da class Profile
+
+ARQUIVOS ALTERADOS
+profile_/models.py
+
+</Profile>
