@@ -1,15 +1,44 @@
 <GeneralInfo>
 
-Criação da classe GeneralInfo
+Só da pra instanciar GeneralInfo se relacionar ha um MacrosPlanner,
+1 MacrosPlanner não pode se relacionar com mais de 1 GeneralInfo.
+
+coloquei um campo macros_planner na model GeneralInfo e defini como
+OneToOne, on_delete.CASCADE e default=None
 
 </GeneralInfo>
 
 
 <MacrosPlanner>
 
-Criação da Classe MacrosPlanner
+o MacrosPlanner pode ter 0 ou 1 GeneralInfo **o correto seria 1, 1 **
 
 </MacrosPlanner>
 
 
-** Estou tendo problema para relacionar as classes.
+<Profile>
+
+Cada Profile pode ter 0 ou * MacrosPlanner
+Se eu deletar um Profile, deleto seus MacrosPlanners
+
+</Profile>
+
+
+<User>
+
+Se eu deletar o User deleto seu Profile e seus MacrosPlanners
+Cada User só pode ter um Profile
+
+</User>
+
+
+<MacrosSheet>
+
+Não dá pra salvar um MacrosSheet sem relacionar com um MacrosPlanner
+
+**BUG**
+se zerar os valores dos macros, o programa vai fazer a divisão do mesmo jeito
+e o usuário toma erro de zerodivision
+
+</MacrosSheet>
+

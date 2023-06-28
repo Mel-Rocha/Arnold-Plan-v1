@@ -7,10 +7,12 @@ from ptn.enums import PtnLevel
 from ptn.enums import calculate_ptn_level
 from fat.enums import FatLevel
 from fat.enums import calculate_fat_level
+from macros_planner.models import MacrosPlanner
 #from proportion_gkg.calcs import ProportionGKG
 
 
 class MacrosSheet(models.Model):
+    macros_planner = models.ForeignKey(MacrosPlanner, on_delete=models.CASCADE, default=None)
     cho = models.FloatField(default=0)
     ptn = models.FloatField(default=0)
     fat = models.FloatField(default=0)
