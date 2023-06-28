@@ -44,6 +44,11 @@ INSTALLED_APPS = [
     'cho',
     'ptn',
     'fat',
+    'proportion_gkg',
+    'general_info',
+    'macros_planner',
+
+    
     
 ]
 
