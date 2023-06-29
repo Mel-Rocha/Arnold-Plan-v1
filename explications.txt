@@ -1,9 +1,3 @@
-<ProportionGKG>
-
-Fazendo o calculo de cada macro usando a seguinte formula:
-macro / weight
-
-a classe ProportionGKG está usando o atributo weight da classe Profile
-e o atributo cho, ptn e fat da classe MacrosSheet
-
-</ProportionGKG>
+login e logout estão funcionando, o usuário se cadastra
+mas ainda não faz o seu Profile, apenas se registra e loga como 
+User
