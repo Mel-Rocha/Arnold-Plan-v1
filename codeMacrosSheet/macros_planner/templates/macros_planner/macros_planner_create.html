@@ -1,0 +1,10 @@
+{% extends 'home.html' %}
+
+{% block content %}
+  <h2>Criar Macros Planner</h2>
+  <form method="post" action="{% url 'macros_planner:macros_planner_create' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Criar</button>
+  </form>
+{% endblock %}

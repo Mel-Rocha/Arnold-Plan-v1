@@ -1,0 +1,14 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<h1>General Info Details</h1>
+<h3>Goal: {{ general_info.goal }}</h3>
+<p>Initial Date: {{ general_info.initial_date }}</p>
+<p>Final Date: {{ general_info.final_date }}</p>
+<p>Weeks: {{ general_info.weeks }}</p>
+
+<td>
+    <a href="{% url 'general_info:general_info_update' general_info.pk %}">Edit</a>
+    <a href="{% url 'general_info:general_info_delete' general_info.pk %}">Delete</a>
+</td>
+{% endblock %}

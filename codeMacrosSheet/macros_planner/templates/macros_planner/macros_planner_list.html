@@ -1,0 +1,16 @@
+{% extends 'home.html' %}
+
+{% block content %}
+  <h2>Lista de Macros Planners</h2>
+  {% if macros_planners %}
+    <ul>
+      {% for macros_planner in macros_planners %}
+        <li>
+          <a href="{% url 'macros_planner:macros_planner_details' pk=macros_planner.pk %}">{{ macros_planner.name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Nenhum Macros Planner encontrado.</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,15 @@
+from django import forms
+from .models import MacrosPlanner
+from general_info.models import GeneralInfo
+
+class GeneralInfoInlineForm(forms.ModelForm):
+    class Meta:
+        model = GeneralInfo
+        fields = '__all__'
+
+class MacrosPlannerForm(forms.ModelForm):
+    general_info = GeneralInfoInlineForm()
+
+    class Meta:
+        model = MacrosPlanner
+        fields = '__all__'

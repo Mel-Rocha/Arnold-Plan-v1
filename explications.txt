@@ -1,3 +1,8 @@
-login e logout estão funcionando, o usuário se cadastra
-mas ainda não faz o seu Profile, apenas se registra e loga como 
-User. 
+O que a aplicação já faz
+
+register, login e logout, por username e senha;
+
+
+o usuário consegue fazer CRUD com profile, 
+mas tem q digitar a url diretamente, ex:
+http://127.0.0.1:8000/profile/8/update/

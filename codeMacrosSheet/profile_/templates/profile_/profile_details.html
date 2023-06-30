@@ -1,0 +1,16 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<a href="{% url 'profile_:profile_details' pk=profile.pk %}">Profile Details</a>
+    <h2>Detail of Profile</h2>
+    <h3>{{ profile.name }}</h3>
+    <p>Birth Date: {{ profile.birth_date }}</p>
+    <p>Weight: {{ profile.weight }}</p>
+    <p>Height: {{ profile.height }}</p>
+    <p>Gender: {{ profile.gender }}</p>
+
+    <td>
+        <a href="{% url 'profile_:profile_update' profile.pk %}">Edit</a>
+        <a href="{% url 'profile_:profile_delete' profile.pk %}">Delete</a>
+    </td>
+{% endblock %}

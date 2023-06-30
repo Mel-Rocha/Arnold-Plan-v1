@@ -1,0 +1,12 @@
+{% extends 'home.html' %}
+
+{% block content %}
+  <h2>Detalhes do Macros Planner</h2>
+  <h3>{{ macros_planner.name }}</h3>
+  <!-- Exiba outras informações relevantes sobre o MacrosPlanner -->
+  <p>...</p>
+  <p>
+    <a href="{% url 'macros_planner:macros_planner_update' pk=macros_planner.pk %}">Editar</a>
+    <a href="{% url 'macros_planner:macros_planner_delete' pk=macros_planner.pk %}">Excluir</a>
+  </p>
+{% endblock %}
