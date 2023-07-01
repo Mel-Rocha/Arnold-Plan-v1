@@ -27,7 +27,7 @@ def macros_sheet_update(request, pk):
         form = MacrosSheetForm(request.POST, instance=macros_sheet)
         if form.is_valid():
             form.save()
-            return redirect('macros_sheet/macros_sheet_details', pk=macros_sheet.pk)
+            return redirect('macros_sheet:macros_sheet_details', pk=macros_sheet.pk)
     else:
         form = MacrosSheetForm(instance=macros_sheet)
     return render(request, 'macros_sheet/macros_sheet_update.html', {'form': form, 'macros_sheet': macros_sheet})
@@ -46,7 +46,10 @@ def macros_sheet_list(request):
 @login_required
 def macros_sheet_delete(request, pk):
     macros_sheet = get_object_or_404(MacrosSheet, pk=pk)
+    macros_planner = macros_sheet.macros_planner  # Obter o MacrosPlanner relacionado
+
     if request.method == 'POST':
         macros_sheet.delete()
-        return redirect('macros_planner/macros_sheet_list')
+        return redirect('macros_planner:macros_planner_details', pk=macros_planner.pk)
+    
     return render(request, 'macros_sheet/macros_sheet_delete.html', {'macros_sheet': macros_sheet})

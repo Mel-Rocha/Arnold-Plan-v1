@@ -28,7 +28,7 @@ def macros_planner_create(request):
             macros_sheet = MacrosSheet(macros_planner=macros_planner)
             macros_sheet.save()
 
-            return redirect('macros_planner/macros_planner_details', pk=macros_planner.pk)
+            return redirect('macros_planner:macros_planner_details', pk=macros_planner.pk)#NÃO TIRA OS :
     else:
         general_info_form = GeneralInfoForm()
     return render(request, 'macros_planner/macros_planner_create.html', {'general_info_form': general_info_form})
@@ -51,7 +51,7 @@ def macros_planner_delete(request, pk):
     macros_planner = get_object_or_404(MacrosPlanner, pk=pk)
     if request.method == 'POST':
         macros_planner.delete()
-        return redirect('macros_planner_list')
+        return redirect('macros_planner:macros_planner_list')
     return render(request, 'macros_planner/macros_planner_delete.html', {'macros_planner': macros_planner})
 
 @login_required
