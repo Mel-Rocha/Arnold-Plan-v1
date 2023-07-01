@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import MacrosPlanner
 from .forms import MacrosPlannerForm
-from general_info.forms import GeneralInfoForm 
+from general_info.forms import GeneralInfoForm
+from macros_sheet.models import MacrosSheet
 #from .forms import GeneralInfoInlineForm
 from django.contrib.auth.decorators import login_required
 
@@ -23,10 +24,14 @@ def macros_planner_create(request):
             macros_planner.save()
             general_info.macros_planner = macros_planner
             general_info.save()
-            return redirect('macros_planner:macros_planner_details', pk=macros_planner.pk)
+
+            macros_sheet = MacrosSheet(macros_planner=macros_planner)
+            macros_sheet.save()
+
+            return redirect('macros_planner/macros_planner_details', pk=macros_planner.pk)
     else:
         general_info_form = GeneralInfoForm()
-    return render(request, 'macros_planner:macros_planner_create.html', {'general_info_form': general_info_form})
+    return render(request, 'macros_planner/macros_planner_create.html', {'general_info_form': general_info_form})
 
 
 @login_required
@@ -52,4 +57,7 @@ def macros_planner_delete(request, pk):
 @login_required
 def macros_planner_details(request, pk):
     macros_planner = get_object_or_404(MacrosPlanner, pk=pk)
-    return render(request, 'macros_planner/macros_planner_details.html', {'macros_planner': macros_planner})
+    general_info = macros_planner.generalinfo  # Usar o relacionamento inverso
+    macros_sheets = macros_planner.macrossheet_set.all()
+    
+    return render(request, 'macros_planner/macros_planner_details.html', {'macros_planner': macros_planner, 'general_info': general_info, 'macros_sheets': macros_sheets})

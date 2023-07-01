@@ -4,7 +4,31 @@
   <h2>Detalhes do Macros Planner</h2>
   <h3>{{ macros_planner.name }}</h3>
   <!-- Exiba outras informações relevantes sobre o MacrosPlanner -->
+ 
+ <!-- Exibir informações da GeneralInfo -->
+<p>Meta: {{ general_info.goal }}</p>
+<p>Data Inicial: {{ general_info.initial_date }}</p>
+<p>Data Final: {{ general_info.final_date }}</p>
+<p>Semanas: {{ general_info.weeks }}</p>
+
+<h3>Lista de Macros Sheets</h3>
+{% for macros_sheet in macros_sheets %}
+  <p>MacrosSheet #{{ macros_sheet.id }}</p>
+  <p>CHO: {{ macros_sheet.cho }}</p>
+  <p>PTN: {{ macros_sheet.ptn }}</p>
+  <p>FAT: {{ macros_sheet.fat }}</p>
+  <p>Kcal: {{ macros_sheet.kcal }}</p>
+  <p>Kcal Level: {{ macros_sheet.kcal_level }}</p>
+  <p>CHO Level: {{ macros_sheet.cho_level }}</p>
+  <p>PTN Level: {{ macros_sheet.ptn_level }}</p>
+  <p>FAT Level: {{ macros_sheet.fat_level }}</p>
+  <p>CHO Proportion: {{ macros_sheet.cho_proportion }}</p>
+  <p>PTN Proportion: {{ macros_sheet.ptn_proportion }}</p>
+  <p>FAT Proportion: {{ macros_sheet.fat_proportion }}</p>
   <p>...</p>
+  {% endfor %}
+
+  
   <p>
     <a href="{% url 'macros_planner:macros_planner_update' pk=macros_planner.pk %}">Editar</a>
     <a href="{% url 'macros_planner:macros_planner_delete' pk=macros_planner.pk %}">Excluir</a>

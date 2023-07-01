@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Detalhes do Macros Sheet</h2>
+  <p>Macros Planner: {{ macros_sheet.macros_planner }}</p>
+  <p>CHO: {{ macros_sheet.cho }}</p>
+  <p>PTN: {{ macros_sheet.ptn }}</p>
+  <p>FAT: {{ macros_sheet.fat }}</p>
+  <p>KCAL: {{ macros_sheet.kcal }}</p>
+  <p>KCAL Level: {{ macros_sheet.kcal_level }}</p>
+  <p>CHO Level: {{ macros_sheet.cho_level }}</p>
+  <p>PTN Level: {{ macros_sheet.ptn_level }}</p>
+  <p>FAT Level: {{ macros_sheet.fat_level }}</p>
+  <p>CHO Proportion: {{ macros_sheet.cho_proportion }}</p>
+  <p>PTN Proportion: {{ macros_sheet.ptn_proportion }}</p>
+  <p>FAT Proportion: {{ macros_sheet.fat_proportion }}</p>
+{% endblock %}

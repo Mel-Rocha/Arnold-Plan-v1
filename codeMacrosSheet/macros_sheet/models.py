@@ -10,13 +10,14 @@ from fat.enums import calculate_fat_level
 from macros_planner.models import MacrosPlanner
 from proportion_gkg.calcs import ProportionGKG
 from profile_.models import Profile
+from django.core.validators import MinValueValidator
 
 
 class MacrosSheet(models.Model):
     macros_planner = models.ForeignKey(MacrosPlanner, on_delete=models.CASCADE, default=None)
-    cho = models.FloatField(default=0)
-    ptn = models.FloatField(default=0)
-    fat = models.FloatField(default=0)
+    cho = models.FloatField(default=1, validators=[MinValueValidator(1)])
+    ptn = models.FloatField(default=1, validators=[MinValueValidator(1)])
+    fat = models.FloatField(default=1, validators=[MinValueValidator(1)])
     kcal = models.FloatField(default=0)
     kcal_level = models.CharField(max_length=20, default=KcalLevel.is_normal_kcal.name)
     cho_level = models.CharField(max_length=20, default=ChoLevel.is_normal_cho.name)
