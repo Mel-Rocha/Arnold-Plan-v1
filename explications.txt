@@ -1,30 +1,6 @@
-***ARQUIVOS ALTERADOS***
-macros_sheet/models.py
-macros_planner/views.py
-macros_planner/templates/macros_planner_details.html
+Cria o MacrosPlanner com 1 GeneralInfo e uma MacrosSheet, posso add 
+MacrosSheet.
 
-
-***PROBLEMAS RESOLVIDOS***
-O programa não apresenta mais o erro de divisão por zeros, pois alterei a model
-MacrosSheet, agora o default é igual a 1 e o mínimo valor aceitado é 1, ou seja
-não tem mais como dar o erro de divisão por zero.
-
-***FUNCIONALIDADES***
-macros_planner/list = O programa está listando cada MacrosPlanner e oferecendo
-as opções de detalhes, atualizar e excluir;
-
-macros_planner/datails = O programa apresenta o GeneralInfo relacionado ao 
-MacrosPlanner e todas as MacrosSheet relacionadas. (não é possivel editar o 
-GeneralInfo ou as MacrosSheet aqui, AINDA);
-
-macros_planner/update = error: NoReverseMatch, vai está funcionando quando for
-possível editar o GeneralInfo e as MacrosSheet
-
-macros_planner/delete = error: NoReverseMatch, apresenta erro mas exclui no banco.
-
-
-***POSSIBILIDADES***
-talvez seja interessante pensar em uma forma para garantir que cada MacrosPlanner
-tenha um e somente 1 GeneralInfo associado e ao menos 1 MacrosSheet, até agora
-só consegui implementar essa lógica no client-side, se for diretamente pelo banco
-da pra cadastrar um MacrosPlanner sem GeneralInfo e sem nenhuma MacrosSheet.
+***PROBLEMAS***
+Depois de criar um macros planner ele não está fazendo o direcionamento
+para url certa, e estou recebendo 404
