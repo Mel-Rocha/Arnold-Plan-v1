@@ -6,3 +6,18 @@ register, login e logout, por username e senha;
 o usuário consegue fazer CRUD com profile, 
 mas tem q digitar a url diretamente, ex:
 http://127.0.0.1:8000/profile/8/update/
+
+listar MacrosPlanner
+Create MacrosPlanner = qndo o usuário vai criar um MacrosPlanner ele é direcionado
+para o forms GeneralInfo
+
+
+NÃO ESTÁ FAZENDO
+update MacrosPlanner
+delete MacrosPlanner
+
+
+***arquivos alterados***
+macros_planner/admin.py
+macros_planner/templates/macros_planner/macros_planner_create.html
+macros_planner/views.py

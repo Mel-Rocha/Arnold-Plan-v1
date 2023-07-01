@@ -3,13 +3,16 @@ from .models import MacrosPlanner
 from general_info.models import GeneralInfo
 
 class GeneralInfoInlineForm(forms.ModelForm):
+    initial_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    final_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    
     class Meta:
         model = GeneralInfo
-        fields = '__all__'
+        fields = ('goal', 'initial_date', 'final_date', 'weeks')
 
 class MacrosPlannerForm(forms.ModelForm):
     general_info = GeneralInfoInlineForm()
 
     class Meta:
         model = MacrosPlanner
-        fields = '__all__'
+        fields = ('profile',)

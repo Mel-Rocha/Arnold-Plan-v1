@@ -5,12 +5,34 @@
   {% if macros_planners %}
     <ul>
       {% for macros_planner in macros_planners %}
+      <!--<p>Macros Planner: {{ macros_planner.id}}-->
         <li>
-          <a href="{% url 'macros_planner:macros_planner_details' pk=macros_planner.pk %}">{{ macros_planner.name }}</a>
+          <p>Macros Planner: {{ macros_planner.id }}</p>
+          <ul>
+            <li>
+              <a href="{% url 'macros_planner:macros_planner_details' pk=macros_planner.pk %}">Detalhes</a>
+            </li>
+            <li>
+              <a href="{% url 'macros_planner:macros_planner_update' pk=macros_planner.pk %}">Atualizar</a>
+            </li>
+            <li>
+              <a href="{% url 'macros_planner:macros_planner_delete' pk=macros_planner.pk %}">Excluir</a>
+            </li>
+          </ul>
         </li>
       {% endfor %}
+      <li>
+        <p>
+        <a href="{% url 'macros_planner:macros_planner_create' %}">Criar</a>
+       </p>
+      </li>
     </ul>
   {% else %}
     <p>Nenhum Macros Planner encontrado.</p>
+    <li>
+      <p>
+      <a href="{% url 'macros_planner:macros_planner_create' %}">Criar</a>
+     </p>
+    </li>
   {% endif %}
 {% endblock %}

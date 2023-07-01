@@ -8,4 +8,5 @@ urlpatterns = [
     path('', include('profile_.urls')),
     path('', include('macros_planner.urls')),
     path('', include ('general_info.urls')),
+    path('', include('macros_sheet.urls')),
 ]
