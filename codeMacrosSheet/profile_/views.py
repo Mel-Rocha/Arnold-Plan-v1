@@ -21,10 +21,16 @@ def profile_create(request):
             profile = form.save(commit=False)
             profile.user = request.user  # Associar o usuário atualmente logado ao perfil
             profile.save()
-            return redirect('profile_:profile_details')
+
+            user = request.user
+            user.is_active = True  # Ativar o usuário
+            user.save()
+
+            return redirect('profile_:profile_details', pk=user.pk)  # Redirecionar para os detalhes do perfil do usuário
     else:
         form = ProfileForm()
     return render(request, 'profile_/profile_create.html', {'form': form})
+
 
 @login_required
 def profile_update(request, pk):

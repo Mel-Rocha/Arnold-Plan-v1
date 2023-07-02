@@ -1,26 +1,6 @@
-***TESTES APROVADOS***
+MacrosSheet em tabela, alterei os fields weight e height, inicializando-os
+com 1 e aceitando 1 como minímo valor, para evitar problemas com a 
+divisão por zeros.
 
-Listar MacrosPlanner = o programa lista todos os MacrosPlanner do 
-profile relacionado, se não há nenhum MacrosPlanner, ele retorna
-que nenhum MacrosPlanner foi encontrado e da opção de criar um
-novo MacrosPlanner.
-
-Criar MacrosPlanner = ao criar um MacrosPlanner, o usuário já é redirecionado
-para o forms de GeneralInfo, onde ele pode colocar sua meta ou deixar em branco
-e deve adicionar as datas iniciais e final e indicar um número de semanas que
-aceita como valor mínimo 1. Uma MacrosSheet já é criada automáticamente ao criar um MacrosPlanner.
-
-Editar GeneralInfo = após ser encaminhado ao forms de update de GeneralInfo, o usuário
-é redirecionado aos details e tem a opção de editar GeneralInfo ou vizualizar os detalhes do MacrosPlanner.
-
-Delete MacrosSheet = após deletar uma MacrosSheet o usuário é redirecionado aos details do MacrosPlanner.
-
-Criar MacrosSheet = após preencher o forms de criação da MacrosSheet, o usuário é redirecionado para os
-details da MacrosSheet e tem a opção de update MacrosSheet ou visualizar os details do MacrosPlanner.
-
-Editar MacrosSheet = O usuário é redirecionado a página de details e pode editar a 
-MacrosSheet ou deleta-lá ou visualizar o MacrosPlanner.
-
-Excluir MacrosPlanner = Ao excluir o MacrosPlanner o usuário é redirecionado ao 
-MacrosPlanner/list
-
+ainda estou com problemas na parte de criação do profile, ativação de user,
+autenticação precisa ser revista.

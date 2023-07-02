@@ -170,6 +170,9 @@ AUTHENTICATION_BACKENDS = [
     
 ]
 
+
+ACCOUNT_ADAPTER = 'all_auth.allauth_adapter.CustomAccountAdapter'
+
 SITE_ID = 1
 ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_LOGOUT_ON_GET = True

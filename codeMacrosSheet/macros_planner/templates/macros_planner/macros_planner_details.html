@@ -18,21 +18,43 @@
 <h3>Lista de Macros Sheets</h3>
 {% for macros_sheet in macros_sheets %}
   <p>MacrosSheet #{{ macros_sheet.id }}</p>
-  <p>CHO: {{ macros_sheet.cho }}</p>
-  <p>PTN: {{ macros_sheet.ptn }}</p>
-  <p>FAT: {{ macros_sheet.fat }}</p>
-  <p>Kcal: {{ macros_sheet.kcal }}</p>
-  <p>Kcal Level: {{ macros_sheet.kcal_level }}</p>
-  <p>CHO Level: {{ macros_sheet.cho_level }}</p>
-  <p>PTN Level: {{ macros_sheet.ptn_level }}</p>
-  <p>FAT Level: {{ macros_sheet.fat_level }}</p>
-  <p>CHO Proportion: {{ macros_sheet.cho_proportion }}</p>
-  <p>PTN Proportion: {{ macros_sheet.ptn_proportion }}</p>
-  <p>FAT Proportion: {{ macros_sheet.fat_proportion }}</p>
-  <p>
+  <table>
+    <tr>
+      <th>Macros</th>
+      <th>Gramas</th>
+      <th>Proportion</th>
+      <th>Level</th>
+    </tr>
+    <tr>
+      <td>CHO</td>
+      <td>{{ macros_sheet.cho }}</td>
+      <td>{{ macros_sheet.cho_proportion }}</td>
+      <td>{{ macros_sheet.cho_level }}</td>
+    </tr>
+    <tr>
+      <td>PTN</td>
+      <td>{{ macros_sheet.ptn }}</td>
+      <td>{{ macros_sheet.ptn_proportion }}</td>
+      <td>{{ macros_sheet.ptn_level }}</td>
+    </tr>
+    <tr>
+      <td>FAT</td>
+      <td>{{ macros_sheet.fat }}</td>
+      <td>{{ macros_sheet.fat_proportion }}</td>
+      <td>{{ macros_sheet.fat_level }}</td>
+    </tr>
+    <tr>
+      <td>KCAL</td>
+      <td colspan="3">{{ macros_sheet.kcal }}</td>
+    </tr>
+    <tr>
+      <td>KCAL Level</td>
+      <td colspan="3">{{ macros_sheet.kcal_level }}</td>
+    </tr>
+  </table>
     <!-- Adicionar link para editar cada MacrosSheet -->
-    <a href="{% url 'macros_sheet:macros_sheet_update' pk=macros_sheet.pk %}">Editar MacrosSheet #{{ macros_sheet.id }}</a>
-    <a href="{% url 'macros_sheet:macros_sheet_delete' pk=macros_sheet.pk %}">Delete MacrosSheet #{{ macros_sheet.id }}</a>
+    <a href="{% url 'macros_sheet:macros_sheet_update' pk=macros_sheet.pk %}">Editar<!--{{ macros_sheet.id }}--></a>
+    <a href="{% url 'macros_sheet:macros_sheet_delete' pk=macros_sheet.pk %}">Delete<!--{{ macros_sheet.id }}--></a>
   </p>
   <p>...</p>
   {% endfor %}
