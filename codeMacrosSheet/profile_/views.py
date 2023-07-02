@@ -23,10 +23,9 @@ def profile_create(request):
             profile.save()
 
             user = request.user
-            user.is_active = True  # Ativar o usuário
             user.save()
 
-            return redirect('profile_:profile_details', pk=user.pk)  # Redirecionar para os detalhes do perfil do usuário
+            return redirect('profile_:profile_details', pk=profile.pk)  # Redirecionar para os detalhes do perfil do usuário
     else:
         form = ProfileForm()
     return render(request, 'profile_/profile_create.html', {'form': form})

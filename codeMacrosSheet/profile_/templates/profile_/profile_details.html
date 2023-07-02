@@ -2,6 +2,7 @@
 
 {% block content %}
 <a href="{% url 'profile_:profile_details' pk=profile.pk %}">Profile Details</a>
+<a href="{% url 'macros_planner:macros_planner_list' %}">Macros Planner List</a>
     <h2>Detail of Profile</h2>
     <h3>{{ profile.name }}</h3>
     <p>Birth Date: {{ profile.birth_date }}</p>

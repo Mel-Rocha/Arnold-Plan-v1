@@ -150,7 +150,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -171,12 +172,12 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 
-ACCOUNT_ADAPTER = 'all_auth.allauth_adapter.CustomAccountAdapter'
+#ACCOUNT_ADAPTER = 'all_auth.allauth_adapter.CustomAccountAdapter'
 
 SITE_ID = 1
 ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_LOGOUT_ON_GET = True
-LOGIN_REDIRECT_URL = 'homepage'
+LOGIN_REDIRECT_URL = 'dashboard'
 LOGOUT_REDIRECT_URL = 'homepage'
 LOGIN_URL = 'accounts:login'
 

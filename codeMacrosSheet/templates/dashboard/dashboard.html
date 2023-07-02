@@ -1,0 +1,12 @@
+{% extends "home.html" %}
+
+
+
+{% block content %}
+
+<a href="{% url 'profile_:profile_details' pk=profile.pk %}">Profile Details</a>
+
+<a href="{% url 'macros_planner:macros_planner_list' %}">Macros Planner List</a>
+
+
+{% endblock %}

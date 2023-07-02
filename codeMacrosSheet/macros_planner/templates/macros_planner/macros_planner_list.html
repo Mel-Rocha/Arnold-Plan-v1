@@ -1,38 +1,37 @@
 {% extends 'home.html' %}
 
+{% load static %}
+<link rel="stylesheet" href="{% static 'static/macros_planner/css/styles.css' %}">
+
 {% block content %}
   <h2>Lista de Macros Planners</h2>
   {% if macros_planners %}
-    <ul>
+    <ul class="macros-planner-list">
       {% for macros_planner in macros_planners %}
-      <!--<p>Macros Planner: {{ macros_planner.id}}-->
-        <li>
-          <p>Macros Planner: {{ macros_planner.id }}</p>
-          <ul>
-            <li>
+        <li class="macros-planner-item">
+          <p class="macros-planner-title">Macros Planner: {{ macros_planner.id }}</p>
+          <ul class="macros-planner-options">
+            <li class="macros-planner-option">
               <a href="{% url 'macros_planner:macros_planner_details' pk=macros_planner.pk %}">Detalhes</a>
             </li>
-            <!-- <li>
-              <a href="{% url 'macros_planner:macros_planner_update' pk=macros_planner.pk %}">Atualizar</a>
-            </li>-->
-            <li>
+            <li class="macros-planner-option">
               <a href="{% url 'macros_planner:macros_planner_delete' pk=macros_planner.pk %}">Excluir</a>
             </li>
           </ul>
         </li>
       {% endfor %}
-      <li>
-        <p>
-        <a href="{% url 'macros_planner:macros_planner_create' %}">Criar</a>
-       </p>
+      <li class="macros-planner-item">
+        <p class="macros-planner-create-link">
+          <a href="{% url 'macros_planner:macros_planner_create' %}">Criar</a>
+        </p>
       </li>
     </ul>
   {% else %}
     <p>Nenhum Macros Planner encontrado.</p>
-    <li>
-      <p>
-      <a href="{% url 'macros_planner:macros_planner_create' %}">Criar</a>
-     </p>
+    <li class="macros-planner-item">
+      <p class="macros-planner-create-link">
+        <a href="{% url 'macros_planner:macros_planner_create' %}">Criar</a>
+      </p>
     </li>
   {% endif %}
 {% endblock %}
