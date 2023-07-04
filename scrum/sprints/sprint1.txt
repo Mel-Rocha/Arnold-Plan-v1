@@ -1,35 +1,50 @@
-Sprint 1: Módulo de Autenticação
+Sprint 1
 
-Cadastro por e-mail:
+***INFORMAÇÕES GERAIS***
 
-Implementar a funcionalidade de cadastro de usuários usando o e-mail.
-Validar os campos do formulário de cadastro.
-Armazenar as informações do usuário no banco de dados.
-Cadastro social (Google):
+Módulo: Macros
+Data Inicial Implementação: 27/06/23
+Data Final Implementação: 02/07/23
+Tempo de Implementação: 65h 
+Resultado [
+	 1ª versão estável da aplicação,
+	 Correspondente a versão v1.13 e a baseLine_1
 
-Permitir que os usuários se cadastrem usando suas contas do Google.
-Integrar a API do Google para autenticação e obtenção dos dados do usuário.
-Login por e-mail:
+]
 
-Implementar a funcionalidade de login usando o e-mail e senha.
-Verificar a autenticidade das credenciais fornecidas.
-Gerenciar a sessão do usuário após o login.
-Login social (Google):
 
-Permitir que os usuários façam login usando suas contas do Google.
-Integrar a API do Google para autenticação.
-Gerenciamento de sessão (Lembre-me):
 
-Implementar a opção "Lembre-me" para manter a sessão do usuário ativa por um período prolongado.
-Armazenar as informações de login em um cookie ou token seguro.
-Automação de e-mails:
+***BACKLOG SPRINT1***
 
-Configurar e implementar o envio automático de e-mails para os usuários, como confirmação de cadastro e redefinição de senha.
-Recuperar senha:
+	Tarefa	                                              Prioridade
+Implementar cadastro de usuários	        		Alta
+Implementar login de usuários	                		Alta
+Implementar logout de usuários	               			Alta
+Implementar visualização de detalhes do perfil			Alta
+Implementar atualização do perfil	        		Alta
+Implementar exclusão do perfil	                		Alta
+Implementar criação do perfil           			Alta
+Implementar listagem de macros planners 			Média
+Implementar criação de macros planners	        		Média
+Implementar atualização das informações gerais			Média
+Implementar exclusão de macros sheets	        		Média
+Implementar criação de macros sheets	       	 		Média
+Implementar atualização de macros sheets			Média
+Implementar exclusão de macros planners	        		Baixa
 
-Implementar a funcionalidade de recuperação de senha para os usuários.
-Enviar um e-mail com um link seguro para redefinir a senha.
-Personalizar perfil:
 
-Permitir que os usuários editem informações do perfil, como foto, nome e senha.
-Implementar as alterações no banco de dados.
+
+
+***IMPLEMENTAÇÃO DAS TAREFAS***
+
+✓ Cadastro, login e logout de User;
+
+✓ CRUD Profile;
+
+✓ CRUD MacrosPlanner;
+
+✓ CRUD MacrosSheet;
+
+✓ Permitir update em GeneralInfo;
+
+✓ Implementação das classes e metódos relacionados aos cálculos nutricionais.
