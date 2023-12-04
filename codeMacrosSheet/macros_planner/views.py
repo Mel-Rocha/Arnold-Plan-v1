@@ -5,6 +5,7 @@ from general_info.forms import GeneralInfoForm
 from macros_sheet.models import MacrosSheet
 #from .forms import GeneralInfoInlineForm
 from django.contrib.auth.decorators import login_required
+from kcal_statistics.utils import get_kcal_tuples
 
 @login_required
 def macros_planner_list(request):
@@ -60,5 +61,8 @@ def macros_planner_details(request, pk):
     macros_planner = get_object_or_404(MacrosPlanner, pk=pk)
     general_info = macros_planner.generalinfo  # Usar o relacionamento inverso
     macros_sheets = macros_planner.macrossheet_set.all()
+
+    kcal_tuples = get_kcal_tuples(macros_planner)
     
-    return render(request, 'macros_planner/macros_planner_details.html', {'macros_planner': macros_planner, 'general_info': general_info, 'macros_sheets': macros_sheets})
+    context = {'macros_planner': macros_planner, 'general_info': general_info, 'macros_sheets': macros_sheets, 'kcal_tuples': kcal_tuples}
+    return render(request, 'macros_planner/macros_planner_details.html', context)

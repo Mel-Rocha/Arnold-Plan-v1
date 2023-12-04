@@ -60,7 +60,7 @@ INSTALLED_APPS = [
 
     'all_auth',
 
-    
+    'kcal_statistics',
 
     
     

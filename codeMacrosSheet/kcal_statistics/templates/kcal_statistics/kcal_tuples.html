@@ -1,0 +1,25 @@
+{% extends 'home.html' %}
+
+{% block content %}
+  <!-- ... (conteúdo existente) ... -->
+  
+  <h2>Kcal Tuples</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Semana</th>
+        <th>Kcal</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for week, kcal in kcal_tuples %}
+        <tr>
+          <td>{{ week }}</td>
+          <td>{{ kcal }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- ... (mais conteúdo, se houver) ... -->
+{% endblock %}

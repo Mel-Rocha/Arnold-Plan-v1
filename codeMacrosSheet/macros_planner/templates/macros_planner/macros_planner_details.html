@@ -8,71 +8,92 @@
 <button onclick="window.location.href='{% url 'profile_:profile_details' pk=macros_planner.profile.user.pk %}'" class="btn">Profile Details</button>
 -->
 
-  <h2>Detalhes do Macros Planner</h2>
-  <h3>{{ macros_planner.name }}</h3>
-  <!-- Exiba outras informações relevantes sobre o MacrosPlanner -->
- 
- <!-- Exibir informações da GeneralInfo -->
-<p>Meta: {{ general_info.goal }}</p>
-<p>Data Inicial: {{ general_info.initial_date }}</p>
-<p>Data Final: {{ general_info.final_date }}</p>
-<p>Semanas: {{ general_info.weeks }}</p>
+<style>
+  .button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+</style>
+
+<h2 style="color: black;">Detalhes do Macros Planner</h2>
+<h3 style="color: black;">{{ macros_planner.name }}</h3>
+<!-- Exiba outras informações relevantes sobre o MacrosPlanner -->
+
+<!-- Exibir informações da GeneralInfo -->
+<p style="color: black;">Meta: {{ general_info.goal }}</p>
+<p style="color: black;">Data Inicial: {{ general_info.initial_date }}</p>
+<p style="color: black;">Data Final: {{ general_info.final_date }}</p>
+<p style="color: black;">Semanas: {{ general_info.weeks }}</p>
 <p>
   <!-- Adicionar link para editar GeneralInfo -->
-  <button onclick="window.location.href='{% url 'general_info:general_info_update' pk=general_info.pk %}'" ">Edit</button>
+  <button onclick="window.location.href='{% url 'general_info:general_info_update' pk=general_info.pk %}'" class="button">Edit</button>
 </p>
 
-<h3>Lista de Macros Sheets</h3>
-<div class="macrosSheets-details-container"></div>
-{% for macros_sheet in macros_sheets %}
-  <p>MacrosSheet #{{ macros_sheet.id }}</p>
-  <table>
-    <tr>
-      <th>Macros</th>
-      <th>Gramas</th>
-      <th>Proportion</th>
-      <th>Level</th>
-    </tr>
-    <tr>
-      <td>CHO</td>
-      <td>{{ macros_sheet.cho }}</td>
-      <td>{{ macros_sheet.cho_proportion }}</td>
-      <td>{{ macros_sheet.cho_level }}</td>
-    </tr>
-    <tr>
-      <td>PTN</td>
-      <td>{{ macros_sheet.ptn }}</td>
-      <td>{{ macros_sheet.ptn_proportion }}</td>
-      <td>{{ macros_sheet.ptn_level }}</td>
-    </tr>
-    <tr>
-      <td>FAT</td>
-      <td>{{ macros_sheet.fat }}</td>
-      <td>{{ macros_sheet.fat_proportion }}</td>
-      <td>{{ macros_sheet.fat_level }}</td>
-    </tr>
-    <tr>
-      <td>KCAL</td>
-      <td colspan="3">{{ macros_sheet.kcal }}</td>
-    </tr>
-    <tr>
-      <td>KCAL Level</td>
-      <td colspan="3">{{ macros_sheet.kcal_level }}</td>
-    </tr>
-  </table>
-</div>
+<a href="{% url 'macros_planner_kcal_tuples' pk=macros_planner.pk %}">Ver Tuplas de Kcal</a>
+
+<h3 style="color: black;">Lista de Macros Sheets</h3>
+<div class="macrosSheets-details-container">
+  {% for macros_sheet in macros_sheets %}
+    <p style="color: black;">MacrosSheet #{{ macros_sheet.id }}</p>
+    <table>
+      <tr>
+        <th>Macros</th>
+        <th>Gramas</th>
+        <th>Proportion</th>
+        <th>Level</th>
+      </tr>
+      <tr>
+        <td>CHO</td>
+        <td>{{ macros_sheet.cho }}</td>
+        <td>{{ macros_sheet.cho_proportion }}</td>
+        <td>{{ macros_sheet.cho_level }}</td>
+      </tr>
+      <tr>
+        <td>PTN</td>
+        <td>{{ macros_sheet.ptn }}</td>
+        <td>{{ macros_sheet.ptn_proportion }}</td>
+        <td>{{ macros_sheet.ptn_level }}</td>
+      </tr>
+      <tr>
+        <td>FAT</td>
+        <td>{{ macros_sheet.fat }}</td>
+        <td>{{ macros_sheet.fat_proportion }}</td>
+        <td>{{ macros_sheet.fat_level }}</td>
+      </tr>
+      <tr>
+        <td>KCAL</td>
+        <td colspan="3">{{ macros_sheet.kcal }}</td>
+      </tr>
+      <tr>
+        <td>KCAL Level</td>
+        <td colspan="3" style="color: 
+          {% if macros_sheet.kcal_level == 'low_kcal' %}
+            red;
+          {% elif macros_sheet.kcal_level == 'normal_kcal' %}
+            green;
+          {% elif macros_sheet.kcal_level == 'high_kcal' %}
+            blue;
+          {% endif %}">
+          {{ macros_sheet.kcal_level }}
+        </td>
+      </tr>
+    </table>
     <!-- Adicionar link para editar cada MacrosSheet -->
-   <!--
-    <a href="{% url 'macros_sheet:macros_sheet_update' pk=macros_sheet.pk %}">Editar</a>
-    <a href="{% url 'macros_sheet:macros_sheet_delete' pk=macros_sheet.pk %}">Delete</a>
-   -->
-    <button onclick="window.location.href='{% url 'macros_sheet:macros_sheet_update' pk=macros_sheet.pk %}'">Edit</button>
-    <button onclick="window.location.href='{% url 'macros_sheet:macros_sheet_delete' pk=macros_sheet.pk %}'" >Delete</button>
-  </p>
-  <p>...</p>
+    <button onclick="window.location.href='{% url 'macros_sheet:macros_sheet_update' pk=macros_sheet.pk %}'" class="button">Edit</button>
+    <button onclick="window.location.href='{% url 'macros_sheet:macros_sheet_delete' pk=macros_sheet.pk %}'" class="button">Delete</button>
+    <p>...</p>
   {% endfor %}
-  <button onclick="window.location.href='{% url 'macros_sheet:macros_sheet_create' macros_planner_id=macros_planner.id %}'" >Create MacrosSheet</button>  
+  <button onclick="window.location.href='{% url 'macros_sheet:macros_sheet_create' macros_planner_id=macros_planner.id %}'" class="button">Create MacrosSheet</button>  
   <p>
-    <button onclick="window.location.href='{% url 'macros_planner:macros_planner_delete' pk=macros_planner.pk %}'" >Delete</button>
+    <button onclick="window.location.href='{% url 'macros_planner:macros_planner_delete' pk=macros_planner.pk %}'" class="button">Delete</button>
   </p>
+</div>
 {% endblock %}
