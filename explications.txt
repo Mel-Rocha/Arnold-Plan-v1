@@ -1,1 +1,2 @@
-tabela com as kcals, ela pega as kcals de cada macrosSheet e organiza em tabela
+campo week na model MacrosSheet, tuplas de macros, as semanas são mostradas
+em cada macrosSheet, só tem um problema, a última macrosSheet sempre fica como 0
