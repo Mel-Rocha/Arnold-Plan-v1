@@ -5,6 +5,20 @@
         p {text-align: center;}
         </style>
     </head>
+
+  </head>
+  <body>
+  <header>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    
+    <!-- Seu cabeçalho -->
+  </header>
+
+
+
     <body>        
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -27,8 +41,8 @@
 
 
                 {%else%}
-                <p><a href="http://127.0.0.1:8000/accounts/login/">Login</a></p>
-                <p><a href="http://127.0.0.1:8000/accounts/signup/">Sing Up</a></p>
+                <button class="button"><a href="http://127.0.0.1:8000/accounts/login/">Login</a></button>
+                <button class="button"><a href="http://127.0.0.1:8000/accounts/signup/">Sign Up</a></button>
                 {%endif%}
               </div>
             </div>

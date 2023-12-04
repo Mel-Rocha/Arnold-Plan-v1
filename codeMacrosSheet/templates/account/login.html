@@ -1,6 +1,6 @@
 {% extends "account/base.html" %}
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static '../css/login.css' %}">
 {% load i18n %}
 {% load account socialaccount %}
 
@@ -8,42 +8,86 @@
 
 {% block content %}
 
-<h1>{% trans "Sign In" %}</h1>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
 
-{% get_providers as socialaccount_providers %}
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
 
-{% if socialaccount_providers %}
-<p>{% blocktrans with site.name as site_name %}Please sign in with one
-of your existing third party accounts. Or <a href="{{ signup_url }}">sign up</a>
-for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+  h1 {
+    text-align: center;
+    color: #333;
+  }
 
-<div class="socialaccount_ballot">
+  .login {
+    max-width: 400px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
 
-  <!--
-  <ul class="socialaccount_providers">
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-  </ul>
--->
+  .login-or {
+    text-align: center;
+    margin: 10px 0;
+    font-weight: bold;
+    color: #777;
+  }
 
-  <div class="login-or">{% trans 'or' %}</div>
+  .primaryAction {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #050505;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
 
+  .primaryAction:hover {
+    background-color: #aa1b1b;
+  }
+
+  p {
+    text-align: center;
+    margin-top: 10px;
+    color: #777;
+  }
+
+  .logo {
+    width: 350px;
+    height: auto;
+    margin-right: 20px; /* Espaço entre a imagem e os botões */
+  }
+    
+</style>
+
+<div class="login-container">
+  <div class="login">
+    <h1>{% trans "Sign In" %}</h1>
+
+    <img class="logo" src="{% static 'img/logo.png' %}" alt="Logo">
+
+    <form method="POST" action="{% url 'account_login' %}" autocomplete="off">
+      {% csrf_token %}
+      {{ form.as_p }}
+      {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+    
+      <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
+    </form>
+  </div>
 </div>
-
-{% include "socialaccount/snippets/login_extra.html" %}
-
-{% else %}
-<p>{% blocktrans %}If you have not created an account yet, then please
-<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-{% endif %}
-
-<form class="login" method="POST" action="{% url 'account_login' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
- 
-  <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
-</form>
 
 {% endblock %}

@@ -12,7 +12,8 @@ def macros_planner_list(request):
     print("Perfil:", profile)
     macros_planners = MacrosPlanner.objects.filter(profile__user=request.user)
     print("Macros Planners:", macros_planners)
-    return render(request, 'macros_planner/macros_planner_list.html', {'macros_planners': macros_planners})
+    #return render(request, 'macros_planner/macros_planner_list.html', {'macros_planners': macros_planners})
+    return render(request, 'macros_planner/macros_planner_list.html', {'profile': profile, 'macros_planners': macros_planners})
 
 @login_required
 def macros_planner_create(request):

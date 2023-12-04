@@ -1,10 +1,10 @@
 {% extends 'home.html' %}
 
 {% block content %}
-  <h2>Criar Macros Planner</h2>
-  <form method="post" action="{% url 'macros_planner:macros_planner_create' %}">
+  <form method="post" action="{% url 'macros_planner:macros_planner_create' %}" style="max-width: 400px; margin: 0 auto; text-align: center;" autocomplete="off">
     {% csrf_token %}
+    <h2 style="color: #ffffff, 0, 0);">Criar Macros Planner</h2>
     {{ general_info_form.as_p }}
-    <button type="submit">Criar MacrosPlanner</button>
+    <button type="submit" style="display: block; width: 100%; padding: 10px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 10px;">Criar Macros Planner</button>
   </form>
 {% endblock %}

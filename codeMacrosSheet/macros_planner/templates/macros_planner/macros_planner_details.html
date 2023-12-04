@@ -1,6 +1,13 @@
 {% extends 'home.html' %}
 
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
 {% block content %}
+<!--
+<button onclick="window.location.href='{% url 'profile_:profile_details' pk=macros_planner.profile.user.pk %}'" class="btn">Profile Details</button>
+-->
+
   <h2>Detalhes do Macros Planner</h2>
   <h3>{{ macros_planner.name }}</h3>
   <!-- Exiba outras informações relevantes sobre o MacrosPlanner -->
@@ -12,10 +19,11 @@
 <p>Semanas: {{ general_info.weeks }}</p>
 <p>
   <!-- Adicionar link para editar GeneralInfo -->
-  <a href="{% url 'general_info:general_info_update' pk=general_info.pk %}">Editar GeneralInfo</a>
+  <button onclick="window.location.href='{% url 'general_info:general_info_update' pk=general_info.pk %}'" ">Edit</button>
 </p>
 
 <h3>Lista de Macros Sheets</h3>
+<div class="macrosSheets-details-container"></div>
 {% for macros_sheet in macros_sheets %}
   <p>MacrosSheet #{{ macros_sheet.id }}</p>
   <table>
@@ -52,15 +60,19 @@
       <td colspan="3">{{ macros_sheet.kcal_level }}</td>
     </tr>
   </table>
+</div>
     <!-- Adicionar link para editar cada MacrosSheet -->
-    <a href="{% url 'macros_sheet:macros_sheet_update' pk=macros_sheet.pk %}">Editar<!--{{ macros_sheet.id }}--></a>
-    <a href="{% url 'macros_sheet:macros_sheet_delete' pk=macros_sheet.pk %}">Delete<!--{{ macros_sheet.id }}--></a>
+   <!--
+    <a href="{% url 'macros_sheet:macros_sheet_update' pk=macros_sheet.pk %}">Editar</a>
+    <a href="{% url 'macros_sheet:macros_sheet_delete' pk=macros_sheet.pk %}">Delete</a>
+   -->
+    <button onclick="window.location.href='{% url 'macros_sheet:macros_sheet_update' pk=macros_sheet.pk %}'">Edit</button>
+    <button onclick="window.location.href='{% url 'macros_sheet:macros_sheet_delete' pk=macros_sheet.pk %}'" >Delete</button>
   </p>
   <p>...</p>
   {% endfor %}
-  <a href="{% url 'macros_sheet:macros_sheet_create' macros_planner_id=macros_planner.id %}">Criar MacrosSheet</a>
-  
+  <button onclick="window.location.href='{% url 'macros_sheet:macros_sheet_create' macros_planner_id=macros_planner.id %}'" >Create MacrosSheet</button>  
   <p>
-    <a href="{% url 'macros_planner:macros_planner_delete' pk=macros_planner.pk %}">Excluir</a>
+    <button onclick="window.location.href='{% url 'macros_planner:macros_planner_delete' pk=macros_planner.pk %}'" >Delete</button>
   </p>
 {% endblock %}
