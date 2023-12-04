@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'all_auth',
 
     'kcal_statistics',
+    'macros_statistics',
 
     
     

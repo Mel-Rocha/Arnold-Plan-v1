@@ -15,6 +15,7 @@ from django.core.validators import MinValueValidator
 
 class MacrosSheet(models.Model):
     macros_planner = models.ForeignKey(MacrosPlanner, on_delete=models.CASCADE, default=None)
+    week = models.PositiveIntegerField(default=0)  # Suponha que você já tenha dados existentes, então padrão para 0
     cho = models.FloatField(default=1, validators=[MinValueValidator(1)])
     ptn = models.FloatField(default=1, validators=[MinValueValidator(1)])
     fat = models.FloatField(default=1, validators=[MinValueValidator(1)])
@@ -46,10 +47,23 @@ class MacrosSheet(models.Model):
         self.cho_proportion = round(proportions.cho_proportion, 2)
         self.ptn_proportion = round(proportions.ptn_proportion, 2)
         self.fat_proportion = round(proportions.fat_proportion, 2)
+
+
+    def update_week_based_on_id(self):
+        # Verifica se o campo week já foi calculado antes
+        if self.week == 0:
+            # Obtém todas as MacrosSheets associadas a um MacrosPlanner específico, ordenadas por id (ordem de criação)
+            macros_sheets = self.macros_planner.macrossheet_set.all().order_by('id')
+
+            for index, macros_sheet in enumerate(macros_sheets):
+                # Atualiza o campo week com base no ID mais 1
+                macros_sheet.week = index + 1
+                macros_sheet.save()
     
 
     def save(self, *args, **kwargs):
         self.calculate_kcal_and_levels()
         self.calculate_macros_levels()
         self.calculate_proportions()
+        self.update_week_based_on_id()
         super().save(*args, **kwargs)

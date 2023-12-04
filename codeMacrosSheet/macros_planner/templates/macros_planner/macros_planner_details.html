@@ -38,11 +38,13 @@
 </p>
 
 <a href="{% url 'macros_planner_kcal_tuples' pk=macros_planner.pk %}">Ver Tuplas de Kcal</a>
+<a href="{% url 'macros_tuples' pk=macros_planner.pk %}">Ver Macros Sheet Tuples</a>
 
 <h3 style="color: black;">Lista de Macros Sheets</h3>
 <div class="macrosSheets-details-container">
   {% for macros_sheet in macros_sheets %}
     <p style="color: black;">MacrosSheet #{{ macros_sheet.id }}</p>
+    <p>Semana: {{ macros_sheet.week }}</p>
     <table>
       <tr>
         <th>Macros</th>

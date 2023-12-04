@@ -13,6 +13,7 @@ urlpatterns = [
     path('', include ('general_info.urls')),
     path('', include('macros_sheet.urls')),
     path('kcal_statistics/', include('kcal_statistics.urls')),
+    path('macros_statistics/', include('macros_statistics.urls')),
 ]
 
 if settings.DEBUG:
