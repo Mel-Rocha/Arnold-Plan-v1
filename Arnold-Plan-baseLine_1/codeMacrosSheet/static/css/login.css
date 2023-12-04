@@ -1,0 +1,55 @@
+/* Estilos para o corpo da página */
+body {
+    background-color: #68304c; /* Cor de fundo geral */
+    font-family: Arial, sans-serif; /* Fonte padrão */
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Estilos para o container principal */
+  .container {
+    max-width: 400px; /* Largura máxima do container */
+    margin: 0 auto; /* Centraliza o container na página */
+    padding: 20px; /* Espaçamento interno */
+    background-color: #fff; /* Cor de fundo do container */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    border-radius: 8px; /* Cantos arredondados */
+  }
+  
+  /* Estilos para o título "Sign In" */
+  h1 {
+    color: #333; /* Cor do texto */
+    text-align: center; /* Centraliza o texto */
+  }
+  
+  /* Estilos para o formulário de login */
+  .login {
+    margin-top: 20px; /* Espaçamento superior */
+  }
+  
+  /* Estilos para os campos do formulário */
+  .login input[type="text"],
+  .login input[type="password"] {
+    width: 100%; /* Largura total do campo */
+    padding: 10px; /* Espaçamento interno */
+    margin-bottom: 15px; /* Espaçamento inferior */
+    box-sizing: border-box; /* Garante que o padding não aumente a largura total */
+    border: 1px solid #ddd; /* Borda do campo */
+    border-radius: 4px; /* Cantos arredondados */
+  }
+  
+  /* Estilos para o botão "Sign In" */
+  .primaryAction {
+    background-color: #4caf50; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto do botão */
+    padding: 10px 20px; /* Espaçamento interno */
+    font-size: 16px; /* Tamanho da fonte */
+    border: none; /* Sem borda */
+    border-radius: 4px; /* Cantos arredondados */
+    cursor: pointer; /* Cursor de ponteiro */
+  }
+  
+  .primaryAction:hover {
+    background-color: #45a049; /* Cor de fundo do botão ao passar o mouse */
+  }
+  

@@ -1,0 +1,117 @@
+.container {
+  width: 80%; /* Ajuste conforme necessário */
+  margin: 0 auto; /* Centraliza a div na horizontal */
+}
+
+.box {
+  border: 2px solid #000; /* Borda preta com 2 pixels de largura, ajuste conforme necessário */
+  padding: 20px; /* Espaçamento interno dentro da div, ajuste conforme necessário */
+  margin-bottom: 20px; /* Espaçamento na parte inferior da div, ajuste conforme necessário */
+}
+
+div {
+  border: 2px solid #000; /* Borda preta com 2 pixels de largura, ajuste conforme necessário */
+  padding: 20px; /* Espaçamento interno dentro da div, ajuste conforme necessário */
+  margin-bottom: 20px; /* Espaçamento na parte inferior da div, ajuste conforme necessário */
+
+}
+
+/* Estilo para o título */
+h1 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Estilo para a tabela */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+/* Estilo para o cabeçalho da tabela */
+thead th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  text-align: left;
+  padding: 10px;
+}
+
+/* Estilo para as células da tabela */
+tbody td {
+  padding: 10px;
+}
+
+button,
+.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Estilo para botões com a classe btn */
+button,
+.btn {
+  color: white;
+}
+
+/* Estilo para botões com a classe btn e fundo preto */
+button,
+.btn {
+  background-color: black;
+}
+
+.btn-black {
+  color: white;
+  background-color: black;
+  border: none;
+}
+
+.btn-black:hover {
+  background-color: #333; /* Altere a cor de fundo no hover conforme desejado */
+}
+
+/* Estilos para botões de ação com a classe btn-warning */
+.btn-warning {
+  background-color: yellow;
+  color: #333;
+}
+
+.btn-primary {
+  background-color: blue;
+  color: #fff;
+}
+
+.btn-danger {
+  background-color: red;
+  color: #fff;
+}
+
+.btn-create {
+  background-color: green;
+  color: #fff;
+  
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ajuste conforme necessário */
+}
+
+.button-container td {
+  text-align: center;
+}
+
+.button-container button {
+  margin: 10px; /* Espaçamento entre os botões (opcional) */
+}
