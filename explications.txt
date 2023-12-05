@@ -1,2 +1,3 @@
-campo week na model MacrosSheet, tuplas de macros, as semanas são mostradas
-em cada macrosSheet, só tem um problema, a última macrosSheet sempre fica como 0
+as macrosSheet tem o atributo semana, as tabelas das kcals e dos macros de 
+cada macros planner são organizadas de acordo com a 
+semana da macrosSheet correspondente.
