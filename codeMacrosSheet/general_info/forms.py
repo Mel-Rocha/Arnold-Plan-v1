@@ -8,4 +8,3 @@ class GeneralInfoForm(forms.ModelForm):
     class Meta:
         model = GeneralInfo
         fields = ('goal', 'initial_date', 'final_date', 'weeks')
-      

@@ -51,7 +51,7 @@ class MacrosSheet(models.Model):
 
     def update_week_based_on_id(self):
         # Verifica se o campo week já foi calculado antes
-        if self.week == 0:
+        if self.week == 0 and self.macros_planner:
             # Obtém todas as MacrosSheets associadas a um MacrosPlanner específico, ordenadas por id (ordem de criação)
             macros_sheets = self.macros_planner.macrossheet_set.all().order_by('id')
 
@@ -59,11 +59,18 @@ class MacrosSheet(models.Model):
                 # Atualiza o campo week com base no ID mais 1
                 macros_sheet.week = index + 1
                 macros_sheet.save()
-    
+
+            # Obtém a semana da última MacrosSheet e incrementa 1
+            self.week = macros_sheets.last().week + 1
+
+            # Salva explicitamente o objeto MacrosPlanner
+            self.macros_planner.save()
+
+                
 
     def save(self, *args, **kwargs):
         self.calculate_kcal_and_levels()
         self.calculate_macros_levels()
         self.calculate_proportions()
-        self.update_week_based_on_id()
         super().save(*args, **kwargs)
+        self.update_week_based_on_id()
