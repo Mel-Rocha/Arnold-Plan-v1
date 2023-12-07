@@ -12,5 +12,3 @@ class ProfileForm(forms.ModelForm):
 
 def get_gender_choices():
     return [(gender.value, gender.name) for gender in Gender]
-
- 

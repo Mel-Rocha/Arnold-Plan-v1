@@ -21,6 +21,15 @@
     margin: 4px 2px;
     cursor: pointer;
   }
+
+  table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f8f8f8;
+}
+
 </style>
 
 <h2 style="color: black;">Detalhes do Macros Planner</h2>
@@ -39,7 +48,7 @@
 
 <a href="{% url 'macros_planner_kcal_tuples' pk=macros_planner.pk %}">Ver Tuplas de Kcal</a>
 <a href="{% url 'macros_tuples' pk=macros_planner.pk %}">Ver Macros Sheet Tuples</a>
-
+<a href="{% url 'kcal_chart:kcal_chart' pk=macros_planner.id %}">Ver Kcal Chart</a>
 <h3 style="color: black;">Lista de Macros Sheets</h3>
 <div class="macrosSheets-details-container">
   {% for macros_sheet in macros_sheets %}
@@ -76,14 +85,7 @@
       </tr>
       <tr>
         <td>KCAL Level</td>
-        <td colspan="3" style="color: 
-          {% if macros_sheet.kcal_level == 'low_kcal' %}
-            red;
-          {% elif macros_sheet.kcal_level == 'normal_kcal' %}
-            green;
-          {% elif macros_sheet.kcal_level == 'high_kcal' %}
-            blue;
-          {% endif %}">
+        <td>
           {{ macros_sheet.kcal_level }}
         </td>
       </tr>

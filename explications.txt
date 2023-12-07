@@ -1,3 +1,2 @@
-as macrosSheet tem o atributo semana, as tabelas das kcals e dos macros de 
-cada macros planner são organizadas de acordo com a 
-semana da macrosSheet correspondente.
+criação das rotas e da página kcal chart, NAO tem o gráfico ainda, mas 
+a rota ta certa, tem um link para kcal_chart nos details do macrosPlanner

@@ -62,6 +62,7 @@ INSTALLED_APPS = [
 
     'kcal_statistics',
     'macros_statistics',
+    'kcal_chart',
 
     
     
