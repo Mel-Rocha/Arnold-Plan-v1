@@ -15,6 +15,7 @@ urlpatterns = [
     path('kcal_statistics/', include('kcal_statistics.urls')),
     path('macros_statistics/', include('macros_statistics.urls')),
     path('kcal_chart/', include('kcal_chart.urls')),
+    path('macros_chart/', include('macros_chart.urls')),
 ]
 
 if settings.DEBUG:

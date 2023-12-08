@@ -11,3 +11,16 @@ def get_macros_tuples(macros_planner):
     ]
 
     return macros_tuples
+
+def get_macros_pie_data(macros_sheet):
+    data = {
+        'labels': ['CHO', 'PTN', 'FAT'],
+        'datasets': [
+            {
+                'data': [macros_sheet.cho, macros_sheet.ptn, macros_sheet.fat],
+                'backgroundColor': ['rgba(255, 0, 0, 0.5)', 'rgba(0, 255, 0, 0.5)', 'rgba(0, 0, 255, 0.5)'],
+            },
+        ],
+    }
+
+    return data

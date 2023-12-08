@@ -1,6 +1,8 @@
 RESULTADOS
 
 gráfico de linhas em chartJs das kcals do macrosPlanner
+gráfico de colunas agrupadas
+gráfico de pizza das macrosSheets
 
 PROBLEMAS
 
@@ -12,6 +14,8 @@ os dados da semana, ele acaba refletindo esse erro.
 
 Quando crio uma nova macrosSheet as semanas são atualizadas novamente e o problema
 é sanado.
+
+Falta colocar um template que vai levar as estatísticas
 
 SOLUÇÃO
 

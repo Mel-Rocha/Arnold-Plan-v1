@@ -49,6 +49,8 @@
 <a href="{% url 'macros_planner_kcal_tuples' pk=macros_planner.pk %}">Ver Tuplas de Kcal</a>
 <a href="{% url 'macros_tuples' pk=macros_planner.pk %}">Ver Macros Sheet Tuples</a>
 <a href="{% url 'kcal_chart:kcal_chart' pk=macros_planner.id %}">Ver Kcal Chart</a>
+<a href="{% url 'macros_chart:macros_chart' pk=macros_planner.id %}">Ver macros Chart</a>
+
 <h3 style="color: black;">Lista de Macros Sheets</h3>
 <div class="macrosSheets-details-container">
   {% for macros_sheet in macros_sheets %}
@@ -93,6 +95,8 @@
     <!-- Adicionar link para editar cada MacrosSheet -->
     <button onclick="window.location.href='{% url 'macros_sheet:macros_sheet_update' pk=macros_sheet.pk %}'" class="button">Edit</button>
     <button onclick="window.location.href='{% url 'macros_sheet:macros_sheet_delete' pk=macros_sheet.pk %}'" class="button">Delete</button>
+    <button onclick="window.location.href='{% url 'macros_chart:macros_pie_chart' macros_sheet.pk %}'" class="button">Gráfico</button>
+
     <p>...</p>
   {% endfor %}
   <button onclick="window.location.href='{% url 'macros_sheet:macros_sheet_create' macros_planner_id=macros_planner.id %}'" class="button">Create MacrosSheet</button>  
