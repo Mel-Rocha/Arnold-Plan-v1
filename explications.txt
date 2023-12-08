@@ -1,2 +1,21 @@
-criação das rotas e da página kcal chart, NAO tem o gráfico ainda, mas 
-a rota ta certa, tem um link para kcal_chart nos details do macrosPlanner
+RESULTADOS
+
+gráfico de linhas em chartJs das kcals do macrosPlanner
+
+PROBLEMAS
+
+Quando deletamos uma macrosSheet a semana dela não é atualizada, por exemplo, se eu
+tiver um macrosPlanner de 12 macrosSheet (ou seja 12 semanas, já que cada macrosSheet
+corresponde a uma semana) e eu deletar a macrosSheet 11, a última macrosSheet não
+será 11, mas continuara sendo identificada como semana 12, e já que o gráfico pega
+os dados da semana, ele acaba refletindo esse erro.
+
+Quando crio uma nova macrosSheet as semanas são atualizadas novamente e o problema
+é sanado.
+
+SOLUÇÃO
+
+Fazer com que as semanas sejam atualizadas automáticamente, assim resolverei o 
+problema do gráfico, preciso adicionar uma verificação para quando ouver deleção
+de alguma macrosSheet fazer o enumarate passar pelas semanas novamente.
+
