@@ -45,11 +45,13 @@
   <!-- Adicionar link para editar GeneralInfo -->
   <button onclick="window.location.href='{% url 'general_info:general_info_update' pk=general_info.pk %}'" class="button">Edit</button>
 </p>
-
-<a href="{% url 'macros_planner_kcal_tuples' pk=macros_planner.pk %}">Ver Tuplas de Kcal</a>
-<a href="{% url 'macros_tuples' pk=macros_planner.pk %}">Ver Macros Sheet Tuples</a>
-<a href="{% url 'kcal_chart:kcal_chart' pk=macros_planner.id %}">Ver Kcal Chart</a>
-<a href="{% url 'macros_chart:macros_chart' pk=macros_planner.id %}">Ver macros Chart</a>
+<!--
+<button onclick="window.location.href='{% url 'macros_planner_kcal_tuples' pk=macros_planner.pk %}'" class="button">Tabela Calorias</button>
+<button onclick="window.location.href='{% url 'macros_tuples' pk=macros_planner.pk %}'" class="button">Tabela Macros</button>
+<button onclick="window.location.href='{% url 'kcal_chart:kcal_chart' pk=macros_planner.id %}'" class="button">Gráfico Calorias</button>
+<button onclick="window.location.href='{% url 'macros_chart:macros_chart' pk=macros_planner.id %}'" class="button">Gráfico Macros</button>
+-->
+<button onclick="window.location.href='{% url 'statistics_:statistics_view' pk=macros_planner.pk %}'" class="button">Statistics</button>
 
 <h3 style="color: black;">Lista de Macros Sheets</h3>
 <div class="macrosSheets-details-container">

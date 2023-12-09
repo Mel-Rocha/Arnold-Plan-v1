@@ -52,6 +52,7 @@
           </div>
 
           <main>
+            <button onclick="window.location.href='{% url 'dashboard' %}'" class="button">Home</button>
             {% block content %}<!--o conteúdo de cada página extendida...-->
             {% endblock %}<!--...aparecerá entre essa tag-->
         </main>

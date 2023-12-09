@@ -14,3 +14,4 @@ def get_kcal_tuples(macros_planner):
     ]
 
     return kcal_tuples
+

@@ -1,8 +1,9 @@
 RESULTADOS
 
-gráfico de linhas em chartJs das kcals do macrosPlanner
-gráfico de colunas agrupadas
-gráfico de pizza das macrosSheets
+botão em todas as páginas redirecionando para a home
+
+criação do template statistics (permitindo a visualização das estatisticas
+do macrosPlanner)
 
 PROBLEMAS
 
@@ -23,3 +24,12 @@ Fazer com que as semanas sejam atualizadas automáticamente, assim resolverei o
 problema do gráfico, preciso adicionar uma verificação para quando ouver deleção
 de alguma macrosSheet fazer o enumarate passar pelas semanas novamente.
 
+TAREFAS
+
+*Não permitir que o usuário crie um profile com weight e/ou hight igual a 0
+
+* Renderizar os campos de gender no profile
+
+*Atualizar o número da semana das macrosSheet qndo alguma é deletada
+
+*Tirar autocomplete de todos os forms
