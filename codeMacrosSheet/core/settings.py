@@ -177,8 +177,6 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 
-#ACCOUNT_ADAPTER = 'all_auth.allauth_adapter.CustomAccountAdapter'
-
 SITE_ID = 1
 ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_LOGOUT_ON_GET = True
@@ -197,4 +195,19 @@ SOCIALACCOUNT_PROVIDERS = {
             'access_type': 'online',
         }
     }
+}
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
 }

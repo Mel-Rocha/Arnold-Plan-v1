@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
       
@@ -7,7 +8,7 @@
         h3 {text-align: center;}
         p {text-align: center;}
         </style>
-    </head>
+   
 
   </head>
   <body>
@@ -39,8 +40,11 @@
               <div class="col md-5 p-3">
                 {% if user.is_authenticated%}
                 <p>Welcome, {{user.username}}</p>
+                <button onclick="window.location.href='{% url 'dashboard' %}'" class="button">Home</button>
 
-                <a href="http://127.0.0.1:8000/accounts/logout/">Logout</a>
+                <!--<a href="http://127.0.0.1:8000/accounts/logout/">Logout</a>-->
+                <button onclick="window.location.href='{% url 'account_logout' %}'" class="button">Logout</button>
+               
 
 
                 {%else%}
@@ -52,7 +56,7 @@
           </div>
 
           <main>
-            <button onclick="window.location.href='{% url 'dashboard' %}'" class="button">Home</button>
+            
             {% block content %}<!--o conteúdo de cada página extendida...-->
             {% endblock %}<!--...aparecerá entre essa tag-->
         </main>

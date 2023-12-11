@@ -1,3 +1,4 @@
-from django.test import TestCase
+from .forms import ProfileForm
 
-# Create your tests here.
+form = ProfileForm()
+print(form.as_table())

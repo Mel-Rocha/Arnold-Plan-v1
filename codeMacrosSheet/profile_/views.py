@@ -8,6 +8,8 @@ from .forms import ProfileForm
 from allauth.account.views import LoginView
 from django.urls import reverse_lazy
 
+from django.http import HttpResponse  # Adicione essa importação
+
 def get_gender_choices():
     return [(gender.value, gender.name) for gender in Gender]
 
@@ -25,18 +27,18 @@ def profile_create(request):
         form = ProfileForm(request.POST)
         if form.is_valid():
             profile = form.save(commit=False)
-            profile.user = request.user  # Associar o usuário atualmente logado ao perfil
+            profile.user = request.user
             profile.save()
 
             user = request.user
             user.save()
 
-            return redirect('profile_:profile_details', pk=profile.pk)  # Redirecionar para os detalhes do perfil do usuário
+            return redirect('profile_:profile_details', pk=profile.pk)
+        else:
+            return HttpResponse("Formulário inválido. Preencha os campos com valores maiores o iguais a 1.")  # Adicione isso para retornar uma resposta HTTP explícita em caso de formulário inválido
     else:
         form = ProfileForm()
-
         form.fields['gender'].choices = [(gender.value, gender.name) for gender in Gender]
-        
         return render(request, 'profile_/profile_create.html', {'form': form})
 
 

@@ -11,7 +11,12 @@ from macros_planner.models import MacrosPlanner
 from proportion_gkg.calcs import ProportionGKG
 from profile_.models import Profile
 from django.core.validators import MinValueValidator
+from django.db.models import Count
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
+import logging
 
+logger = logging.getLogger(__name__)
 
 class MacrosSheet(models.Model):
     macros_planner = models.ForeignKey(MacrosPlanner, on_delete=models.CASCADE, default=None)
@@ -52,6 +57,10 @@ class MacrosSheet(models.Model):
     def update_week_based_on_id(self):
         # Verifica se o campo week já foi calculado antes
         if self.week == 0 and self.macros_planner:
+            # Obtém o número total de MacrosSheets associadas a um MacrosPlanner específico
+            original_size = self.macros_planner.macrossheet_set.count()
+            print(f'Original: {original_size}')
+
             # Obtém todas as MacrosSheets associadas a um MacrosPlanner específico, ordenadas por id (ordem de criação)
             macros_sheets = self.macros_planner.macrossheet_set.all().order_by('id')
 
@@ -60,13 +69,28 @@ class MacrosSheet(models.Model):
                 macros_sheet.week = index + 1
                 macros_sheet.save()
 
+            # Atualiza a lista de MacrosSheets após o loop
+            macros_sheets = self.macros_planner.macrossheet_set.all().order_by('id')
+
+            # Obtém o número atual de MacrosSheets
+            current_size = macros_sheets.count()
+            print(f'Atual: {current_size}')
+
+            # Verifica se o tamanho diminuiu, o que indica que uma MacrosSheet foi excluída
+            if current_size < original_size:
+                # Renumera todas as semanas
+                for index, macros_sheet in enumerate(macros_sheets):
+                    macros_sheet.week = index + 1
+                    macros_sheet.save()
+
             # Obtém a semana da última MacrosSheet e incrementa 1
             self.week = macros_sheets.last().week + 1
+
 
             # Salva explicitamente o objeto MacrosPlanner
             self.macros_planner.save()
 
-                
+
 
     def save(self, *args, **kwargs):
         self.calculate_kcal_and_levels()
@@ -74,3 +98,7 @@ class MacrosSheet(models.Model):
         self.calculate_proportions()
         super().save(*args, **kwargs)
         self.update_week_based_on_id()
+
+    
+
+    
