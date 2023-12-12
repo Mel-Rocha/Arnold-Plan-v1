@@ -1,0 +1,215 @@
+*** INFORMAÇÕES GERAIS ***
+Versão: v2.10
+Data Inicial Implementação: 03/12/23
+Data Final: 10/12/23
+
+
+*** FUNCIONALIDADES ***
+
+<FUNCIONANDO CORRETAMENTE>
+
+SING IN
+SING UP
+
+PROFILE DETAILS
+
+MACROS PLANNER CREATE
+MACROS PLANNER DETAILS
+MACROS PLANNER LIST
+MACROS PLANNER DELETE
+
+MACROS SHEET CREATE
+MACROS SHEET DETAILS
+MACROS SHEET UPDATE
+
+STATISTICS LIST
+STATISTICS STATISTICS 
+KCAL STATISTICS
+MACROS STATISTICS
+KCAL CHART
+MACROS CHART
+MACROS PIE CHART
+
+GENERAL INFO UPDATE
+
+</FUNCIONANDO CORRETAMENTE>
+
+
+<FUNCIONANDO INCORRETAMENTE>
+
+PROFILE CREATE (o campo gender não está sendo renderizado no forms)
+PROFILE UPDATE (mesmos problema de profile create, já que é o mesmo formulário)
+PROFILE DELETE (o alert perguntando se o usuário deseja ser deletado não leva a resposta do usuário em consideração, apenas o deleta);
+
+MACROS SHEET DELETE (Não atualiza o número de semanas quando ocorre a deleção, isso interfere nas tabelas e gráficos, já que se baseiam na semana)
+
+<FUNCIONANDO INCORRETAMENTE>
+
+
+*** DETALHAMENTO ***
+
+SING IN
+
+Quando insere uma senha errada, informa que ou o username ou senha não está 
+correto, o mesmo acontece quando o username está errado.
+
+
+SING UP
+
+Quando insere um username já existente, informa que já existe e não permite que
+o cadastro seja feito.
+
+
+PROFILE CREATE
+
+Após fazer o cadastro o programa encaminha o usuário obrigatóriamente para a página
+de criação de perfil, de forma que o usuário não consegue usar a aplicação enquanto
+não tiver seu perfil.
+
+Todos os campos são obrigatórios;
+O autocomplete=on no campo name, o que não deveria ocorrer;
+O campo de entrada de data está sendo renderizado corretamente;
+Os campos de weight e height não aceitam letras ou caracteres especiais, caso
+tente inserir 0 ou números negativos nesses campos, uma mensagem http response informa para 
+preencher com >= 1. Esses 2 campos permitem inserir números com (.) ou (,).
+O campo gender não funciona, a seleção não está sendo renderizada, e o usuário é cadastrado
+como male (masculino) por padrão.
+
+Caso o usuário clique em home o forms terá seus campos limpos. Caso clique em logout, será 
+redirecionado para a página inicial e a sessão se encerrará, porém ao fazer o login novamente
+permanecerá na página de create profile até faze-lo. Idependente de ter um profile ou não
+caso o username seja existente, o usuário não conseguirá fazer um novo sing up.
+
+
+PROFILE DETAILS
+
+Após ter seu perfil criado, o programa recupera as informações inseridas pelo usuário, e
+permite operações em CRUD.
+
+
+PROFILE UPDATE
+
+Recupera as informações inseridas préviamente, todos os campos são obrigatórios.
+mesma coisa do profile create.
+
+
+PROFILE DELETE
+
+Aparece um alert perguntando se o usuário tem certeza de que quer efetuar a deleção 
+mas, mesmo que clique em cancelar a deleção já foi feita, e o programa redireciona 
+o usuário a página de criação de perfil.
+
+
+MACROSPLANNER
+
+MACROS PLANNER CREATE
+
+O campo goal é o único a não ser requerido no forms, e os campos de data estão sendo
+renderizados corretamente, a data inicial pode ser maior que a final ou até mesmo igual
+e o número de semanas não é correspondente a diferença da data final com a data inicial,
+mas isso não chega a ser um problema. 
+
+O macrosPlanner já é criado com uma macrosSheet por padrão.
+ 
+
+MACROS PLANNER DETAILS
+
+Exibe a informações gerais do macrosPlanner, lista todas as macrosSheets relacionadas,
+apresenta o botão de estatisticas, permite criar, editar, deletar ou visualizar o gráfico
+de determinada macrosSheet, e apresenta o botão de deletar macrosPlanner.
+
+
+
+MACROS PLANNER LIST
+
+Lista todos os macrosPlanner existentes e o botão de criar, não existindo nenhum informa que o usuário 
+pode criar-los. Cada macrosPlanner pode ser deletado, ter seus detalhes consultados ou suas estatísticas
+nessa visualização.
+
+
+MACROS PLANNER DELETE
+
+Exibe o botão de deletar ou cancelar, caso o usuário escolha a primeira opção deleta o macrosPlanner atual,
+caso escolha a segunda, retorna para macrosPlanner list.
+
+
+MACROS SHEET
+
+MACROS SHEET CREATE
+
+Todos os campos são requeridos, não são aceitos valores inferiores a 1.
+após a criação as informações são recuperadas e o usuário é direcionado a macrosSheet details.
+As macrosSheets são ordenadas por semana.
+
+
+MACROS SHEET DETAILS
+
+Recupera as informações fornecidas préviamente, exibe a proporção g/kg em relação ao peso do usuário, informa
+o estado do nível de cada macro (low, normal ou high) calcula as calorias e támbem informa seu nível. Permite edição
+ou deleção da macrosSheet ou voltar ao macrosPlanner.
+
+
+MACROS SHEET UPDATE
+
+Mesma coisa do macrosSheet create.
+
+
+MACROS SHEET DELETE
+
+Deleta a macrosSheet corretamente, porém em um macrosPlanner de 3 semanas caso a macrosSheet correspondente a semana 2
+seja excluída, o resultado das semanas serão semana 1 e 3, e não 1 e 2 como esperado (As semanas são arrumadas corretamente
+após criar uma nova macrosSheet).
+
+
+STATISTICS
+
+STATISTICS LIST
+
+Caso o usuário não tenha nenhum macrosPlanner, o programa informa que não tem e permite
+a criação de um macrosPlanner. Caso tenha, lista os macrosPlanner, para o usuário poder escolher de qual quer
+visualizar as estatisticas.
+
+
+STATISTICS STATISTICS 
+
+Permite que o usuário visualize as estatísticas do macrosPlanner tanto por gráficos como por tabelas, através de um menu.
+caso não tenha nenhuma macrosSheet no macrosPlanner as tabelas e gráficos não terão nenhum dado.
+
+KCAL STATISTICS
+
+Tabula todos os dados de energia do macrosPlanner em forma de calorias, fazendo uma tupla entre semanas e kcals.
+
+
+MACROS STATISTICS
+
+Tabula todos os dados de macros do macrosPlanner, criando uma tupla entre semana, carboidráto, proteína e gordura.
+
+
+KCAL CHART
+
+Gráfico de linhas com as tuplas semana e kcal. O usuário pode ocultar a visualização da kcal no gráfico.
+
+
+MACROS CHART
+
+Gráfico de colunas agrupadas das tuplas semana, carboídrato, proteína e gordura, o usuário pode ocultar a visualização de algum
+macros no gráfico.
+
+
+MACROS PIE CHART
+
+Gráfico de pizza da macrosSheet instanciada, o usuário pode ocultar a visualização dos macros caso queira.
+
+
+GENERAL INFO UPDATE
+
+O forms funciona corretamente, a data de inicio pode ser maior ou igual a data final e o número de semanas não corresponde ao número
+de semanas real do macrosPlanner, mas isso não chega a ser um problema.
+
+
+
+*** QUESTÕES A SEREM MELHORADAS FUTURAMENTE ***
+
+Criação de arquivos css separando a estilização do html;
+Criar pacotes para que os módulos não fiquem dispersos.
+

@@ -1,0 +1,29 @@
+.macros-planner-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .macros-planner-item {
+    margin-bottom: 20px;
+  }
+  
+  .macros-planner-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .macros-planner-options {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+  }
+  
+  .macros-planner-option {
+    display: inline;
+    margin-right: 10px;
+  }
+  
+  .macros-planner-create-link {
+    margin-top: 20px;
+  }
+  

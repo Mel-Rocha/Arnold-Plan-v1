@@ -1,0 +1,37 @@
+{% extends 'home.html' %}
+
+{% block content %}
+  <div id="container" style="width: 75%;">
+    <canvas id="kcalChart"></canvas>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    var config = {
+      type: 'line',
+      data: {
+        datasets: [{
+          data: {{ data.data|safe }},
+          label: 'Kcal por Semana',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1,
+        }],
+        labels: {{ data.labels|safe }},
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var ctx = document.getElementById('kcalChart').getContext('2d');
+      window.myLine = new Chart(ctx, config);
+    });
+  </script>
+
+{% endblock %}
