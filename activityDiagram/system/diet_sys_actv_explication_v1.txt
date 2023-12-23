@@ -1,0 +1,22 @@
+Explicação Diagrama De Atividades Do Sistema (Dieta)
+
+Nutricionista
+Tudo se inicia no consultório de nutrição, com uma conversa
+entre o atleta e o nutri. O nutricionista faz o levantamento
+da anamnese alimentar do indivíduo, estrutura o planejamento
+alimentar e efetua o calculo de cardápio. Ao final desse pro-
+cesso ele prescreve a dieta.
+
+Sistema
+O sistema oferece um template para estruturar e organizar a
+dieta prescrita pelo profissional da nutrição, bem como oferta
+o monitoramento dessa dieta através de seus registros.
+
+Atleta
+O atleta tem a missão de seguir as orientações propostas pelo
+nutricionista executando a dieta.
+
+Treinador
+O treinador avalia seu atleta com base em seus resultados estéticos
+e ao mesmo tempo afere a eficácia da dieta para determinar qual será
+a próxima estratégia dietética.
