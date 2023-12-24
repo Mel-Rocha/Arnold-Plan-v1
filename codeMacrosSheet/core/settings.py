@@ -65,7 +65,12 @@ INSTALLED_APPS = [
     'kcal_chart',
     'macros_chart',
     'statistics_',
-
+    
+    'diet',
+    'diet_general_info',
+    'meal',
+    'meal_general_info',
+    'food_options',
     
     
 ]
