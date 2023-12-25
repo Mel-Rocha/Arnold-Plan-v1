@@ -1,0 +1,56 @@
+<!--
+{% extends 'home.html' %}
+
+{% block content %}
+
+<h2>Lista de meals</h2>
+
+{% if meals %}
+  <ul>
+    {% for meal in meals %}
+      <li>
+        <p>Meal: {{ meal.id }}</p>
+              <li>
+                <a href="{% url 'meal:meal_details' pk=meal.pk %}">Detalhes</a>
+              </li>
+              <li>
+                <a href="{% url 'meal:meal_delete' pk=meal.pk %}">Excluir</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    {% endfor %}
+    <li>
+      <p>
+        <a href="{% url 'meal:meal_create' %}">Criar</a>
+      </p>
+    </li>
+  </ul>
+{% else %}
+  <p>Nenhum meal encontrado.</p>
+  <li>
+    <p>
+      <a href="{% url 'meal:meal_create' %}">Criar</a>
+    </p>
+  </li>
+{% endif %}
+
+{% endblock %}
+
+-->
+
+{% extends 'home.html' %}
+
+{% block title %}Meal List{% endblock %}
+
+{% block content %}
+  <h1>Meal</h1>
+  <ul>
+    {% for meal in meals %}
+      <li><a href="{% url 'diet:meal_details' pk=meal.pk %}">{{ meal }}</a></li>
+    {% empty %}
+      <li>No Meals found.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

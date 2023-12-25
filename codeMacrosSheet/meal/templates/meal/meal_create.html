@@ -1,0 +1,16 @@
+{% extends 'home.html' %}
+
+{% block content %}
+
+<h2>Criar Meal</h2>
+
+<form method="post" action="{% url 'meal:meal_create' diet_id=diet.id %}" style="max-width: 400px; margin: 0 auto; text-align: center;" autocomplete="off">
+  {% csrf_token %}
+  
+  <h3>Informações Gerais Meal</h3>
+  {{ meal_general_info_form.as_p }}
+
+  <button type="submit" >Criar Dieta</button>
+</form>
+
+{% endblock %}

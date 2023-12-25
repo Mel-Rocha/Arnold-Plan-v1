@@ -12,4 +12,4 @@ class MealGeneralInfo(models.Model):
     meal = models.OneToOneField(Meal, on_delete=models.CASCADE, default=None)
     name =   models.CharField(max_length=100)
     time = models.TimeField(default='00:00:00')
-    type_of_meal = models.CharField(max_length=50, choices=TypeOfMeal.choices)
+    type_of_meal = models.CharField(max_length=50, choices=TypeOfMeal.choices, default=TypeOfMeal.ORDINARY)

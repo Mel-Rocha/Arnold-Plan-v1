@@ -1,10 +1,3 @@
-FUNCIONANDO
-diet_list
-diet_delete
-diet_details
-diet_create
-
-diet_general_info_update
-
-PORÉM
-As caixas de seleção não estão sendo renderizadas
+lista as diets e as meals, mas não aparece as meal_geneal_info em
+diet_details.html, tem que clicar no btn meal details pra isso,
+o meal_general_info_update está funcionando (exceto pela caixa de seleção)

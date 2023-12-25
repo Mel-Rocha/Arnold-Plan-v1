@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Diet
 from .forms import DietForm
 from diet_general_info.forms import DietGeneralInfoForm
+from meal.models import Meal 
 from django.contrib.auth.decorators import login_required
 
 
@@ -58,6 +59,8 @@ def diet_delete(request, pk):
 def diet_details(request, pk):
     diet = get_object_or_404(Diet, pk=pk)
     diet_general_info = diet.dietgeneralinfo
+    meals = diet.meal_set.all()
+    
 
-    context = {'diet': diet, 'diet_general_info': diet_general_info}
+    context = {'diet': diet, 'diet_general_info': diet_general_info, 'meals': meals}
     return render(request, 'diet/diet_details.html', context)

@@ -19,6 +19,8 @@ urlpatterns = [
     path('statistics_/', include('statistics_.urls')),
     path('diet/', include('diet.urls')),
     path('', include ('diet_general_info.urls')),
+    path('', include ('meal_general_info.urls')),
+    path('', include ('meal.urls')),
 ]
 
 if settings.DEBUG:
