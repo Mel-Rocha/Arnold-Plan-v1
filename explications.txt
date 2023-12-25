@@ -1,18 +1,10 @@
-Início do módulo dieta, as classes 
+FUNCIONANDO
+diet_list
+diet_delete
+diet_details
+diet_create
 
-Diet
-DietGeneralInfo
-Meal
-MealGeneralInfo
-FoodOption
+diet_general_info_update
 
-Foram criadas e cadastradas na área de administração, estão funcionando 
-corretamente.
-
-
-Tarefas a serem feitas com essas models
-
-Criar forms
-Criar Views
-Configurar Urls
-Criar Templates
+PORÉM
+As caixas de seleção não estão sendo renderizadas
