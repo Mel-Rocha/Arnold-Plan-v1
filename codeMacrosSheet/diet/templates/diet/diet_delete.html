@@ -1,0 +1,11 @@
+{% extends 'home.html' %}
+
+{% block content %}
+  <h2>Excluir Diet</h2>
+  <p>Você tem certeza que deseja excluir o Diet "{{ diet.name }}"?</p>
+  <form method="post" action="{% url 'diet:diet_delete' pk=diet.pk %}">
+    {% csrf_token %}
+    <button type="submit">Excluir</button>
+    <a href="{% url 'diet:diet_list' %}">Cancelar</a>
+  </form>
+{% endblock %}

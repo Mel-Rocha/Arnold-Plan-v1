@@ -16,7 +16,7 @@ class DietGeneralInfo(models.Model):
     initial_date = models.DateField()
     final_date = models.DateField()
     weeks =  models.IntegerField(default=1, validators=[MinValueValidator(1)])
-    type_of_diet = models.CharField(max_length=50, choices=TypeOfDiet.choices)
+    type_of_diet = models.CharField(max_length=50, choices=TypeOfDiet.choices, default=TypeOfDiet.MAINTENANCE )
     
     
 

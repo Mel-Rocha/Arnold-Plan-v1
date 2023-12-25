@@ -1,0 +1,40 @@
+{% extends 'home.html' %}
+
+{% block content %}
+
+<h2>Lista de Diets</h2>
+
+{% if diets %}
+  <ul>
+    {% for diet in diets %}
+      <li>
+        <p>Diet: {{ diet.id }}</p>
+              <li>
+                <a href="{% url 'diet:diet_details' pk=diet.pk %}">Detalhes</a>
+              </li>
+              <li>
+                <a href="{% url 'diet:diet_delete' pk=diet.pk %}">Excluir</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    {% endfor %}
+    <li>
+      <p>
+        <a href="{% url 'diet:diet_create' %}">Criar</a>
+      </p>
+    </li>
+  </ul>
+{% else %}
+  <p>Nenhum Diet encontrado.</p>
+  <li>
+    <p>
+      <a href="{% url 'diet:diet_create' %}">Criar</a>
+    </p>
+  </li>
+{% endif %}
+
+{% endblock %}
+
+

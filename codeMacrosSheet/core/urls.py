@@ -17,6 +17,8 @@ urlpatterns = [
     path('kcal_chart/', include('kcal_chart.urls')),
     path('macros_chart/', include('macros_chart.urls')),
     path('statistics_/', include('statistics_.urls')),
+    path('diet/', include('diet.urls')),
+    path('', include ('diet_general_info.urls')),
 ]
 
 if settings.DEBUG:

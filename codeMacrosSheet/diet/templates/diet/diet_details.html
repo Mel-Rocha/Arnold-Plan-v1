@@ -1,0 +1,21 @@
+{% extends 'home.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>Diet Details</h1>
+
+        <!-- Mostrar informações gerais da dieta -->
+        <h2>General Information</h2>
+        <p><strong>Goal:</strong> {{ diet_general_info.goal }}</p>
+        <p><strong>Observations:</strong> {{ diet_general_info.observations }}</p>
+        <p><strong>Initial Date:</strong> {{ diet_general_info.initial_date }}</p>
+        <p><strong>Final Date:</strong> {{ diet_general_info.final_date }}</p>
+        <p><strong>Weeks:</strong> {{ diet_general_info.weeks }}</p>
+        <p><strong>Type of Diet:</strong> {{ diet_general_info.get_type_of_diet_display }}</p>
+
+        <p>
+            <button onclick="window.location.href='{% url 'diet_general_info:diet_general_info_update' pk=diet_general_info.pk %}'" class="button">Edit</button>
+            
+        </p>
+    </div>
+{% endblock %}
