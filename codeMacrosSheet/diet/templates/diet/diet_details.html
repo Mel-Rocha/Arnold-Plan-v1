@@ -22,17 +22,29 @@
 
     <h2>Meals:</h2>
 <ul>
+        
     {% for meal in meals %}
     <table>
         <p><strong>Meal Id:</strong> {{ meal.id }}</p>
-        <button onclick="window.location.href='{% url 'meal:meal_details' pk=meal.id %}'" class="button">Meal Details</button>        
-        
-        <p><strong>Name:</strong> {{ meal_general_info.name }}</p>
-        <p><strong>Time:</strong> {{ meal_general_info.time }}</p>
-        <p><strong>Type Of Meal:</strong> {{ meal_general_info.type_of_meal }}</p>
+        <button onclick="window.location.href='{% url 'meal:meal_details' pk=meal.id %}'" class="button">Meal Details</button>  
+        <button onclick="window.location.href='{% url 'meal:meal_delete' pk=meal.id %}'" class="button">Meal Delete</button>       
+        <button onclick="window.location.href='{% url 'food_options:food_options_create' meal_id=diet.id %}'">Criar Opções de Comida</button> 
     </table>
     <p>...</p>
     {% endfor %}
+
+    
+    {% for meal_general_info in meal_general_infos %}
+    <p><strong>Name:</strong> {{ meal_general_info.name }}</p>
+        <p><strong>Time:</strong> {{ meal_general_info.time }}</p>
+        <p><strong>Type Of Meal:</strong> {{ meal_general_info.type_of_meal }}</p>
+        <p>
+            <button onclick="window.location.href='{% url 'meal_general_info:meal_general_info_details' meal_general_info.pk %}'" >details</button>
+            <button onclick="window.location.href='{% url 'food_options:food_options_create' meal_general_info.meal.id %}'">Criar Opções de Comida</button>
+
+        </p>
+        <p>...</p>
+        {% endfor %}
 </ul>
 
     <button onclick="window.location.href='{% url 'meal:meal_create' diet_id=diet.id %}'" class="button">Create Meal</button><!--é diet-->

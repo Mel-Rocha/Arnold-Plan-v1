@@ -21,6 +21,7 @@ urlpatterns = [
     path('', include ('diet_general_info.urls')),
     path('', include ('meal_general_info.urls')),
     path('', include ('meal.urls')),
+    path('', include ('food_options.urls')),
 ]
 
 if settings.DEBUG:

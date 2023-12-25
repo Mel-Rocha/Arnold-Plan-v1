@@ -10,7 +10,7 @@
 
 <p>
     <button onclick="window.location.href='{% url 'meal_general_info:meal_general_info_update' meal_general_info.pk %}'" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px;">Edit</button>
-    <button onclick="window.location.href='{% url 'diet:diet_details' meal.diet.pk %}'" ">diet Details</button>
+    <button onclick="window.location.href='{% url 'meal:meal_details' meal_general_info.meal.pk %}'">Meal Details</button>
 </p>
 
 {% endblock %}

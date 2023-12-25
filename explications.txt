@@ -1,3 +1,24 @@
-lista as diets e as meals, mas não aparece as meal_geneal_info em
-diet_details.html, tem que clicar no btn meal details pra isso,
-o meal_general_info_update está funcionando (exceto pela caixa de seleção)
+
+FUNCIONANDO
+
+diet_delete
+diet_create
+diet_details
+
+diet_general_info_details
+diet_general_info_update
+
+
+meal_create
+
+
+meal_general_info_details
+
+
+food_options_create
+food_optinos_delete
+food_options_update
+
+MELHORAS
+
+colocar uns btn pra ajeitar a navegabilidade [NECESSÁRIO]

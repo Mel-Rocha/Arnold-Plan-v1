@@ -3,6 +3,7 @@ from .models import Diet
 from .forms import DietForm
 from diet_general_info.forms import DietGeneralInfoForm
 from meal.models import Meal 
+from meal_general_info.models import MealGeneralInfo
 from django.contrib.auth.decorators import login_required
 
 
@@ -59,8 +60,8 @@ def diet_delete(request, pk):
 def diet_details(request, pk):
     diet = get_object_or_404(Diet, pk=pk)
     diet_general_info = diet.dietgeneralinfo
-    meals = diet.meal_set.all()
-    
+    meals = diet.meal_set.all()#não estou usando isso
+    meal_general_infos = MealGeneralInfo.objects.filter(meal__in=meals)
 
-    context = {'diet': diet, 'diet_general_info': diet_general_info, 'meals': meals}
+    context = {'diet': diet, 'diet_general_info': diet_general_info, 'meals': meals, 'meal_general_infos': meal_general_infos}
     return render(request, 'diet/diet_details.html', context)

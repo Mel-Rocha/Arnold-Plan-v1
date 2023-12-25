@@ -1,0 +1,17 @@
+{% extends 'home.html' %}
+
+{% block content %}
+  <h2>Detalhes do Food Options</h2>
+  <p>Meal: {{ food_options.meal }}</p>
+ 
+    <p>Food: {{ food_options.food }}</p>
+    <p>Quantity: {{ food_options.quantity }}</p>
+    <p>Unit of Measurement: {{ food_options.unit_of_measurement }}</p>
+   
+
+    <button onclick="window.location.href='{% url 'food_options:food_options_update' food_options.pk %}'" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px;">Edit</button>
+    <button onclick="window.location.href='{% url 'food_options:food_options_delete' food_options.pk %}'" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px;">Delete</button>
+    <button onclick="window.location.href='{% url 'meal:meal_details' food_options.meal.pk %}'" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer;">Meal Details</button>
+
+
+{% endblock %}
