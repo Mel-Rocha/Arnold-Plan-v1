@@ -1,0 +1,20 @@
+Explicação Diagrama De Atividades Do Negócio 
+
+Nutricionista
+Tudo se inicia no consultório de nutrição, com uma conversa
+entre o atleta e o profissional. O nutricionista faz o levantamento
+da anamnese alimentar do indivíduo, estrutura o planejamento
+alimentar e efetua o calculo de cardápio. Ao final desse pro-
+cesso ele prescreve a dieta.
+
+Atleta
+O atleta tem a missão de seguir as orientações propostas pelo
+nutricionista executando a dieta e ao mesmo tempo monitorando-a, para
+fornecer feedbacks ao seu treinador, ele deve estruturar um modelo para
+sua dieta, levantar estatísticas da mesma e monitorar sua ingestão nutricional.
+
+Treinador
+O treinador observa os resultados que seu atleta obteve por meio da
+dieta, e simultâneamente avalia a mesma, e analisa suas estatísticas, para
+poder mensurar a performance do atleta.
+

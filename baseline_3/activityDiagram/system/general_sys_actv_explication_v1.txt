@@ -1,0 +1,24 @@
+Explicação Diagrama De Atividades Geral do Sistema 
+
+Nutricionista
+Tudo se inicia no consultório de nutrição, com uma conversa
+entre o atleta e o profissional. O nutricionista faz o levantamento
+da anamnese alimentar do indivíduo, estrutura o planejamento
+alimentar e efetua o cálculo de cardápio. Ao final desse pro-
+cesso ele prescreve a dieta.
+
+Sistema
+O sistema oferece um template para estruturar e organizar a
+dieta prescrita pelo profissional da nutrição, bem como oferta
+o monitoramento dessa dieta através de seus registros, além de 
+estruturar um template para montar cálculo de cardápio prescrito
+pelo nutricionista, e transformar essas informações em dados estátisticos.
+
+Atleta
+O atleta tem a missão de seguir as orientações propostas pelo
+nutricionista executando a dieta.
+
+Treinador
+O treinador avalia seu atleta com base em seus resultados estéticos
+e ao mesmo tempo afere a eficácia da dieta e analisa suas estátisticas
+para determinar qual será a próxima estratégia dietética.
