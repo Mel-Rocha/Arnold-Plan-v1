@@ -43,7 +43,8 @@ def food_options_delete(request, pk):
     food_options = get_object_or_404(FoodOptions, pk=pk)
     if request.method == 'POST':
         food_options.delete()
-        return redirect('food_options:food_options_list')
+        meal = food_options.meal  
+        return redirect('meal:meal_details', pk=meal.pk)
     return render(request, 'food_options/food_options_delete.html', {'food_options': food_options})
 
 
@@ -54,6 +55,7 @@ def food_options_details(request, pk):
 
 
 @login_required
-def food_options_list(request):
-    food_options = FoodOptions.objects.all()
-    return render(request, 'food_options/food_options_list.html', {'food_options': food_options})
+def food_options_list(request, meal_id):
+    meal = get_object_or_404(Meal, pk=meal_id)
+    food_options = FoodOptions.objects.filter(meal=meal)
+    return render(request, 'food_options/food_options_list.html', {'meal': meal, 'food_options': food_options})

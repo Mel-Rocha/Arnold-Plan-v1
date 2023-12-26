@@ -1,24 +1,13 @@
+DESCRIÇÃO
+O usuário pode criar a dieta, criar refeição, criar opções de alimentos
+pode fazer a edição da dieta por meio do update nas informações gerais da
+dieta e também das informações gerais da refeição, pode editar o food_options
+pode deletar o food_options, a meal e a dieta também.
 
-FUNCIONANDO
+RESUMINDO
+Ou seja, tudo está funcionando exceto: 
+campos de seleção dos forms que não estão sendo renderizados
 
-diet_delete
-diet_create
-diet_details
-
-diet_general_info_details
-diet_general_info_update
-
-
-meal_create
-
-
-meal_general_info_details
-
-
-food_options_create
-food_optinos_delete
-food_options_update
-
-MELHORAS
-
-colocar uns btn pra ajeitar a navegabilidade [NECESSÁRIO]
+MELHORIAS
+deixar a visualização das informações mais amigável para o usuário, começar
+a pensar em questões de usabilidade.

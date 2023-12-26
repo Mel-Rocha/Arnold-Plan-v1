@@ -10,7 +10,22 @@
 
 <p>
     <button onclick="window.location.href='{% url 'meal_general_info:meal_general_info_update' meal_general_info.pk %}'" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px;">Edit</button>
+    <button onclick="window.location.href='{% url 'diet:diet_details' pk=meal_general_info.meal.diet.pk %}'">Diet Details</button>
 
 </p>
+
+
+<h2>Food Options</h2>
+<ul>
+    {% for food_options in food_optionss %}
+        <li>
+            <strong>Food:</strong> {{ food_options.food }}
+            <br>
+            <strong>Quantity:</strong> {{ food_options.quantity }}
+            <br>
+            <strong>Unit Of Measurement:</strong> {{ food_options.unit_of_measurement }}
+        </li>
+    {% endfor %}
+</ul>
 
 {% endblock %}
