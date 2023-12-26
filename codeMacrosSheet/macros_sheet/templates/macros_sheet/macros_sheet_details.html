@@ -1,10 +1,10 @@
 {% extends 'home.html' %}
 
 {% block content %}
-  <h2>Detalhes do Macros Sheet</h2>
+<h2 style="color: black;">Detalhes do Macros Sheet</h2>
   <p>Macros Planner: {{ macros_sheet.macros_planner }}</p>
  
-
+  <li style="margin-bottom: 20px; border: 1px solid black; border-radius: 8px; padding: 15px; background-color: white; max-width: 600px; margin-left: auto; margin-right: auto;">
   <table>
     <tr>
       <th>Macros</th>
@@ -41,11 +41,14 @@
   </table>
 
 <td>
-  <button onclick="window.location.href='{% url 'macros_sheet:macros_sheet_update' macros_sheet.pk %}'" >Edit</button>
-  <button onclick="window.location.href='{% url 'macros_sheet:macros_sheet_delete' macros_sheet.pk %}'" ">Delete</button>
+  <button onclick="window.location.href='{% url 'macros_sheet:macros_sheet_update' macros_sheet.pk %}'" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px;">Edit</button>
+
+  <button onclick="window.location.href='{% url 'macros_sheet:macros_sheet_delete' macros_sheet.pk %}'" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer;">Delete</button>
+
   
 </td>
+  </li>
   <td>
-    <button onclick="window.location.href='{% url 'macros_planner:macros_planner_details' macros_sheet.macros_planner.pk %}'" ">Macros Planner Details</button>
-    </td>
+    <button onclick="window.location.href='{% url 'macros_planner:macros_planner_details' macros_sheet.macros_planner.pk %}'" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer;">Macros Planner Details</button>
+  </td>
 {% endblock %}

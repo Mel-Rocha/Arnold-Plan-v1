@@ -37,6 +37,7 @@
 <!-- Exiba outras informações relevantes sobre o MacrosPlanner -->
 
 <!-- Exibir informações da GeneralInfo -->
+<li style="margin-bottom: 20px; border: 1px solid black; border-radius: 8px; padding: 15px; background-color: white; max-width: 600px; margin-left: auto; margin-right: auto;">
 <p style="color: black;">Meta: {{ general_info.goal }}</p>
 <p style="color: black;">Data Inicial: {{ general_info.initial_date }}</p>
 <p style="color: black;">Data Final: {{ general_info.final_date }}</p>
@@ -45,6 +46,7 @@
   <!-- Adicionar link para editar GeneralInfo -->
   <button onclick="window.location.href='{% url 'general_info:general_info_update' pk=general_info.pk %}'" class="button">Edit</button>
 </p>
+</li>
 <!--
 <button onclick="window.location.href='{% url 'macros_planner_kcal_tuples' pk=macros_planner.pk %}'" class="button">Tabela Calorias</button>
 <button onclick="window.location.href='{% url 'macros_tuples' pk=macros_planner.pk %}'" class="button">Tabela Macros</button>
@@ -56,9 +58,12 @@
 <h3 style="color: black;">Lista de Macros Sheets</h3>
 <div class="macrosSheets-details-container">
   {% for macros_sheet in macros_sheets %}
-    <p style="color: black;">MacrosSheet #{{ macros_sheet.id }}</p>
+    
     <p>Semana: {{ macros_sheet.week }}</p>
+  
+    <li style="margin-bottom: 20px; border: 1px solid black; border-radius: 8px; padding: 15px; background-color: white; max-width: 600px; margin-left: auto; margin-right: auto;">
     <table>
+
       <tr>
         <th>Macros</th>
         <th>Gramas</th>
@@ -98,7 +103,7 @@
     <button onclick="window.location.href='{% url 'macros_sheet:macros_sheet_update' pk=macros_sheet.pk %}'" class="button">Edit</button>
     <button onclick="window.location.href='{% url 'macros_sheet:macros_sheet_delete' pk=macros_sheet.pk %}'" class="button">Delete</button>
     <button onclick="window.location.href='{% url 'macros_chart:macros_pie_chart' macros_sheet.pk %}'" class="button">Gráfico</button>
-
+    </li>
     <p>...</p>
   {% endfor %}
   <button onclick="window.location.href='{% url 'macros_sheet:macros_sheet_create' macros_planner_id=macros_planner.id %}'" class="button">Create MacrosSheet</button>  

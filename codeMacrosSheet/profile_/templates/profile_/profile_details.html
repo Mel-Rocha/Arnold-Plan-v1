@@ -5,25 +5,21 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>   
 
 {% block content %}
-<!--
-    <a href="{% url 'profile_:profile_details' pk=profile.pk %}">Profile Details</a>
--->
-<button onclick="window.location.href='{% url 'macros_planner:macros_planner_list' %}'" >Macros Planner List</button>
-<div>
-     
-    <h2>Detail of Profile</h2>
-    <h3>{{ profile.name }}</h3>
-    <p>Birth Date: {{ profile.birth_date }}</p>
-    <p>Weight: {{ profile.weight }}</p>
-    <p>Height: {{ profile.height }}</p>
-    <p>Gender: {{ profile.gender }}</p>
+<div style="max-width: 600px; margin: 0 auto; text-align: center;">
 
+    <button onclick="window.location.href='{% url 'macros_planner:macros_planner_list' %}'" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer; margin-bottom: 20px;">Macros Planner List</button>
+    <li style="margin-bottom: 20px; border: 1px solid black; border-radius: 8px; padding: 15px; background-color: white; max-width: 600px; margin-left: auto; margin-right: auto;">
+    <h2 style="color: black;">Detail of Profile</h2>
+    <h3 style="color: rgb(0, 0, 0);">{{ profile.name }}</h3>
+    <p style="color: rgb(0, 0, 0);">Birth Date: {{ profile.birth_date }}</p>
+    <p style="color: rgb(0, 0, 0);">Weight: {{ profile.weight }}</p>
+    <p style="color: rgb(0, 0, 0);">Height: {{ profile.height }}</p>
+    <p style="color: rgb(0, 0, 0);">Gender: {{ profile.gender }}</p>
 
-    <td>
-        <button onclick="window.location.href='{% url 'profile_:profile_update' profile.pk %}'" >Edit</button>
-        <button onclick="window.location.href='{% url 'profile_:profile_delete' profile.pk %}'"  >Delete</button>
-    </td>
-
-
-</div> 
+    <div style="margin-top: 20px;">
+        <button onclick="window.location.href='{% url 'profile_:profile_update' profile.pk %}'" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px;">Edit</button>
+        <button onclick="window.location.href='{% url 'profile_:profile_delete' profile.pk %}'" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer;">Delete</button>
+    </div>
+</li>
+</div>
 {% endblock %}

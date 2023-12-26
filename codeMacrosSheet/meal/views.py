@@ -58,8 +58,9 @@ def meal_update(request, pk):
 def meal_delete(request, pk):
     meal = get_object_or_404(Meal, pk=pk)
     if request.method == 'POST':
+        diet_pk = meal.diet.pk
         meal.delete()
-        return redirect('meal:meal_list')
+        return redirect('diet:diet_details', pk=diet_pk)
     return render(request, 'meal/meal_delete.html', {'meal': meal})
 
 

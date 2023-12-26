@@ -1,13 +1,100 @@
-DESCRIÇÃO
-O usuário pode criar a dieta, criar refeição, criar opções de alimentos
-pode fazer a edição da dieta por meio do update nas informações gerais da
-dieta e também das informações gerais da refeição, pode editar o food_options
-pode deletar o food_options, a meal e a dieta também.
+<FUNCIONALIDADES>
+A aplicação permite que o usuário crie dietas, refeições, adicione alimentos,
+possui estrutura para cálculo de cardápio e visualização das 
+estátisticas da dieta por meio de tabelas e gráficos.
 
-RESUMINDO
-Ou seja, tudo está funcionando exceto: 
-campos de seleção dos forms que não estão sendo renderizados
+</FUNCIONALIDADES>
 
-MELHORIAS
-deixar a visualização das informações mais amigável para o usuário, começar
-a pensar em questões de usabilidade.
+<COMPONENTES TESTADOS>
+
+Profile create
+Profile update
+Profile delete
+Profile details
+
+Macros Planner create
+Macros Planner details
+Macros Planner delete
+
+General Info update
+General Info details
+
+Macros Sheet update
+Macros Sheet delete
+Macros Sheet create
+Macros Sheet details
+
+Macros Pie Chart 
+
+Kcal Tuples 
+
+Macros Tuples
+
+Kcal Chart
+
+Macros Chart
+
+Diet delete
+Diete create
+Diete details
+
+Meal create
+Meal details
+Meal delete
+
+Meal General Info update
+Meal General Info details
+
+Food Options create
+Food Options details
+Food Options delete
+
+Diet General Info update
+
+
+</COMPONENTES TESTADOS>
+
+
+<PROBLEMAS RECORRENTES>
+
+campos de select não estão sendo renderizados em:
+profile, diet_create, diet_general_info_update, meal_create,
+meal_general_info_update, food_options_create, food_options_update
+
+</PROBLEMAS RECORRENTES>
+
+<PROBLEMAS PONTUAIS>
+
+não a opção de cancelar a deleção em profile
+
+</PROBLEMAS PONTUAIS>
+
+
+<CONSIDERAÇÕES>
+
+macros sheets:
+se eu tiver 5 macros sheets, e deletar a correspondente a semana
+3, eu vou ficar com as macros sheets 1, 2, 4 e 5. Ou seja, as semanas
+não estão sendo atualizadas na deleção, apenas na criação (isso 
+interfere nas tabelas e nos gráficos, pois os mesmos se baseiam nas
+semanas).
+
+macros pie chart:
+não tem um botão para retornar ao macros sheet correspondente, apenas o
+botão para home.
+
+kcal chart e macros chart:
+não tem um botão para redirecionar a página de statistics, (as tabelas
+tem esse botão, já as páginas que tem os gráficos não).
+
+</CONSIDERAÇÕES>
+
+
+<MELHORIAS>
+Ter um arquivo separado para o css, e não junto com o html como está agora.
+Modularizar, criar pacotes.
+
+</MELHORIAS>
+
+
+
