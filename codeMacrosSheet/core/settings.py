@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+BASE_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,34 +46,45 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
 
     'allauth.socialaccount.providers.google',
-
-    'user',
-    'profile_',
-    'macros_sheet',
-    'kcal',
-    'cho',
-    'ptn',
-    'fat',
-    'proportion_gkg',
-    'general_info',
-    'macros_planner',
-
-    'all_auth',
-
-    'kcal_statistics',
-    'macros_statistics',
-    'kcal_chart',
-    'macros_chart',
-    'statistics_',
-    
-    'diet',
-    'diet_general_info',
-    'meal',
-    'meal_general_info',
-    'food_options',
     
     
 ]
+
+#api se existirem
+THIRD_PARTY_APPS = [
+    
+]
+
+#aplicativos que eu criei com startapp. A sintaxe é <nome_da_pasta>.<my_app>
+PROJECT_APPS = [
+    'apps.user.user',
+    'apps.user.profile_',
+    'apps.user.all_auth',
+
+    'apps.macros_statistics.kcal_statistics',
+    'apps.macros_statistics.macros_statistics',
+    'apps.macros_statistics.kcal_chart',
+    'apps.macros_statistics.macros_chart',
+    'apps.macros_statistics.statistics_',
+
+    'apps.macros.macros_sheet',
+    'apps.macros.kcal',
+    'apps.macros.cho',
+    'apps.macros.ptn',
+    'apps.macros.fat',
+    'apps.macros.proportion_gkg',
+    'apps.macros.general_info',
+    'apps.macros.macros_planner',
+
+    'apps.diet.diet',
+    'apps.diet.diet_general_info',
+    'apps.diet.meal',
+    'apps.diet.meal_general_info',
+    'apps.diet.food_options',
+]
+
+
+INSTALLED_APPS = BASE_APPS + THIRD_PARTY_APPS + PROJECT_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

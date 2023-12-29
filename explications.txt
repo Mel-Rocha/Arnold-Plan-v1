@@ -1,59 +1,18 @@
-<FUNCIONALIDADES>
-A aplicação permite que o usuário crie dietas, refeições, adicione alimentos,
-possui estrutura para cálculo de cardápio e visualização das 
-estátisticas da dieta por meio de tabelas e gráficos.
+<MELHORIA>
 
-</FUNCIONALIDADES>
+a aplicação esta dividida em módulos, todos os apps personalizados estão
+em uma pasta específica (apps) e estão organizados em subpastas dentro da
+pasta apps.
 
-<COMPONENTES TESTADOS>
+</MELHORIA>
 
-Profile create
-Profile update
-Profile delete
-Profile details
+<PROBLEMAS>
+macros_sheet está sendo deletada mesmo quando clica em cancelar
+error:  Broken pipe from
 
-Macros Planner create
-Macros Planner details
-Macros Planner delete
+não a opção de cancelar a deleção em profile
 
-General Info update
-General Info details
-
-Macros Sheet update
-Macros Sheet delete
-Macros Sheet create
-Macros Sheet details
-
-Macros Pie Chart 
-
-Kcal Tuples 
-
-Macros Tuples
-
-Kcal Chart
-
-Macros Chart
-
-Diet delete
-Diete create
-Diete details
-
-Meal create
-Meal details
-Meal delete
-
-Meal General Info update
-Meal General Info details
-
-Food Options create
-Food Options details
-Food Options delete
-
-Diet General Info update
-
-
-</COMPONENTES TESTADOS>
-
+</PROBLEMAS>
 
 <PROBLEMAS RECORRENTES>
 
@@ -62,13 +21,6 @@ profile, diet_create, diet_general_info_update, meal_create,
 meal_general_info_update, food_options_create, food_options_update
 
 </PROBLEMAS RECORRENTES>
-
-<PROBLEMAS PONTUAIS>
-
-não a opção de cancelar a deleção em profile
-
-</PROBLEMAS PONTUAIS>
-
 
 <CONSIDERAÇÕES>
 
@@ -91,10 +43,8 @@ tem esse botão, já as páginas que tem os gráficos não).
 
 
 <MELHORIAS>
+
 Ter um arquivo separado para o css, e não junto com o html como está agora.
-Modularizar, criar pacotes.
+
 
 </MELHORIAS>
-
-
-
