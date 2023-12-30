@@ -1,5 +1,8 @@
+NAVBAR FUNCIONANDO
+O navbar só mostra as opções de funcionalidade do sistema a usuários 
+autenticados que possuam um profile
+
 Os gráficos de macros_chart e macros_pie_chart não estão sendo renderizados
 
-o probleama de renderização das caixas de seleção foi resolvido
 
-não tem como acessar o profile pelo navbar, apenas pelo macros planner
+

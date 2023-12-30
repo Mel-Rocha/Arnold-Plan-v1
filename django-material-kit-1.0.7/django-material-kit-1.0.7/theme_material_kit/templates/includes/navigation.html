@@ -77,9 +77,10 @@
                      
                     
 
-                    {% if request.user.is_authenticated %}
-                    <div class="button-group">
-                        
+                      {% if request.user.is_authenticated and request.user.profile %}                      
+                      <div class="button-group">
+                     
+                      <a href="{% url 'profile_:profile_details' pk=request.user.profile.pk %}" class="btn btn-primary">Profile</a>
                       <a href="{% url 'macros_planner:macros_planner_list' %}" class="btn btn-primary">Macros Planner List</a>
                       <a href="{% url 'statistics_:statistics_list' %}" class="btn btn-primary">Statistics</a>
                       <a href="{% url 'diet:diet_list' %}" class="btn btn-primary">Diet List</a>
