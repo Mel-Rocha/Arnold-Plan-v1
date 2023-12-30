@@ -25,9 +25,9 @@
             }
         };
 
-        window.onload = function() {
+        document.addEventListener('DOMContentLoaded', function() {
             var ctx = document.getElementById('macrosPieChart').getContext('2d');
             window.myPieChart = new Chart(ctx, config);
-        };
+        });
     </script>
 {% endblock %}

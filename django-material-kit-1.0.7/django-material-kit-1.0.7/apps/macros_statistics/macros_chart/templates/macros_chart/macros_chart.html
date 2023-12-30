@@ -27,9 +27,9 @@
       },
     };
 
-    window.onload = function() {
+    document.addEventListener('DOMContentLoaded', function() {
       var ctx = document.getElementById('macrosChart').getContext('2d');
       window.myBar = new Chart(ctx, config);
-    };
+    });
   </script>
 {% endblock %}

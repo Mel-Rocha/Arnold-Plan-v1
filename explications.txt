@@ -2,7 +2,10 @@ NAVBAR FUNCIONANDO
 O navbar só mostra as opções de funcionalidade do sistema a usuários 
 autenticados que possuam um profile
 
-Os gráficos de macros_chart e macros_pie_chart não estão sendo renderizados
+GRAFICOS FUNCIONANDO
+Solução usar:
+document.addEventListener('DOMContentLoaded', function() {
+ao invés do window.onload
 
 
 
