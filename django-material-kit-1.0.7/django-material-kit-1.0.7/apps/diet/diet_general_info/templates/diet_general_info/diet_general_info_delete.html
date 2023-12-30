@@ -1,0 +1,10 @@
+{% extends 'layouts/base_background.html' %}
+
+{% block content %}
+<h1>Delete Diet General Info</h1>
+<p>Are you sure you want to delete this General Info?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+</form>
+{% endblock %}

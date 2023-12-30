@@ -1,0 +1,5 @@
+Os gráficos de macros_chart e macros_pie_chart não estão sendo renderizados
+
+o probleama de renderização das caixas de seleção foi resolvido
+
+não tem como acessar o profile pelo navbar, apenas pelo macros planner
