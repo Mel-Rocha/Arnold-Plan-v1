@@ -1,0 +1,88 @@
+***TESTES***
+
+MODULOS TESTADOS
+
+profile
+diet
+macros
+macros_statistics
+
+PROFILE
+
+profile_create
+problema 
+se o usuário sair da aplicação antes de criar o perfil, ele simplesmente não consegue
+criar o seu perfil, e consequentemente não consegue usar nada da aplicação
+
+solução
+enquanto o usuário não tiver um perfil, redirecionar para profile_create
+
+método
+fazer a verificação se o objeto user tem o profile na view de login
+theme_material_kit/views.py/UserLoginView
+
+
+MACROS SHEET
+
+profile_update
+problema
+quando o usuário atualiza o peso dele as macrossheets já calculadas apresentam o cálculo com o
+peso desatualizado
+
+comportamento
+após inserir uma nova macrossheet na lista o cálculo é atualizado em todas as macrossheets
+após editar determinada macrossheet apenas ela é atualizada e recalculada com o novo peso
+quando excluo uma macrossheet não tem atualização no cálculo em nenhuma da lista
+
+solução
+chamar a função macros_sheet_update sempre que o peso do usuário for atualizado
+
+método
+fazer isso através dos signals
+
+problema
+caso o usuário tenha 5 macrossheets e delete a 3 por exemplo, ele tera as macrossheets
+1, 2, 4 e 5.
+
+módulos afetados
+o módulo statistics se baseia nas semanas das macrossheets para mostrar seus gráficos e 
+tabelas.
+
+comportamento
+quando adiciono uma nova macrossheet na lista as semanas são ajustadas corretamente
+
+solução
+fazer o método  def update_week_based_on_id(), que está na classe MacrosSheet, ser chamado
+após a deleção de alguma macrossheet
+
+método 
+usar signals, sempre que o tamanho da lista de macrossheets for diminuido, chamar a 
+função de atualização 
+
+
+<MELHORIAS FUTURAS>
+Não está tão usável, principalmente em meal_details, pois é difícil visualizar
+a opção de adicionar alimentos que se encontra no final da tela;
+
+A estilização poderia estar melhor, e deveria estar em um arquivo separado
+do html.
+
+</MELHORIAS FUTURAS>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,24 @@
+{% extends 'layouts/base_background.html' %}
+
+{% block content %}
+<div style="display: flex; align-items: center; justify-content: center; height: 100vh; max-width: 800px; margin: 0 auto;">
+  <div style="margin-bottom: 20px; border: 1px solid black; border-radius: 8px; padding: 15px; background-color: white; width: 100%;">
+    <div style="display: flex; align-items: center; justify-content: center;">
+    <div class="row justify-content-center align-items-center">
+      <h2 style="color: black;">Criar Dieta</h2>
+  
+      <form method="post" action="{% url 'diet:diet_create' %}" style="margin-top: 20px;" autocomplete="off">
+        {% csrf_token %}
+        
+        <h3 style="color: rgb(0, 0, 0);">Informações Gerais</h3>
+        {{ diet_general_info_form.as_p }}
+  
+        <button type="submit" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 10px;">Criar Dieta</button>
+      </form>
+    </div>
+
+  </div>
+  </div>
+</div>
+{% endblock %}
+
