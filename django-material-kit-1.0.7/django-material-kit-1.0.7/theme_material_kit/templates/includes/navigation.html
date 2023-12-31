@@ -10,7 +10,7 @@
         <div class="container-fluid px-0">
           <a class="navbar-brand font-weight-bolder ms-sm-3" href="/"
             rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom">
-            Material Kit 2
+            Arnold Plan
           </a>
           <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
             data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false"
@@ -69,9 +69,9 @@
                     {% if request.user.is_superuser %}
                     <a href="{% url 'admin:index' %}" class="dropdown-item border-radius-md">
                     {% else %}
-                      <a href="/" class="dropdown-item border-radius-md">
+                      <a href="/presentation" class="dropdown-item border-radius-md">
                     {% endif %}
-                      <span>Presentation</span>
+                      <span>Home</span>
                   
                       
                      
@@ -79,12 +79,19 @@
 
                       {% if request.user.is_authenticated and request.user.profile %}                      
                       <div class="button-group">
-                     
-                      <a href="{% url 'profile_:profile_details' pk=request.user.profile.pk %}" class="btn btn-primary">Profile</a>
-                      <a href="{% url 'macros_planner:macros_planner_list' %}" class="btn btn-primary">Macros Planner List</a>
-                      <a href="{% url 'statistics_:statistics_list' %}" class="btn btn-primary">Statistics</a>
-                      <a href="{% url 'diet:diet_list' %}" class="btn btn-primary">Diet List</a>
-                  </div>
+                        <a href="{% url 'profile_:profile_details' pk=request.user.profile.pk %}" class="dropdown-item border-radius-md">
+                            <span>Meu Perfil</span>
+                        </a>
+                        <a href="{% url 'macros_planner:macros_planner_list' %}" class="dropdown-item border-radius-md">
+                            <span>Meus Macros</span>
+                        </a>
+                        <a href="{% url 'statistics_:statistics_list' %}" class="dropdown-item border-radius-md">
+                            <span>Minhas Estatísticas</span>
+                        </a>
+                        <a href="{% url 'diet:diet_list' %}" class="dropdown-item border-radius-md">
+                            <span>Minha Dieta</span>
+                        </a>
+                    </div>
                   <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1 mt-3">
                     Account
                   </h6>
@@ -168,7 +175,7 @@
 
                 </div>
               </li>
-
+<!--
               <li class="nav-item dropdown dropdown-hover mx-2">
                 <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuBlocks"
                   data-bs-toggle="dropdown" aria-expanded="false">
@@ -556,6 +563,7 @@
                   </div>
 
                 </ul>
+-->                
               </li>
               {% if request.user.is_authenticated %}
               <li class="nav-item ms-lg-auto">
@@ -574,10 +582,12 @@
                 </a>
               </li>
               {% endif %}
+  <!--        
               <li class="nav-item my-auto ms-3 ms-lg-0">
                 <a href="https://appseed.us/product/material-kit/django/" target="_blank"
-                   class="btn btn-sm  bg-gradient-primary  mb-0 me-1 mt-2 mt-md-0">Download</a>
+                   class="btn btn-sm  bg-gradient-dark  mb-0 me-1 mt-2 mt-md-0">Download</a>
               </li>
+-->    
             </ul>
           </div>
         </div>

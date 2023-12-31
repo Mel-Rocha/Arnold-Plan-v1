@@ -7,5 +7,8 @@ Solução usar:
 document.addEventListener('DOMContentLoaded', function() {
 ao invés do window.onload
 
+A estilização de algumas páginas foi feita, o css ainda está no mesmo
+arquivo do html
+
 
 

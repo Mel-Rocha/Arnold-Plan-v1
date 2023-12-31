@@ -1,11 +1,9 @@
 {% extends 'layouts/base_background.html' %}
 
 {% block content %}
-  <td>
-    <button onclick="window.location.href='{% url 'profile_:profile_details' pk=profile.pk %}'" style="display: inline-block; padding: 8px 16px; font-size: 14px; font-weight: bold; text-align: center; text-decoration: none; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s; color: white; background-color: black;">Profile Details</button>
-  </td>
-
-  <h2 style="text-align: center; color: rgb(0, 0, 0);">Lista de Estatísticas dos Macros Planners</h2>
+  
+<div style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh;">
+  <h2 style="color: rgb(0, 0, 0);">Lista de Estatísticas dos Macros Planners</h2>
   {% if macros_planners %}
     <ul style="list-style: none; padding: 0;">
       {% for macros_planner in macros_planners %}
@@ -15,7 +13,6 @@
             <li style="margin-right: 10px;">
               <button onclick="window.location.href='{% url 'statistics_:statistics_view' pk=macros_planner.pk %}'" style="display: inline-block; padding: 8px 16px; font-size: 14px; font-weight: bold; text-align: center; text-decoration: none; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s; color: white; background-color: black;">Statistics</button>
             </li>
-           
           </ul>
         </li>
       {% endfor %}
@@ -27,11 +24,12 @@
       </li>
     </ul>
   {% else %}
+    <br>
     <p style="text-align: center; color: rgb(0, 0, 0);">Nenhum Macros Planner encontrado. Crie um Macros Planner para poder visualizar suas estatísticas</p>
     <p style="text-align: center; margin-bottom: 20px;">
       <button onclick="window.location.href='{% url 'macros_planner:macros_planner_create' %}'" style="padding: 8px 16px; font-size: 14px; font-weight: bold; text-align: center; text-decoration: none; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s; color: white; background-color: black;">Criar</button>
     </p>
+  </div>
   {% endif %}
+
 {% endblock %}
-
-

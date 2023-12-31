@@ -3,18 +3,29 @@
 {% block content %}
     <style>
         /* Estilo para a divisão principal */
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
         #statistics-container {
-            display: inline-block; /* Garante que a div se ajuste ao conteúdo */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             border: 1px solid black;
-            border-radius: 10px; /* Adiciona bordas arredondadas */
-            padding: 20px; /* Adapte conforme necessário */
-            margin: auto; /* Centraliza a div horizontalmente */
-            text-align: center; /* Centraliza o conteúdo dentro da div */
+            border-radius: 10px;
+            padding: 20px;
+            margin: auto;
+            text-align: center;
+            max-width: 800px; /* Largura máxima definida */
+            height: 100vh; /* Altura igual à altura da janela de visualização */
         }
 
         /* Estilo para cada seção (Tabelas e Gráficos) */
         .statistics-section {
-            margin: 20px; /* Adapte conforme necessário */
+            margin: 20px;
         }
 
         /* Estilo para os botões */
@@ -39,7 +50,8 @@
         }
     </style>
 
-    <div id="statistics-container">
+<div style="display: flex; align-items: center; justify-content: center; height: 100vh;">
+        <div id="statistics-container">
         <div class="statistics-section">
             <h1>Tabelas</h1>
             <p>
@@ -56,5 +68,5 @@
             </p>
         </div>
     </div>
+    </div>
 {% endblock %}
-

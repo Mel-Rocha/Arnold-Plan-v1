@@ -43,13 +43,13 @@
   }
 
   button:hover {
-    background-color: #aa1b1b;
+    background-color: #000000;
   }
 </style>
 
 <div class="create-profile-container">
   <div class="profile-form">
-    <h1>Create Profile</h1>
+    <h1>Criar Perfil</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}

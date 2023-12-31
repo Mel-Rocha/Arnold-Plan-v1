@@ -23,21 +23,34 @@
   }
 
   table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-  font-family: Arial, sans-serif;
-  background-color: #f8f8f8;
-}
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
 
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
 </style>
 
-<h2 style="color: black;">Detalhes do Macros Planner</h2>
+<div style="display: flex; align-items: center; justify-content: center; margin-top: 200px;">
+<h2 style="color: black; text-align: center;">Detalhes do Plano de Macronutrientes</h2>
 <h3 style="color: black;">{{ macros_planner.name }}</h3>
-<!-- Exiba outras informações relevantes sobre o MacrosPlanner -->
+
+
+
+</div>
 
 <!-- Exibir informações da GeneralInfo -->
-<li style="margin-bottom: 20px; border: 1px solid black; border-radius: 8px; padding: 15px; background-color: white; max-width: 600px; margin-left: auto; margin-right: auto;">
+<div style="display: flex; align-items: center; justify-content: center; height: 100vh;">
+  <li style="margin-bottom: 20px; border: 1px solid black; border-radius: 8px; padding: 15px; background-color: white; max-width: 600px; width: 100%; margin-left: auto; margin-right: auto;">
+   
 <p style="color: black;">Meta: {{ general_info.goal }}</p>
 <p style="color: black;">Data Inicial: {{ general_info.initial_date }}</p>
 <p style="color: black;">Data Final: {{ general_info.final_date }}</p>
@@ -47,21 +60,17 @@
   <button onclick="window.location.href='{% url 'general_info:general_info_update' pk=general_info.pk %}'" class="button">Edit</button>
 </p>
 </li>
-<!--
-<button onclick="window.location.href='{% url 'macros_planner_kcal_tuples' pk=macros_planner.pk %}'" class="button">Tabela Calorias</button>
-<button onclick="window.location.href='{% url 'macros_tuples' pk=macros_planner.pk %}'" class="button">Tabela Macros</button>
-<button onclick="window.location.href='{% url 'kcal_chart:kcal_chart' pk=macros_planner.id %}'" class="button">Gráfico Calorias</button>
-<button onclick="window.location.href='{% url 'macros_chart:macros_chart' pk=macros_planner.id %}'" class="button">Gráfico Macros</button>
--->
-<button onclick="window.location.href='{% url 'statistics_:statistics_view' pk=macros_planner.pk %}'" class="button">Statistics</button>
+</div>
 
-<h3 style="color: black;">Lista de Macros Sheets</h3>
+
+
+<h3 style="color: black; text-align: center;">Meus Macros Semanais</h3>
 <div class="macrosSheets-details-container">
   {% for macros_sheet in macros_sheets %}
-    
+  <li style="margin-bottom: 20px; border: 1px solid black; border-radius: 8px; padding: 15px; background-color: white; max-width: 600px; margin-left: auto; margin-right: auto;">
     <p>Semana: {{ macros_sheet.week }}</p>
   
-    <li style="margin-bottom: 20px; border: 1px solid black; border-radius: 8px; padding: 15px; background-color: white; max-width: 600px; margin-left: auto; margin-right: auto;">
+    
     <table>
 
       <tr>
@@ -106,9 +115,15 @@
     </li>
     <p>...</p>
   {% endfor %}
-  <button onclick="window.location.href='{% url 'macros_sheet:macros_sheet_create' macros_planner_id=macros_planner.id %}'" class="button">Create MacrosSheet</button>  
-  <p>
-    <button onclick="window.location.href='{% url 'macros_planner:macros_planner_delete' pk=macros_planner.pk %}'" class="button">Delete</button>
-  </p>
+  <div style="display: flex; align-items: center; justify-content: center; height: 100vh;">
+    <li style="margin-bottom: 20px; border: 1px solid black; border-radius: 8px; padding: 15px; background-color: white; max-width: 600px; width: 100%; margin-left: auto; margin-right: auto; text-align: center;">
+       
+      <button onclick="window.location.href='{% url 'macros_sheet:macros_sheet_create' macros_planner_id=macros_planner.id %}'" class="button">Adicionar Semana</button>  
+      <p>
+        <button onclick="window.location.href='{% url 'macros_planner:macros_planner_delete' pk=macros_planner.pk %}'" class="button">Excluir Plano de Macros</button>
+      </p>
+    </li>
+  </div>
 </div>
+
 {% endblock %}

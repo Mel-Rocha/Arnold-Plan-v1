@@ -30,7 +30,7 @@ def registration(request):
 class UserLoginView(auth_views.LoginView):
   template_name = 'accounts/sign-in.html'
   form_class = LoginForm
-  success_url = '/'
+  success_url = '/presentation'
 
 class UserPasswordResetView(auth_views.PasswordResetView):
   template_name = 'accounts/password_reset.html'
