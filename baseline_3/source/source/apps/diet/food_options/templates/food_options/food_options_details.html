@@ -1,0 +1,21 @@
+{% extends 'layouts/base_background.html' %}
+
+{% block content %}
+<div style="display: flex; align-items: center; justify-content: center; height: 100vh;">
+  <div style="margin-bottom: 20px; border: 1px solid black; border-radius: 8px; padding: 15px; background-color: white; max-width: 800px; width: 100%;">
+
+<h2 style="text-align: center; color: rgb(0, 0, 0);">Food Options</h2>
+  <p>Meal: {{ food_options.meal }}</p>
+ 
+    <p>Food: {{ food_options.food }}</p>
+    <p>Quantity: {{ food_options.quantity }}</p>
+    <p>Unit of Measurement: {{ food_options.unit_of_measurement }}</p>
+   
+
+    <button onclick="window.location.href='{% url 'food_options:food_options_update' food_options.pk %}'" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px;">Edit</button>
+    <button onclick="window.location.href='{% url 'food_options:food_options_delete' food_options.pk %}'" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px;">Delete</button>
+    <button onclick="window.location.href='{% url 'meal:meal_details' food_options.meal.pk %}'" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer;">Meal Details</button>
+
+  </div>
+</div>
+{% endblock %}

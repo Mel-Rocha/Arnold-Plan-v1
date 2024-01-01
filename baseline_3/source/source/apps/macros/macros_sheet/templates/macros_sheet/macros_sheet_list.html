@@ -1,0 +1,14 @@
+{% extends 'layouts/base_background.html' %}
+
+{% block title %}Macros Sheets{% endblock %}
+
+{% block content %}
+  <h1>Macros Sheets</h1>
+  <ul>
+    {% for macros_sheet in macros_sheets %}
+      <li><a href="{% url 'macros_planner:macros_sheet_details' pk=macros_sheet.pk %}">{{ macros_sheet }}</a></li>
+    {% empty %}
+      <li>No Macros Sheets found.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

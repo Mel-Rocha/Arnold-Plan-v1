@@ -1,0 +1,8 @@
+Explicação Diagrama de Atividades do Sistema
+
+O sistema disponibiliza uma estrutura para montar o plano
+de macros (que corresponde ao calculo de cardápio elaborado pelo nutricionista). 
+Ao mesmo tempo o sistema efetua o monitoramento do plano de macros
+enquanto o usuário o executa, então o sistema levanta as estatísticas
+à respeito do plano de macros e o treinador simultâneamente análisa
+tais estatísticas e mensura a performânce do usuário.

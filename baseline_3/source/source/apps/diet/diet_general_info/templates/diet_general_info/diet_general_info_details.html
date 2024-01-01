@@ -1,0 +1,22 @@
+{% extends 'layouts/base_background.html' %}
+
+{% block content %}
+  <div style="text-align: center;">
+    <li style="margin-bottom: 20px; border: 1px solid black; border-radius: 8px; padding: 15px; background-color: white; max-width: 600px; margin-left: auto; margin-right: auto;">
+    <h2 style="text-align: center; color: rgb(0, 0, 0);">Diet General Info Details</h2>
+    <p>Goal: {{ diet_general_info.goal }}</p>
+    <p>Observations: {{ diet_general_info.observations }}</p>
+    <p>Initial Date: {{ diet_general_info.initial_date }}</p>
+    <p>Final Date: {{ diet_general_info.final_date }}</p>
+    <p>Weeks: {{ diet_general_info.weeks }}</p>
+    <p>Type of Diet: {{ diet_general_info.type_of_diet }}</p>
+
+    <div style="display: flex; justify-content: center; margin-top: 20px;">
+        <button onclick="window.location.href='{% url 'diet_general_info:diet_general_info_update' diet_general_info.pk %}'" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px;">Edit</button>
+        <button onclick="window.location.href='{% url 'diet:diet_details' diet_general_info.diet.pk %}'" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer;">Diet Details</button>
+      </div>
+    </div>
+  </div>
+</li>
+{% endblock %}
+

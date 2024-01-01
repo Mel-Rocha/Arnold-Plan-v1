@@ -1,0 +1,91 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+
+  .signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+
+  .signup {
+    max-width: 400px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .login-or {
+    text-align: center;
+    margin: 10px 0;
+    font-weight: bold;
+    color: #777;
+  }
+
+  .primaryAction {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #050505;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .primaryAction:hover {
+    background-color: #aa1b1b;
+  }
+
+  p {
+    text-align: center;
+    margin-top: 10px;
+    color: #777;
+  }
+
+  .logo {
+    width: 350px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+</style>
+
+<div class="signup-container">
+  <div class="signup">
+    <h1>{% trans "Sign Up" %}</h1>
+
+    <img class="logo" src="{% static 'img/logo.png' %}" alt="Logo">
+
+    <form method="POST" action="{% url 'account_signup' %}" autocomplete="off">
+      {% csrf_token %}
+      {{ form.as_p }}
+      {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+    
+      <button class="primaryAction" type="submit">{% trans "Sign Up" %} &raquo;</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,29 @@
+{% extends 'layouts/base_background.html' %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'profile_/css/style.css' %}">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>   
+
+{% block content %}
+
+<div style="display: flex; align-items: center; justify-content: center; height: 100vh;">
+    <div style="margin-bottom: 20px; border: 1px solid black; border-radius: 8px; padding: 15px; background-color: white; max-width: 800px; width: 100%;">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-6 text-center">
+                <h2 style="color: black;">Meu Perfil</h2>
+                <h3 style="color: rgb(0, 0, 0);">{{ profile.name }}</h3>
+                <p style="color: rgb(0, 0, 0);">Birth Date: {{ profile.birth_date }}</p>
+                <p style="color: rgb(0, 0, 0);">Weight: {{ profile.weight }}</p>
+                <p style="color: rgb(0, 0, 0);">Height: {{ profile.height }}</p>
+                <p style="color: rgb(0, 0, 0);">Gender: {{ profile.gender }}</p>
+
+                <div style="margin-top: 20px;">
+                    <button onclick="window.location.href='{% url 'profile_:profile_update' profile.pk %}'" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px;">Edit</button>
+                    <button onclick="window.location.href='{% url 'profile_:profile_delete' profile.pk %}'" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer;">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

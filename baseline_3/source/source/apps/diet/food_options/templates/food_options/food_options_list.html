@@ -1,0 +1,14 @@
+{% extends 'layouts/base_background.html' %}
+
+{% block title %}Food Options{% endblock %}
+
+{% block content %}
+  <h1>Food Options</h1>
+  <ul>
+    {% for food_options in food_optionss %}
+      <li><a href="{% url 'meal:food_options_details' pk=food_options.pk %}">{{ food_options }}</a></li>
+    {% empty %}
+      <li>No Food Options found.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

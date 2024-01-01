@@ -1,0 +1,23 @@
+{% extends 'home.html' %}
+
+{% block content %}
+    <h1>Macros Tuples</h1>
+    <p>Macros Planner: {{ macros_planner }}</p>
+
+    <table>
+        <tr>
+            <th>Semana</th>
+            <th>CHO</th>
+            <th>PTN</th>
+            <th>FAT</th>
+        </tr>
+        {% for macros_tuple in macros_tuples %}
+            <tr>
+                <td>{{ macros_tuple.0 }}</td>
+                <td>{{ macros_tuple.1 }}</td>
+                <td>{{ macros_tuple.2 }}</td>
+                <td>{{ macros_tuple.3 }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

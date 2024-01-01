@@ -1,0 +1,48 @@
+{% extends 'layouts/base_background.html' %}
+
+{% block content %}
+  
+<div style="display: flex; align-items: center; justify-content: center; height: 100vh;">
+  <li style="margin-bottom: 20px; border: 1px solid black; border-radius: 8px; padding: 15px; background-color: white; max-width: 600px; width: 100%; margin-left: auto; margin-right: auto;">
+   
+    <h2 style="text-align: center; color: rgb(0, 0, 0);">Lista de Macros Planners</h2>
+    {% if macros_planners %}
+      <ul style="list-style: none; padding: 0;">
+        {% for macros_planner in macros_planners %}
+          <li style="margin-bottom: 20px; padding: 15px; border: 1px solid black; border-radius: 8px; background-color: rgb(255, 255, 255); max-width: 600px; margin-left: auto; margin-right: auto;">
+            <p style="font-size: 18px; font-weight: bold; margin-bottom: 10px; color: black;">Macros Planner: {{ macros_planner.id }}</p>
+            <ul style="list-style: none; padding: 0; display: flex; justify-content: space-between;">
+              <li style="margin-right: 10px;">
+                <button onclick="window.location.href='{% url 'macros_planner:macros_planner_details' pk=macros_planner.pk %}'" style="padding: 8px 16px; font-size: 14px; font-weight: bold; text-align: center; text-decoration: none; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s; color: white; background-color: black;">Details</button>
+                <button onclick="window.location.href='{% url 'statistics_:statistics_view' pk=macros_planner.pk %}'" style="display: inline-block; padding: 8px 16px; font-size: 14px; font-weight: bold; text-align: center; text-decoration: none; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s; color: white; background-color: black;">Statistics</button>
+              </li>
+              <li>
+                <button onclick="window.location.href='{% url 'macros_planner:macros_planner_delete' pk=macros_planner.pk %}'" style="padding: 8px 16px; font-size: 14px; font-weight: bold; text-align: center; text-decoration: none; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s; color: white; background-color: black;">Delete</button>
+              </li>
+            </ul>
+          </li>
+        {% endfor %}
+        <li style="margin-bottom: 20px; padding: 15px; border: 1px solid black; border-radius: 8px; background-color: white; max-width: 600px; margin-left: auto; margin-right: auto;">
+          <p style="font-size: 18px; font-weight: bold; margin-bottom: 10px; color: black;">Criar Macros Planner</p>
+          <p style="text-align: center;">
+            <button onclick="window.location.href='{% url 'macros_planner:macros_planner_create' %}'" style="padding: 12px 24px; font-size: 16px; font-weight: bold; text-align: center; text-decoration: none; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s; color: white; background-color: black;">Criar</button>
+          </p>
+        </li>
+      </ul>
+    {% else %}
+      <p style="text-align: center; color: rgb(0, 0, 0);">Nenhum Macros Planner encontrado.</p>
+      <p style="text-align: center; margin-bottom: 20px;">
+        <button onclick="window.location.href='{% url 'macros_planner:macros_planner_create' %}'" style="padding: 8px 16px; font-size: 14px; font-weight: bold; text-align: center; text-decoration: none; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s; color: white; background-color: black;">Criar</button>
+      </p>
+    </div>
+    </li>
+  </div>
+  
+    {% endif %}
+
+  </li>
+</div>
+ 
+{% endblock %}
+
+
