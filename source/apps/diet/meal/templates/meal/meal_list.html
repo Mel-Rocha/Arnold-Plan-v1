@@ -1,0 +1,14 @@
+{% extends 'layouts/base_background.html' %}
+
+{% block title %}Meal List{% endblock %}
+
+{% block content %}
+  <h1>Meal</h1>
+  <ul>
+    {% for meal in meals %}
+      <li><a href="{% url 'meal:meal_details' pk=meal.pk %}">{{ meal }}</a></li>
+    {% empty %}
+      <li>No Meals found.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

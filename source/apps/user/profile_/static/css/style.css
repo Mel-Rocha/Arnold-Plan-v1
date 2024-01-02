@@ -1,0 +1,61 @@
+/* Arquivo: css/style.css */
+
+/* Reset de margens e preenchimentos padrão */
+body, h1, h2, h3, p, ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilo geral para o corpo da página */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+/* Estilo para a seção geral */
+section {
+  max-width: 600px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para o botão */
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+/* Estilo para a lista (li) */
+li {
+  margin-bottom: 20px;
+  border: 1px solid #000;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+/* Estilo para os títulos h2 e h3 */
+h2, h3 {
+  color: black;
+}
+
+/* Estilo para os parágrafos */
+p {
+  color: #000;
+}
+
+/* Estilo para os botões do grupo */
+.button-groups button {
+  margin-right: 10px;
+}
+
+/* Adicione outros estilos conforme necessário */

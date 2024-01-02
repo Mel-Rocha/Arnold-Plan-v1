@@ -1,50 +1,18 @@
-<MELHORIA>
-
-a aplicação esta dividida em módulos, todos os apps personalizados estão
-em uma pasta específica (apps) e estão organizados em subpastas dentro da
-pasta apps.
-
-</MELHORIA>
-
-<PROBLEMAS>
-macros_sheet está sendo deletada mesmo quando clica em cancelar
-error:  Broken pipe from
-
-não a opção de cancelar a deleção em profile
-
-</PROBLEMAS>
-
-<PROBLEMAS RECORRENTES>
-
-campos de select não estão sendo renderizados em:
-profile, diet_create, diet_general_info_update, meal_create,
-meal_general_info_update, food_options_create, food_options_update
-
-</PROBLEMAS RECORRENTES>
-
-<CONSIDERAÇÕES>
-
-macros sheets:
-se eu tiver 5 macros sheets, e deletar a correspondente a semana
-3, eu vou ficar com as macros sheets 1, 2, 4 e 5. Ou seja, as semanas
-não estão sendo atualizadas na deleção, apenas na criação (isso 
-interfere nas tabelas e nos gráficos, pois os mesmos se baseiam nas
-semanas).
-
-macros pie chart:
-não tem um botão para retornar ao macros sheet correspondente, apenas o
-botão para home.
-
-kcal chart e macros chart:
-não tem um botão para redirecionar a página de statistics, (as tabelas
-tem esse botão, já as páginas que tem os gráficos não).
-
-</CONSIDERAÇÕES>
+api google fit conectada a aplicação
 
 
-<MELHORIAS>
-
-Ter um arquivo separado para o css, e não junto com o html como está agora.
 
 
-</MELHORIAS>
+
+
+
+
+
+
+
+
+
+
+
+
+

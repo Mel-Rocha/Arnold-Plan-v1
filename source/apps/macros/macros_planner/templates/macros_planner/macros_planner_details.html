@@ -1,0 +1,129 @@
+{% extends 'layouts/base_background.html' %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+{% block content %}
+<!--
+<button onclick="window.location.href='{% url 'profile_:profile_details' pk=macros_planner.profile.user.pk %}'" class="btn">Profile Details</button>
+-->
+
+<style>
+  .button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+</style>
+
+<div style="display: flex; align-items: center; justify-content: center; margin-top: 200px;">
+<h2 style="color: black; text-align: center;">Detalhes do Plano de Macronutrientes</h2>
+<h3 style="color: black;">{{ macros_planner.name }}</h3>
+
+
+
+</div>
+
+<!-- Exibir informações da GeneralInfo -->
+<div style="display: flex; align-items: center; justify-content: center; height: 100vh;">
+  <li style="margin-bottom: 20px; border: 1px solid black; border-radius: 8px; padding: 15px; background-color: white; max-width: 600px; width: 100%; margin-left: auto; margin-right: auto;">
+   
+<p style="color: black;">Meta: {{ general_info.goal }}</p>
+<p style="color: black;">Data Inicial: {{ general_info.initial_date }}</p>
+<p style="color: black;">Data Final: {{ general_info.final_date }}</p>
+<p style="color: black;">Semanas: {{ general_info.weeks }}</p>
+<p>
+  <!-- Adicionar link para editar GeneralInfo -->
+  <button onclick="window.location.href='{% url 'general_info:general_info_update' pk=general_info.pk %}'" class="button">Edit</button>
+</p>
+</li>
+</div>
+
+
+
+<h3 style="color: black; text-align: center;">Meus Macros Semanais</h3>
+<div class="macrosSheets-details-container">
+  {% for macros_sheet in macros_sheets %}
+  <li style="margin-bottom: 20px; border: 1px solid black; border-radius: 8px; padding: 15px; background-color: white; max-width: 600px; margin-left: auto; margin-right: auto;">
+    <p>Semana: {{ macros_sheet.week }}</p>
+  
+    
+    <table>
+
+      <tr>
+        <th>Macros</th>
+        <th>Gramas</th>
+        <th>Proportion</th>
+        <th>Level</th>
+      </tr>
+      <tr>
+        <td>CHO</td>
+        <td>{{ macros_sheet.cho }}</td>
+        <td>{{ macros_sheet.cho_proportion }}</td>
+        <td>{{ macros_sheet.cho_level }}</td>
+      </tr>
+      <tr>
+        <td>PTN</td>
+        <td>{{ macros_sheet.ptn }}</td>
+        <td>{{ macros_sheet.ptn_proportion }}</td>
+        <td>{{ macros_sheet.ptn_level }}</td>
+      </tr>
+      <tr>
+        <td>FAT</td>
+        <td>{{ macros_sheet.fat }}</td>
+        <td>{{ macros_sheet.fat_proportion }}</td>
+        <td>{{ macros_sheet.fat_level }}</td>
+      </tr>
+      <tr>
+        <td>KCAL</td>
+        <td colspan="3">{{ macros_sheet.kcal }}</td>
+      </tr>
+      <tr>
+        <td>KCAL Level</td>
+        <td>
+          {{ macros_sheet.kcal_level }}
+        </td>
+      </tr>
+    </table>
+    <!-- Adicionar link para editar cada MacrosSheet -->
+    <button onclick="window.location.href='{% url 'macros_sheet:macros_sheet_update' pk=macros_sheet.pk %}'" class="button">Edit</button>
+    <button onclick="window.location.href='{% url 'macros_sheet:macros_sheet_delete' pk=macros_sheet.pk %}'" class="button">Delete</button>
+    <button onclick="window.location.href='{% url 'macros_chart:macros_pie_chart' macros_sheet.pk %}'" class="button">Gráfico</button>
+    </li>
+    <p>...</p>
+  {% endfor %}
+  <div style="display: flex; align-items: center; justify-content: center; height: 100vh;">
+    <li style="margin-bottom: 20px; border: 1px solid black; border-radius: 8px; padding: 15px; background-color: white; max-width: 600px; width: 100%; margin-left: auto; margin-right: auto; text-align: center;">
+       
+      <button onclick="window.location.href='{% url 'macros_sheet:macros_sheet_create' macros_planner_id=macros_planner.id %}'" class="button">Adicionar Semana</button>  
+      <p>
+        <button onclick="window.location.href='{% url 'macros_planner:macros_planner_delete' pk=macros_planner.pk %}'" class="button">Excluir Plano de Macros</button>
+      </p>
+    </li>
+  </div>
+</div>
+
+{% endblock %}
