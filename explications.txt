@@ -1,5 +1,6 @@
-api google fit conectada a aplicação
-
+versão intermediária, não sei se está certo, mas está salvando
+as credencias do usuário no banco através da def test_api_request,
+acredito que a def de callback não está funcionando.
 
 
 
