@@ -55,8 +55,7 @@ BASE_APPS = [
 
 #api se existirem
 THIRD_PARTY_APPS = [
-    'api.google_fit',
-    'api.user_credentials',
+    
 ]
 
 #aplicativos que eu criei com startapp. A sintaxe é <nome_da_pasta>.<my_app>

@@ -40,5 +40,5 @@ urlpatterns = [
     path('', include ('apps.diet.meal.urls')),
     path('', include ('apps.diet.food_options.urls')),
 
-    path('google-fit/', include('api.google_fit.urls')),
+    # path('google-fit/', include('api.google_fit.urls')),
 ]
