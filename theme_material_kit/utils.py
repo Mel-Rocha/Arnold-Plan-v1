@@ -48,7 +48,7 @@ class JsonResponse(HttpResponse):
       are allowed to be passed due to a security flaw before EcmaScript 5. See
       the ``safe`` parameter for more information.
     :param encoder: Should be an json encoder class. Defaults to
-      ``django.core.serializers.json.DjangoJSONEncoder``.
+      ``django.config.serializers.json.DjangoJSONEncoder``.
     :param safe: Controls if only ``dict`` objects may be serialized. Defaults
       to ``True``.
     """
