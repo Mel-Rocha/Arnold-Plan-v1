@@ -1,8 +1,10 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from .models import MacrosSheet
-from .forms import MacrosSheetForm
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404, redirect
+
+from apps.macros.macros_sheet.models import MacrosSheet
+from apps.macros.macros_sheet.forms import MacrosSheetForm
 from apps.macros.macros_planner.models import MacrosPlanner
+
 
 @login_required
 def macros_sheet_create(request, macros_planner_id):
@@ -32,10 +34,12 @@ def macros_sheet_update(request, pk):
         form = MacrosSheetForm(instance=macros_sheet)
     return render(request, 'macros_sheet/macros_sheet_update.html', {'form': form, 'macros_sheet': macros_sheet})
 
+
 @login_required
 def macros_sheet_details(request, pk):
     macros_sheet = get_object_or_404(MacrosSheet, pk=pk)
     return render(request, 'macros_sheet/macros_sheet_details.html', {'macros_sheet': macros_sheet})
+
 
 @login_required
 def macros_sheet_list(request):
@@ -51,5 +55,5 @@ def macros_sheet_delete(request, pk):
     if request.method == 'POST':
         macros_sheet.delete()
         return redirect('macros_planner:macros_planner_details', pk=macros_planner.pk)
-    
+
     return render(request, 'macros_sheet/macros_sheet_delete.html', {'macros_sheet': macros_sheet})

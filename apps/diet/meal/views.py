@@ -10,12 +10,11 @@ from apps.diet.meal_general_info.forms import MealGeneralInfoForm
 @login_required
 def meal_list(request):
     profile = request.user.profile
-    
+
     diets = profile.diet_set.all()
     meals = Meal.objects.filter(diet__in=diets)
 
     return render(request, 'meal/meal_list.html', {'profile': profile, 'meals': meals})
-
 
 
 @login_required
@@ -26,18 +25,18 @@ def meal_create(request, diet_id):
         meal_general_info_form = MealGeneralInfoForm(request.POST)
         if meal_general_info_form.is_valid():
             meal_general_info = meal_general_info_form.save(commit=False)
-            
+
             # Crie uma nova instância de Meal associada à dieta
             meal = Meal(diet=diet)
             meal.save()
-            
+
             meal_general_info.meal = meal
             meal_general_info.save()
 
             return redirect('meal:meal_details', pk=meal.pk)
     else:
         meal_general_info_form = MealGeneralInfoForm()
-    
+
     return render(request, 'meal/meal_create.html', {'meal_general_info_form': meal_general_info_form, 'diet': diet})
 
 

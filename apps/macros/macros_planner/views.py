@@ -1,10 +1,12 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import MacrosPlanner
-from .forms import MacrosPlannerForm
-from apps.macros.general_info.forms import GeneralInfoForm
-from apps.macros.macros_sheet.models import MacrosSheet
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
+
+from apps.macros.macros_sheet.models import MacrosSheet
+from apps.macros.general_info.forms import GeneralInfoForm
+from apps.macros.macros_planner.models import MacrosPlanner
+from apps.macros.macros_planner.forms import MacrosPlannerForm
 from apps.macros_statistics.kcal_statistics.utils import get_kcal_tuples
+
 
 @login_required
 def macros_planner_list(request):
@@ -12,8 +14,9 @@ def macros_planner_list(request):
     print("Perfil:", profile)
     macros_planners = MacrosPlanner.objects.filter(profile__user=request.user)
     print("Macros Planners:", macros_planners)
-    #return render(request, 'macros_planner/macros_planner_list.html', {'macros_planners': macros_planners})
-    return render(request, 'macros_planner/macros_planner_list.html', {'profile': profile, 'macros_planners': macros_planners})
+    return render(request, 'macros_planner/macros_planner_list.html',
+                  {'profile': profile, 'macros_planners': macros_planners})
+
 
 @login_required
 def macros_planner_create(request):
@@ -29,7 +32,7 @@ def macros_planner_create(request):
             macros_sheet = MacrosSheet(macros_planner=macros_planner)
             macros_sheet.save()
 
-            return redirect('macros_planner:macros_planner_details', pk=macros_planner.pk)#NÃO TIRA OS :
+            return redirect('macros_planner:macros_planner_details', pk=macros_planner.pk)  #NÃO TIRA OS :
     else:
         general_info_form = GeneralInfoForm()
     return render(request, 'macros_planner/macros_planner_create.html', {'general_info_form': general_info_form})
@@ -45,7 +48,9 @@ def macros_planner_update(request, pk):
             return redirect('macros_planner_details', pk=macros_planner.pk)
     else:
         form = MacrosPlannerForm(instance=macros_planner)
-    return render(request, 'macros_planner/macros_planner_update.html', {'form': form, 'macros_planner': macros_planner})
+    return render(request, 'macros_planner/macros_planner_update.html',
+                  {'form': form, 'macros_planner': macros_planner})
+
 
 @login_required
 def macros_planner_delete(request, pk):
@@ -55,6 +60,7 @@ def macros_planner_delete(request, pk):
         return redirect('macros_planner:macros_planner_list')
     return render(request, 'macros_planner/macros_planner_delete.html', {'macros_planner': macros_planner})
 
+
 @login_required
 def macros_planner_details(request, pk):
     macros_planner = get_object_or_404(MacrosPlanner, pk=pk)
@@ -62,6 +68,7 @@ def macros_planner_details(request, pk):
     macros_sheets = macros_planner.macrossheet_set.all()
 
     kcal_tuples = get_kcal_tuples(macros_planner)
-    
-    context = {'macros_planner': macros_planner, 'general_info': general_info, 'macros_sheets': macros_sheets, 'kcal_tuples': kcal_tuples}
+
+    context = {'macros_planner': macros_planner, 'general_info': general_info, 'macros_sheets': macros_sheets,
+               'kcal_tuples': kcal_tuples}
     return render(request, 'macros_planner/macros_planner_details.html', context)
