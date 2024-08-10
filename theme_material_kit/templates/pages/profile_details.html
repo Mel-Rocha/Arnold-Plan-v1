@@ -1,0 +1,21 @@
+{% extends 'layouts/base_background.html' %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'profile_/css/style.css' %}">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>   
+
+{% block content %}
+<div style="max-width: 600px; margin: 0 auto; text-align: center;">
+
+    <button onclick="window.location.href='{% url 'macros_planner:macros_planner_list' %}'" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer; margin-bottom: 20px;">Macros Planner List</button>
+    <li style="margin-bottom: 20px; border: 1px solid black; border-radius: 8px; padding: 15px; background-color: white; max-width: 600px; margin-left: auto; margin-right: auto;">
+    <h2 style="color: black;">Detail of Profile</h2>
+    <h3 style="color: rgb(0, 0, 0);">{{ profile.name }}</h3>
+    <p style="color: rgb(0, 0, 0);">Birth Date: {{ profile.birth_date }}</p>
+    <p style="color: rgb(0, 0, 0);">Weight: {{ profile.weight }}</p>
+    <p style="color: rgb(0, 0, 0);">Height: {{ profile.height }}</p>
+    <p style="color: rgb(0, 0, 0);">Gender: {{ profile.gender }}</p>
+
+</li>
+</div>
+{% endblock %}

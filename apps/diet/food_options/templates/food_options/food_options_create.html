@@ -1,0 +1,49 @@
+{% extends 'layouts/base_background.html' %}
+
+{% block content %}
+<style>
+    /* Estilos globais para o formulário */
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    /* Estilos para o título h1 */
+    h1 {
+        color: black;
+        text-align: center;
+    }
+
+    /* Estilos específicos para os botões dentro do formulário */
+    form button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: black;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    /* Estilos para o formulário */
+    form input[type="text"] {
+        /* Adicione estilos específicos para campos de texto se necessário */
+    }
+
+    /* Adicione mais estilos conforme necessário */
+</style>
+<div style="display: flex; align-items: center; justify-content: center; height: 100vh;">
+    <div style="margin-bottom: 20px; border: 1px solid black; border-radius: 8px; padding: 15px; background-color: white; max-width: 800px; width: 100%;">
+
+
+<h1>Create Food Options</h1>
+<form method="post" action="{% url 'food_options:food_options_create' meal_id=meal.id %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create</button>
+</form>
+    </div>
+</div>
+{% endblock %}

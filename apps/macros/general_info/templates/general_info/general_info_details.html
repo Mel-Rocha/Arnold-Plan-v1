@@ -1,0 +1,17 @@
+{% extends 'layouts/base_background.html' %}
+
+{% block content %}
+  <div style="text-align: center;">
+    <h2 style="color: black;"> General Info details</h2>
+    <p>Goal: {{ general_info.goal }}</p>
+    <p>Initial Date: {{ general_info.initial_date }}</p>
+    <p>Final Date: {{ general_info.final_date }}</p>
+    <p>Weeks: {{ general_info.weeks }}</p>
+
+    <div style="display: flex; justify-content: center; margin-top: 20px;">
+        <button onclick="window.location.href='{% url 'general_info:general_info_update' general_info.pk %}'" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px;">Edit</button>
+        <button onclick="window.location.href='{% url 'macros_planner:macros_planner_details' general_info.macros_planner.pk %}'" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer;">Macros Planner Details</button>
+      </div>
+    </div>
+  </div>
+{% endblock %}

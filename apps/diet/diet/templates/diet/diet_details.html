@@ -1,0 +1,48 @@
+{% extends 'layouts/base_background.html' %}
+
+{% block content %}
+    <div class="container" styl<h2 style="text-align: center; color: rgb(0, 0, 0);">
+        
+        <h2 style="text-align: center; color: rgb(0, 0, 0);">Diets Details</h2>
+
+        
+        <li style="margin-bottom: 20px; border: 1px solid black; border-radius: 8px; padding: 15px; background-color: white; max-width: 600px; margin-left: auto; margin-right: auto;">
+        <h2 style="text-align: center; color: rgb(0, 0, 0);">Informações da Minha Dieta</h2>
+        <p><strong>Goal:</strong> {{ diet_general_info.goal }}</p>
+        <p><strong>Observations:</strong> {{ diet_general_info.observations }}</p>
+        <p><strong>Initial Date:</strong> {{ diet_general_info.initial_date }}</p>
+        <p><strong>Final Date:</strong> {{ diet_general_info.final_date }}</p>
+        <p><strong>Weeks:</strong> {{ diet_general_info.weeks }}</p>
+        <p><strong>Type of Diet:</strong> {{ diet_general_info.get_type_of_diet_display }}</p>
+    
+        <p>
+            <button onclick="window.location.href='{% url 'diet_general_info:diet_general_info_update' pk=diet_general_info.pk %}'" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px;">Edit</button>
+        </p>
+    </li>
+    </div>
+
+    <h2 style="text-align: center; color: rgb(0, 0, 0);">Minhas Refeições</h2>
+    <ul style="list-style: none; padding: 0;">
+       
+            
+                {% for meal in meals %}
+                <li style="margin-bottom: 20px; border: 1px solid black; border-radius: 8px; padding: 15px; background-color: white; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    <button onclick="window.location.href='{% url 'meal:meal_details' pk=meal.id %}'" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px;">Meal Details</button>
+                    <button onclick="window.location.href='{% url 'meal:meal_delete' pk=meal.id %}'" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px;">Meal Delete</button>
+                    
+
+
+                {% with meal_general_info=meal.mealgeneralinfo %}
+                   <h3 style="text-align: center; color: rgb(0, 0, 0);"> Refeição: {{ meal_general_info.name }}</h3>
+                    <p><strong>Time:</strong> {{ meal_general_info.time }}</p>
+                    <p><strong>Type Of Meal:</strong> {{ meal_general_info.type_of_meal }}</p>
+                   
+                    <p>...</p>
+                {% endwith %}
+            </li>
+        {% endfor %}
+    </ul>
+    <li style="margin-bottom: 20px; border: 1px solid black; border-radius: 8px; padding: 15px; background-color: white; max-width: 600px; margin-left: auto; margin-right: auto;">
+    <button onclick="window.location.href='{% url 'meal:meal_create' diet_id=diet.id %}'" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer;">Create Meal</button><!--é diet-->
+    </li>
+{% endblock %}
