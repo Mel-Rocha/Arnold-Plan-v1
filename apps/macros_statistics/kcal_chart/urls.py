@@ -1,4 +1,5 @@
 from django.urls import path
+
 from .views import kcal_chart_view
 
 app_name = 'kcal_chart'

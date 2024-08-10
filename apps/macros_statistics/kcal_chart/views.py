@@ -1,7 +1,9 @@
-from django.shortcuts import get_object_or_404, render
 from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, render
+
 from apps.macros.macros_planner.models import MacrosPlanner
 from apps.macros_statistics.kcal_statistics.utils import get_kcal_tuples
+
 
 def kcal_chart_view(request, pk):
     macros_planner = get_object_or_404(MacrosPlanner, pk=pk)

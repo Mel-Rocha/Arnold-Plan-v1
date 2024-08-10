@@ -1,5 +1,7 @@
 from django import forms
-from .models import FoodOptions
+
+from apps.diet.food_options.models import FoodOptions
+
 
 class FoodOptionsForm(forms.ModelForm):
     class Meta:

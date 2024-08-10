@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import FoodOptions
-from .forms import FoodOptionsForm
-from apps.diet.meal.models import Meal
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
 
+from apps.diet.meal.models import Meal
+from apps.diet.food_options.models import FoodOptions
+from apps.diet.food_options.forms import FoodOptionsForm
 
 
 @login_required
@@ -34,7 +34,7 @@ def food_options_update(request, pk):
             return redirect('food_options:food_options_details', pk=food_options.pk)
     else:
         form = FoodOptionsForm(instance=food_options)
-    
+
     return render(request, 'food_options/food_options_update.html', {'form': form, 'food_options': food_options})
 
 
@@ -43,7 +43,7 @@ def food_options_delete(request, pk):
     food_options = get_object_or_404(FoodOptions, pk=pk)
     if request.method == 'POST':
         food_options.delete()
-        meal = food_options.meal  
+        meal = food_options.meal
         return redirect('meal:meal_details', pk=meal.pk)
     return render(request, 'food_options/food_options_delete.html', {'food_options': food_options})
 

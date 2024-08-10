@@ -9,7 +9,7 @@ class DietGeneralInfoForm(forms.ModelForm):
         model = DietGeneralInfo
         fields = ('goal', 'observations', 'initial_date', 'final_date', 'weeks', 'type_of_diet')
         widgets = {
-            'type_of_diet': forms.Select(attrs={'class': 'your-css-class'}),  # Adicione a classe CSS se necessário
+            'type_of_diet': forms.Select(attrs={'class': 'your-css-class'}),
         }
 
    

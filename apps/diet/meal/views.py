@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import Meal
-from .forms import MealForm
-from apps.diet.meal_general_info.forms import MealGeneralInfoForm
-from apps.diet.diet.models import Diet
-from apps.diet.food_options.models import FoodOptions
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
+
+from apps.diet.meal.models import Meal
+from apps.diet.diet.models import Diet
+from apps.diet.meal.forms import MealForm
+from apps.diet.meal_general_info.forms import MealGeneralInfoForm
 
 
 @login_required
@@ -67,7 +67,7 @@ def meal_delete(request, pk):
 @login_required
 def meal_details(request, pk):
     meal = get_object_or_404(Meal, pk=pk)
-    meal_general_info = meal.mealgeneralinfo  # Usar o relacionamento inverso
+    meal_general_info = meal.mealgeneralinfo
     food_optionss = meal.foodoptions_set.all()
 
     context = {'meal': meal, 'meal_general_info': meal_general_info, 'food_optionss': food_optionss}

@@ -1,10 +1,9 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import MealGeneralInfo
-from .forms import MealGeneralInfoForm
-from apps.diet.meal.models import Meal  # Certifique-se de ajustar o caminho do import conforme necessário
-from apps.diet.food_options.models import FoodOptions  # Certifique-se de ajustar o caminho do import conforme necessário
-
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
+
+from apps.diet.food_options.models import FoodOptions
+from apps.diet.meal_general_info.models import MealGeneralInfo
+from apps.diet.meal_general_info.forms import MealGeneralInfoForm
 
 
 @login_required
@@ -30,9 +29,9 @@ def meal_general_info_update(request, pk):
             return redirect('meal_general_info:meal_general_info_details', pk=meal_general_info.pk)
     else:
         form = MealGeneralInfoForm(instance=meal_general_info)
-    
-    return render(request, 'meal_general_info/meal_general_info_update.html', {'form': form, 'meal_general_info': meal_general_info})
 
+    return render(request, 'meal_general_info/meal_general_info_update.html',
+                  {'form': form, 'meal_general_info': meal_general_info})
 
 
 @login_required
@@ -44,14 +43,11 @@ def meal_general_info_delete(request, pk):
     return render(request, 'meal_general_info/meal_general_info_delete.html', {'meal_general_info': meal_general_info})
 
 
-
 @login_required
 def meal_general_info_details(request, pk):
     meal_general_info = get_object_or_404(MealGeneralInfo, pk=pk)
-    # Acesse o Meal associado a MealGeneralInfo
     meal = meal_general_info.meal
 
-    # Acesse todos os FoodOptions associados a esse Meal
     food_optionss = FoodOptions.objects.filter(meal=meal)
 
     context = {'meal_general_info': meal_general_info, 'food_optionss': food_optionss, 'meal': meal}

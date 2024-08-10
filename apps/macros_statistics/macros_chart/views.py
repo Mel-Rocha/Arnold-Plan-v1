@@ -1,14 +1,17 @@
 from django.shortcuts import render
+
+from apps.macros.macros_sheet.models import MacrosSheet
 from apps.macros.macros_planner.models import MacrosPlanner
 from apps.macros_statistics.macros_statistics.utils import get_macros_tuples
-from apps.macros.macros_sheet.models import MacrosSheet
 from apps.macros_statistics.macros_statistics.utils import get_macros_pie_data
+
 
 def macros_pie_chart_view(request, sheet_id):
     macros_sheet = MacrosSheet.objects.get(pk=sheet_id)
     pie_data = get_macros_pie_data(macros_sheet)
 
     return render(request, 'macros_chart/macros_pie_chart.html', {'data': pie_data})
+
 
 def macros_chart_view(request, pk):
     macros_planner = MacrosPlanner.objects.get(pk=pk)
@@ -36,4 +39,3 @@ def macros_chart_view(request, pk):
     }
 
     return render(request, 'macros_chart/macros_chart.html', {'data': data})
-

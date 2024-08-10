@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import Diet
-from .forms import DietForm
-from apps.diet.diet_general_info.forms import DietGeneralInfoForm
-from apps.diet.meal.models import Meal 
-from apps.diet.meal_general_info.models import MealGeneralInfo
-from apps.diet.food_options.models import FoodOptions
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
+
+from apps.diet.diet.models import Diet
+from apps.diet.diet.forms import DietForm
+from apps.diet.food_options.models import FoodOptions
+from apps.diet.diet_general_info.forms import DietGeneralInfoForm
+from apps.diet.meal_general_info.models import MealGeneralInfo
 
 
 @login_required

@@ -1,5 +1,7 @@
 from django import forms
-from .models import MealGeneralInfo
+
+from apps.diet.meal_general_info.models import MealGeneralInfo
+
 
 class MealGeneralInfoForm(forms.ModelForm):
     class Meta:
@@ -9,5 +11,3 @@ class MealGeneralInfoForm(forms.ModelForm):
             'type_of_meal': forms.Select(attrs={}),
             'time': forms.TimeInput(attrs={'type': 'time'}),
         }
-
-    

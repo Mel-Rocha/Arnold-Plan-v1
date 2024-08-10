@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import DietGeneralInfo
-from .forms import DietGeneralInfoForm
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
+
+from .models import DietGeneralInfo
+from apps.diet.diet_general_info.forms import DietGeneralInfoForm
 
 
 @login_required

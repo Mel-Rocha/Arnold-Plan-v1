@@ -1,4 +1,5 @@
 from django.urls import path
+
 from .views import view_kcal_tuples
 
 urlpatterns = [

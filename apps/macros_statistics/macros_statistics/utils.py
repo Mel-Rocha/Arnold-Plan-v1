@@ -1,6 +1,3 @@
-from apps.macros.macros_planner.models import MacrosPlanner  # Importe o modelo MacrosPlanner
-from apps.macros.macros_sheet.models import MacrosSheet
-
 def get_macros_tuples(macros_planner):
     # Obtém todas as MacrosSheets associadas a um MacrosPlanner específico, ordenadas por id (ordem de criação)
     macros_sheets = macros_planner.macrossheet_set.all().order_by('id')
@@ -11,6 +8,7 @@ def get_macros_tuples(macros_planner):
     ]
 
     return macros_tuples
+
 
 def get_macros_pie_data(macros_sheet):
     data = {

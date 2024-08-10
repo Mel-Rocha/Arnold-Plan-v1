@@ -1,4 +1,5 @@
 from django.urls import path
+
 from .views import macros_chart_view, macros_pie_chart_view
 
 app_name = 'macros_chart'
