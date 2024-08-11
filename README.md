@@ -1,7 +1,7 @@
-# Arnold Plan
+# Arnold Plan 💪 🔱
 
 # Variáveis de Ambiente
-## Postgres
+## Postgres 🐘
 - DB_ENGINE=postgresql
 - DB_USERNAME=(nome do usuário do db)
 - DB_PASS=(senha do usuário do db)
@@ -12,7 +12,7 @@
 caso as váriaveis de ambiente não sejam fornecidas, a aplicação
 usará o mysql.
 
-# Rodar Localmente
+# Rodar Localmente 🏠
 
 Passo 1 - Instale os módulos via VENV
 
@@ -36,13 +36,13 @@ Passo 3 - Rode a aplicação
 python manage.py runserver
 ```
 
-# Rodar com Docker
+# Rodar com Docker 🐋
 ```python
 docker compose build && docker compose up
 ```
 
-# Útil
-## Como saber o ip (linux)
+# Útil 
+## Como saber o ip (linux) 🐧
 
 O host deve ser obtido por meio do seguinte comando que descobrirá o ip real
 do servidor postgres (permitindo que o docker o localize).
