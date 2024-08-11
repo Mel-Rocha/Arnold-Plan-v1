@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator
+
 from apps.macros.macros_planner.models import MacrosPlanner
 
 class GeneralInfo(models.Model):

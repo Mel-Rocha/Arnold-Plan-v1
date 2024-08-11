@@ -1,37 +1,51 @@
 # Arnold Plan
 
-# Manual Build
+# Variáveis de Ambiente
+## Postgres
+- DB_ENGINE=postgresql
+- DB_USERNAME=(nome do usuário do db)
+- DB_PASS=(senha do usuário do db)
+- DB_HOST=(seu ip)
+- DB_PORT=5432
+- DB_NAME=(nome do db)
 
-Passo 1 - Clone o repositório para sua máquina local.
+caso as váriaveis de ambiente não sejam fornecidas, a aplicação
+usará o mysql.
+
+# Rodar Localmente
+
+Passo 1 - Instale os módulos via VENV
 
 ```python
-git clone https://github.com/Mel-Rocha/Arnold-Plan/tree/documentation/baseline_3
-cd source/source
-```
-
-Passo 2 - Instale os módulos via VENV
-
-```python
-virtualenv env
-source env/bin/activate
+# Linux
+python3 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Passo 3 - Configure o database
+Passo 2 - Configure o database
 
 ```python
 python manage.py makemigrations
 python manage.py migrate
 ```
 
-Passo 4 - Crie um superuser
-
-```python
-python manage.py createsuperuser
-```
-
-Passo 5 - Rode a aplicação
+Passo 3 - Rode a aplicação
 
 ```python
 python manage.py runserver
+```
+
+# Rodar com Docker
+```python
+docker compose build && docker compose up
+```
+
+# Útil
+## Como saber o ip (linux)
+
+O host deve ser obtido por meio do seguinte comando que descobrirá o ip real
+do servidor postgres (permitindo que o docker o localize).
+```bash
+ip a 
 ```
