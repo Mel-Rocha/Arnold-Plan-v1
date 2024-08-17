@@ -1,0 +1,15 @@
+{% extends 'layouts/base_background.html' %}
+
+{% block content %}
+<div style="display: flex; align-items: center; justify-content: center; height: 100vh;">
+  <li style="margin-bottom: 20px; border: 1px solid black; border-radius: 8px; padding: 15px; background-color: white; max-width: 600px; width: 100%; margin-left: auto; margin-right: auto;">
+
+  <form method="post" action="{% url 'daily_records:create_daily_records' %}" style="max-width: 400px; margin: 0 auto; text-align: center;" autocomplete="off">
+    {% csrf_token %}
+    <h2 style="color: black;">Daily Records</h2>
+    {{ form.as_p }}
+    <button type="submit" style="display: block; width: 100%; padding: 10px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 10px;">Salvar</button>
+  </form>
+</li>
+</div>
+{% endblock %}
