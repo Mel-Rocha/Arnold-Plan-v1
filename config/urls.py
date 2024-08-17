@@ -39,4 +39,5 @@ urlpatterns = [
     path('', include ('apps.diet.meal_general_info.urls')),
     path('', include ('apps.diet.meal.urls')),
     path('', include ('apps.diet.food_options.urls')),
+    path('', include ('apps.daily_records.urls')),
 ]

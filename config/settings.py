@@ -80,6 +80,8 @@ PROJECT_APPS = [
     'apps.diet.meal_general_info',
     'apps.diet.food_options',
 
+    'apps.daily_records',
+
 ]
 
 INSTALLED_APPS = BASE_APPS + THIRD_PARTY_APPS + PROJECT_APPS
