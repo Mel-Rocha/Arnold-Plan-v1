@@ -72,22 +72,8 @@ class AthleteViewSet(viewsets.ModelViewSet):
     queryset = User.objects.filter(is_active=True)
     serializer_class = AthleteSerializer
 
-    def get_permissions(self):
-        if self.action == 'create':
-            self.permission_classes = [AllowAny]
-        else:
-            self.permission_classes = [IsAuthenticated]
-        return super().get_permissions()
-
 
 # Nutritionist
 class NutritionistViewSet(viewsets.ModelViewSet):
     queryset = User.objects.filter(is_active=True)
     serializer_class = NutritionistSerializer
-
-    def get_permissions(self):
-        if self.action == 'create':
-            self.permission_classes = [AllowAny]
-        else:
-            self.permission_classes = [IsAuthenticated]
-        return super().get_permissions()
