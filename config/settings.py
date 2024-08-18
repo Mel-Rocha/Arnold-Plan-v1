@@ -38,6 +38,7 @@ THIRD_APPS = [
 
 LOCAL_APPS = [
     'apps.user',
+    'apps.core',
 ]
 
 INSTALLED_APPS = BASE_APPS + THIRD_APPS + LOCAL_APPS
@@ -81,7 +82,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-if DEBUG:
+if not DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -93,6 +94,7 @@ else:
         'default': dj_database_url.parse(config('DATABASE_URL'))
     }
 
+AUTH_USER_MODEL = 'user.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

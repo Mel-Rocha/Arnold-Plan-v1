@@ -1,8 +1,16 @@
 from django.db import models
 from django.dispatch import receiver
-from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from django.contrib.auth.models import AbstractUser
 from django.core.validators import MinValueValidator
+
+from apps.core.models import Core
+
+
+# User Abstract base class
+class User(AbstractUser):
+    is_nutritionist = models.BooleanField(default=False)
+    is_athlete = models.BooleanField(default=False)
 
 
 # Base class for profile
@@ -11,7 +19,7 @@ class Gender(models.TextChoices):
     FEMALE = 'Female', 'Female'
 
 
-class Profile(models.Model):
+class Profile(Core):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     gender = models.CharField(max_length=50, choices=Gender.choices)
@@ -69,6 +77,14 @@ class Nutritionist(Profile):
 
 
 @receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    if hasattr(instance, 'profile'):
-        instance.profile.save()
+def save_user_profile(sender, instance, created, **kwargs):
+    if created:
+        if instance.is_nutritionist:
+            Nutritionist.objects.create(user=instance)
+        elif instance.is_athlete:
+            Athlete.objects.create(user=instance)
+    else:
+        if hasattr(instance, 'nutritionist'):
+            instance.nutritionist.save()
+        if hasattr(instance, 'athlete'):
+            instance.athlete.save()
