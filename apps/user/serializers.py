@@ -4,6 +4,7 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from apps.user.models import Athlete, Nutritionist, User
 
+
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         print("Validating with attrs:", attrs)
@@ -35,7 +36,6 @@ class UpdatePasswordSerializer(serializers.Serializer):
             raise serializers.ValidationError("Passwords do not match")
         return data
 
-
 class UserSerializerCreateOrUpdate(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -57,10 +57,12 @@ class UserSerializerCreateOrUpdate(serializers.ModelSerializer):
         return instance
 
 
-class AthleteSerializerCreateOrUpdate(serializers.ModelSerializer):
+class AthleteSerializer(serializers.ModelSerializer):
+    user_id = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), source='user')
+
     class Meta:
         model = Athlete
-        fields = '__all__'
+        fields = ['user_id', 'is_active', 'name', 'gender', 'instagram', 'email', 'telephone', 'category', 'weight', 'height', 'birth_date', 'is_pro', 'nutritionist']
 
     def create(self, validated_data):
         athlete = Athlete.objects.create(**validated_data)
@@ -73,7 +75,7 @@ class AthleteSerializerCreateOrUpdate(serializers.ModelSerializer):
         return instance
 
 
-class NutritionistSerializerCreateOrUpdate(serializers.ModelSerializer):
+class NutritionistSerializer(serializers.ModelSerializer):
     class Meta:
         model = Nutritionist
         fields = '__all__'

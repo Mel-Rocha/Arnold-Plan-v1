@@ -1,8 +1,8 @@
-from rest_framework import status
+from rest_framework import status, viewsets
 from django.db import IntegrityError
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
 
@@ -10,7 +10,7 @@ from apps.core import gateway
 from apps.user.models import User
 from apps.core.gateway import response_log_user
 from apps.user.serializers import MyTokenObtainPairSerializer, UpdatePasswordSerializer, \
-    UserSerializerCreateOrUpdate, NutritionistSerializerCreateOrUpdate, AthleteSerializerCreateOrUpdate
+    UserSerializerCreateOrUpdate, AthleteSerializer, NutritionistSerializer
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
@@ -68,62 +68,26 @@ class UserCreateView(gateway.Create):
 
 
 # Athlete
-class AthleteProfileCreateView(gateway.Create):
-    permission_classes = []
+class AthleteViewSet(viewsets.ModelViewSet):
     queryset = User.objects.filter(is_active=True)
-    serializer_class = AthleteSerializerCreateOrUpdate
+    serializer_class = AthleteSerializer
 
-
-class AthleteProfileRetrieveView(gateway.Retrieve):
-    permission_classes = []
-    queryset = User.objects.filter(is_active=True)
-    serializer_class = AthleteSerializerCreateOrUpdate
-
-
-class AthleteProfileUpdateView(gateway.Update):
-    permission_classes = []
-    queryset = User.objects.filter(is_active=True)
-    serializer_class = AthleteSerializerCreateOrUpdate
-
-
-class AthleteProfileDestroyView(gateway.Destroy):
-    permission_classes = []
-    queryset = User.objects.filter(is_active=True)
-    serializer_class = AthleteSerializerCreateOrUpdate
-
-
-class AthleteProfileListView(gateway.List):
-    permission_classes = []
-    queryset = User.objects.filter(is_active=True)
-    serializer_class = AthleteSerializerCreateOrUpdate
+    def get_permissions(self):
+        if self.action == 'create':
+            self.permission_classes = [AllowAny]
+        else:
+            self.permission_classes = [IsAuthenticated]
+        return super().get_permissions()
 
 
 # Nutritionist
-class NutritionistProfileCreateView(gateway.Create):
-    permission_classes = []
+class NutritionistViewSet(viewsets.ModelViewSet):
     queryset = User.objects.filter(is_active=True)
-    serializer_class = NutritionistSerializerCreateOrUpdate
+    serializer_class = NutritionistSerializer
 
-
-class NutritionistProfileRetrieveView(gateway.Retrieve):
-    permission_classes = []
-    queryset = User.objects.filter(is_active=True)
-    serializer_class = NutritionistSerializerCreateOrUpdate
-
-
-class NutritionistProfileUpdateView(gateway.Update):
-    permission_classes = []
-    queryset = User.objects.filter(is_active=True)
-    serializer_class = NutritionistSerializerCreateOrUpdate
-
-
-class NutritionistProfileDestroyView(gateway.Destroy):
-    permission_classes = []
-    queryset = User.objects.filter(is_active=True)
-    serializer_class = NutritionistSerializerCreateOrUpdate
-
-
-class NutritionistProfileListView(gateway.List):
-    permission_classes = []
-    queryset = User.objects.filter(is_active=True)
-    serializer_class = NutritionistSerializerCreateOrUpdate
+    def get_permissions(self):
+        if self.action == 'create':
+            self.permission_classes = [AllowAny]
+        else:
+            self.permission_classes = [IsAuthenticated]
+        return super().get_permissions()
