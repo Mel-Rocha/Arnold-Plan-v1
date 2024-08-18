@@ -62,7 +62,8 @@ class AthleteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Athlete
-        fields = ['user_id', 'is_active', 'name', 'gender', 'instagram', 'email', 'telephone', 'category', 'weight', 'height', 'birth_date', 'is_pro', 'nutritionist']
+        fields = ['user_id', 'is_active', 'name', 'gender', 'instagram', 'email', 'telephone', 'category', 'weight',
+                  'height', 'birth_date', 'is_pro', 'nutritionist']
 
     def create(self, validated_data):
         athlete = Athlete.objects.create(**validated_data)
@@ -76,9 +77,14 @@ class AthleteSerializer(serializers.ModelSerializer):
 
 
 class NutritionistSerializer(serializers.ModelSerializer):
+    user_id = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), source='user')
+
     class Meta:
         model = Nutritionist
-        fields = '__all__'
+        fields = [
+            'user_id', 'is_active', 'name', 'gender', 'instagram', 'email', 'telephone',
+            'crn', 'academic_degree', 'area_of_specialization'
+        ]
 
     def create(self, validated_data):
         nutritionist = Nutritionist.objects.create(**validated_data)
