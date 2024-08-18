@@ -1,5 +1,7 @@
 from django.db import models
+from django.dispatch import receiver
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 from django.core.validators import MinValueValidator
 
 
@@ -64,3 +66,9 @@ class Nutritionist(Profile):
         default=AcademicDegree.BACHELOR,
     )
     area_of_specialization = models.CharField(max_length=255)
+
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    if hasattr(instance, 'profile'):
+        instance.profile.save()
