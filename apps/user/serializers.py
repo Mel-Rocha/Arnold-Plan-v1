@@ -84,6 +84,25 @@ class AthleteSerializer(serializers.ModelSerializer):
 
         return representation
 
+    def to_internal_value(self, data):
+        internal_data = super().to_internal_value(data)
+        user_id = data.get('user_id')
+        nutritionist_id = data.get('nutritionist_id')
+
+        if user_id:
+            try:
+                internal_data['user'] = User.objects.get(id=user_id)
+            except User.DoesNotExist:
+                raise serializers.ValidationError({'user_id': 'User with this ID does not exist.'})
+
+        if nutritionist_id:
+            try:
+                internal_data['nutritionist'] = Nutritionist.objects.get(id=nutritionist_id)
+            except Nutritionist.DoesNotExist:
+                raise serializers.ValidationError({'nutritionist_id': 'Nutritionist with this ID does not exist.'})
+
+        return internal_data
+
 
 class NutritionistSerializer(serializers.ModelSerializer):
     user_id = serializers.UUIDField(source='user.id', read_only=True)
@@ -102,3 +121,15 @@ class NutritionistSerializer(serializers.ModelSerializer):
         representation['user_id'] = instance.user.id
 
         return representation
+
+    def to_internal_value(self, data):
+        internal_data = super().to_internal_value(data)
+        user_id = data.get('user_id')
+
+        if user_id:
+            try:
+                internal_data['user'] = User.objects.get(id=user_id)
+            except User.DoesNotExist:
+                raise serializers.ValidationError({'user_id': 'User with this ID does not exist.'})
+
+        return internal_data
