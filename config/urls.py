@@ -25,4 +25,5 @@ urlpatterns = [
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('user/', include('apps.user.urls')),
     path('daily-records/', include('apps.daily_records.urls')),
+    path('diet/', include('apps.diet.urls')),
     ]
