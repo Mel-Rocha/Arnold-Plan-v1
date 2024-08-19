@@ -2,13 +2,14 @@ from django.db import IntegrityError
 from rest_framework.views import APIView
 from rest_framework import status, viewsets
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework.permissions import IsAuthenticated, SAFE_METHODS
 from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
 
 from apps.core import gateway
-from apps.user.models import  Nutritionist, Athlete
 from apps.core.gateway import response_log_user
+from apps.core.permissions import IsAthleteUser, IsNutritionistUser
+from apps.user.models import  Nutritionist, Athlete
 from apps.user.serializers import MyTokenObtainPairSerializer, UpdatePasswordSerializer, \
     UserSerializerCreateOrUpdate, AthleteSerializer, NutritionistSerializer
 
@@ -77,6 +78,11 @@ class AthleteViewSet(viewsets.ModelViewSet):
     queryset = Athlete.objects.filter(user__is_active=True)
     serializer_class = AthleteSerializer
 
+    def get_permissions(self):
+        if self.request.method in SAFE_METHODS:
+            return [IsAuthenticated(),]
+        return [IsAuthenticated(), IsAthleteUser()]
+
 
 # Nutritionist
 class NutritionistViewSet(viewsets.ModelViewSet):
@@ -87,3 +93,8 @@ class NutritionistViewSet(viewsets.ModelViewSet):
     """
     queryset = Nutritionist.objects.filter(user__is_active=True)
     serializer_class = NutritionistSerializer
+
+    def get_permissions(self):
+        if self.request.method in SAFE_METHODS:
+            return [IsAuthenticated(),]
+        return [IsAuthenticated(), IsNutritionistUser()]
