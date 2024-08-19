@@ -46,6 +46,8 @@ LOCAL_APPS = [
 
     'apps.macros_planner',
     'apps.macros_sheet',
+
+    'apps.daily_records',
 ]
 
 INSTALLED_APPS = BASE_APPS + THIRD_APPS + LOCAL_APPS
