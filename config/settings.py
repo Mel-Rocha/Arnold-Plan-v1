@@ -39,9 +39,13 @@ THIRD_APPS = [
 LOCAL_APPS = [
     'apps.user',
     'apps.core',
+
     'apps.diet',
     'apps.meal',
     'apps.food_options',
+
+    'apps.macros_planner',
+    'apps.macros_sheet',
 ]
 
 INSTALLED_APPS = BASE_APPS + THIRD_APPS + LOCAL_APPS
