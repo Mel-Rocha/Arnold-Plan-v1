@@ -11,7 +11,7 @@ router.register(r'nutritionist', NutritionistViewSet, basename='nutritionist')
 token_and_passwords_user = [
     path('token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('password/update/', UpdatePasswordView.as_view(), name='password_update'),
-    path('user/create/', UserCreateView.as_view({'post': 'create'}), name='user-create'),
+    path('user/create/', UserCreateView.as_view({'post': 'create'}), name='user_create'),
 ]
 
 
