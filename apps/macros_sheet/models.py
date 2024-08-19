@@ -1,8 +1,15 @@
+import logging
+
 from django.db import models
+from django.dispatch import receiver
+from django.db.models.signals import pre_delete
 from django.core.validators import MinValueValidator
 
 from apps.macros_planner.models import MacrosPlanner
 from apps.macros_sheet.calcs import KcalLevel, CalcMacroLevel, ProportionGKG
+
+
+logger = logging.getLogger(__name__)
 
 
 class MacrosSheet(models.Model):
@@ -80,3 +87,9 @@ class MacrosSheet(models.Model):
         self.kcal = KcalLevel.calculate_kcal(self.cho, self.ptn, self.fat)
         super().save(*args, **kwargs)
         self.update_week_based_on_id()
+
+
+@receiver(pre_delete, sender=MacrosSheet)
+def pre_delete_macros_sheet(sender, instance, **kwargs):
+    logger.info(f"Signal received for MacrosSheet {instance.id} deletion.")
+    instance.update_week_based_on_id()
