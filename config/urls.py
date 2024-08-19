@@ -9,10 +9,10 @@ schema_view = get_schema_view(
     openapi.Info(
         title="Arnold Plan",
         default_version='v0 - Minimum Viable Product',
-        description="End-points para a API Arnold Plan em Django Rest",
+        description="End-points for the Arnold Plan API in Django Rest",
         terms_of_service="terms",
         contact=openapi.Contact(email="rochamel73@gmail.com"),
-        license=openapi.License(name="No License"),
+        license=openapi.License(name="MIT License"),
         ),
     public=True,
     permission_classes=(permissions.BasePermission,),

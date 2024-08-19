@@ -1,6 +1,6 @@
-from rest_framework import status, viewsets
 from django.db import IntegrityError
 from rest_framework.views import APIView
+from rest_framework import status, viewsets
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -69,11 +69,21 @@ class UserCreateView(gateway.Create):
 
 # Athlete
 class AthleteViewSet(viewsets.ModelViewSet):
+    """
+    Mandatory to provide:
+    - provide in header
+    @access_token: string (Bearer Token)
+    """
     queryset = Athlete.objects.filter(user__is_active=True)
     serializer_class = AthleteSerializer
 
 
 # Nutritionist
 class NutritionistViewSet(viewsets.ModelViewSet):
+    """
+    Mandatory to provide:
+    - provide in header
+    @access_token: string (Bearer Token)
+    """
     queryset = Nutritionist.objects.filter(user__is_active=True)
     serializer_class = NutritionistSerializer
