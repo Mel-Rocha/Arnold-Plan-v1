@@ -26,4 +26,5 @@ urlpatterns = [
     path('user/', include('apps.user.urls')),
     path('daily-records/', include('apps.daily_records.urls')),
     path('diet/', include('apps.diet.urls')),
+    path('macros-planner/', include('apps.macros_planner.urls')),
     ]
