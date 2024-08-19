@@ -64,12 +64,41 @@ class UserSerializerCreateOrUpdate(serializers.ModelSerializer):
 
 
 class AthleteSerializer(serializers.ModelSerializer):
+    user_id = serializers.UUIDField(source='user.id', read_only=True)
+    nutritionist_id = serializers.UUIDField(source='nutritionist.id', read_only=True)
+
     class Meta:
         model = Athlete
         fields = '__all__'
 
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+
+        representation.pop('user', None)
+        representation.pop('nutritionist', None)
+        representation.pop('id', None)
+
+        representation['athlete_id'] = instance.id
+        representation['user_id'] = instance.user.id
+        representation['nutritionist_id'] = instance.nutritionist.id if instance.nutritionist else None
+
+        return representation
+
 
 class NutritionistSerializer(serializers.ModelSerializer):
+    user_id = serializers.UUIDField(source='user.id', read_only=True)
+
     class Meta:
         model = Nutritionist
         fields = '__all__'
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+
+        representation.pop('user', None)
+        representation.pop('id', None)
+
+        representation['nutritionist_id'] = instance.id
+        representation['user_id'] = instance.user.id
+
+        return representation

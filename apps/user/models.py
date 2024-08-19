@@ -23,6 +23,7 @@ class Gender(models.TextChoices):
 
 
 class Profile(Core):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     gender = models.CharField(max_length=50, choices=Gender.choices)
     instagram = models.CharField(max_length=255, blank=True, null=True)
@@ -46,7 +47,6 @@ class Category(models.TextChoices):
 
 
 class Athlete(Profile):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
     nutritionist = models.ForeignKey(
         'Nutritionist',
         on_delete=models.SET_NULL,
@@ -70,7 +70,6 @@ class AcademicDegree(models.TextChoices):
 
 
 class Nutritionist(Profile):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
     crn = models.CharField(max_length=255)
     academic_degree = models.CharField(
         max_length=20,
