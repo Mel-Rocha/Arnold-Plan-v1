@@ -4,7 +4,7 @@ from rest_framework.routers import DefaultRouter
 from apps.diet.views import DietViewSet
 
 router = DefaultRouter()
-router.register(r'diets', DietViewSet)
+router.register(r'', DietViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
