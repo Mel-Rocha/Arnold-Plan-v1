@@ -1,7 +1,7 @@
 from uuid import uuid4
 
-from django.db import models
 from django.dispatch import receiver
+from django.db import models, IntegrityError
 from django.db.models.signals import post_save
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MinValueValidator
@@ -95,12 +95,22 @@ class Nutritionist(Profile):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, created, **kwargs):
     if created:
-        if instance.is_nutritionist:
-            Nutritionist.objects.create(user=instance)
-        elif instance.is_athlete:
-            Athlete.objects.create(user=instance)
+        if instance.is_nutritionist and not hasattr(instance, 'nutritionist'):
+            try:
+                Nutritionist.objects.create(user=instance)
+            except IntegrityError:
+                pass
+        elif instance.is_athlete and not hasattr(instance, 'athlete'):
+            try:
+                Athlete.objects.create(user=instance)
+            except IntegrityError:
+                pass
     else:
-        if hasattr(instance, 'nutritionist'):
-            instance.nutritionist.save()
-        if hasattr(instance, 'athlete'):
-            instance.athlete.save()
+        if instance.is_nutritionist:
+            nutritionist = Nutritionist.objects.filter(user=instance).first()
+            if nutritionist:
+                nutritionist.save()
+        if instance.is_athlete:
+            athlete = Athlete.objects.filter(user=instance).first()
+            if athlete:
+                athlete.save()
