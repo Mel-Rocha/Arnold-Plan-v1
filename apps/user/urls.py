@@ -8,16 +8,13 @@ router = DefaultRouter()
 router.register(r'athlete', AthleteViewSet, basename='athlete')
 router.register(r'nutritionist', NutritionistViewSet, basename='nutritionist')
 
-token_and_passwords = [
+token_and_passwords_user = [
     path('token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('password/update/', UpdatePasswordView.as_view(), name='password_update'),
-]
-
-user_crud = [
     path('user/create/', UserCreateView.as_view({'post': 'create'}), name='user-create'),
 ]
 
 
 urlpatterns = [
     path('', include(router.urls)),
-] + token_and_passwords + user_crud
+] + token_and_passwords_user
