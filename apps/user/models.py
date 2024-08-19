@@ -60,6 +60,12 @@ class Athlete(Profile):
     birth_date = models.DateField()
     is_pro = models.BooleanField(default=False)
 
+    def save(self, *args, **kwargs):
+        if not self.user.is_athlete:
+            self.user.is_athlete = True
+            self.user.save()
+        super().save(*args, **kwargs)
+
 
 # Nutritionist
 class AcademicDegree(models.TextChoices):
@@ -77,6 +83,13 @@ class Nutritionist(Profile):
         default=AcademicDegree.BACHELOR,
     )
     area_of_specialization = models.CharField(max_length=255)
+
+    def save(self, *args, **kwargs):
+        if not self.user.is_nutritionist:
+            self.user.is_nutritionist = True
+            self.user.save()
+        super().save(*args, **kwargs)
+
 
 
 @receiver(post_save, sender=User)
