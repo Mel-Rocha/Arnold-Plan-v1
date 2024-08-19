@@ -1,17 +1,15 @@
-# apps/core/permissions.py
-
 from rest_framework.permissions import BasePermission
 
 class IsNutritionistUser(BasePermission):
     """
-        Permite acesso aos utilizadores Nutricionistas
+    Allows access to Nutritionist users
     """
     def has_permission(self, request, view):
         return request.user and request.user.is_nutritionist
 
 class IsAthleteUser(BasePermission):
     """
-        Permite acesso aos utilizadores Atletas
+    Allows access to Athlete users
     """
     def has_permission(self, request, view):
         return request.user and request.user.is_athlete
