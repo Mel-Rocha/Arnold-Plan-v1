@@ -2,12 +2,12 @@ from rest_framework import status, viewsets
 from django.db import IntegrityError
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
 
 from apps.core import gateway
-from apps.user.models import User
+from apps.user.models import  Nutritionist, Athlete
 from apps.core.gateway import response_log_user
 from apps.user.serializers import MyTokenObtainPairSerializer, UpdatePasswordSerializer, \
     UserSerializerCreateOrUpdate, AthleteSerializer, NutritionistSerializer
@@ -69,11 +69,11 @@ class UserCreateView(gateway.Create):
 
 # Athlete
 class AthleteViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.filter(is_active=True)
+    queryset = Athlete.objects.filter(user__is_active=True)
     serializer_class = AthleteSerializer
 
 
 # Nutritionist
 class NutritionistViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.filter(is_active=True)
+    queryset = Nutritionist.objects.filter(user__is_active=True)
     serializer_class = NutritionistSerializer

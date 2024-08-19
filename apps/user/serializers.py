@@ -36,6 +36,12 @@ class UpdatePasswordSerializer(serializers.Serializer):
             raise serializers.ValidationError("Passwords do not match")
         return data
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'is_staff', 'is_superuser', 'is_active', 'is_nutritionist', 'is_athlete']
+
+
 class UserSerializerCreateOrUpdate(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -58,50 +64,12 @@ class UserSerializerCreateOrUpdate(serializers.ModelSerializer):
 
 
 class AthleteSerializer(serializers.ModelSerializer):
-    user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
-
     class Meta:
         model = Athlete
-        fields = [
-            'user', 'name', 'gender', 'instagram', 'email', 'telephone',
-            'nutritionist', 'category', 'weight', 'height', 'birth_date', 'is_pro'
-        ]
-
-    def create(self, validated_data):
-        user = validated_data.pop('user')
-        athlete = Athlete.objects.create(user=user, **validated_data)
-        return athlete
-
-    def update(self, instance, validated_data):
-        user = validated_data.pop('user', None)
-        if user is not None:
-            instance.user = user
-        for attr, value in validated_data.items():
-            setattr(instance, attr, value)
-        instance.save()
-        return instance
+        fields = '__all__'
 
 
 class NutritionistSerializer(serializers.ModelSerializer):
-    user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
-
     class Meta:
         model = Nutritionist
-        fields = [
-            'user', 'name', 'gender', 'instagram', 'email', 'telephone',
-            'crn', 'academic_degree', 'area_of_specialization'
-        ]
-
-    def create(self, validated_data):
-        user = validated_data.pop('user')
-        nutritionist = Nutritionist.objects.create(user=user, **validated_data)
-        return nutritionist
-
-    def update(self, instance, validated_data):
-        user = validated_data.pop('user', None)
-        if user is not None:
-            instance.user = user
-        for attr, value in validated_data.items():
-            setattr(instance, attr, value)
-        instance.save()
-        return instance
+        fields = '__all__'
