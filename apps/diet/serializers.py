@@ -1,13 +1,14 @@
 from rest_framework import serializers
 
 from apps.diet.models import Diet
+from apps.food_options.models import FoodOptions
 from apps.macros_planner.models import MacrosPlanner
 from apps.meal.models import Meal
 from apps.meal.serializers import MealSerializer
 
 
 class DietSerializer(serializers.ModelSerializer):
-    meals = MealSerializer(many=True, required=False)  # Campo relacionado
+    meals = MealSerializer(many=True, required=False)
 
     class Meta:
         model = Diet
@@ -17,40 +18,54 @@ class DietSerializer(serializers.ModelSerializer):
         }
 
     def create(self, validated_data):
-        # Remove `meals` dos dados validados antes de criar o `Diet`
         meals_data = validated_data.pop('meals', [])
-
-        # Obtenha o `macros_planner` usando o contexto
         macros_planner_id = self.context['macros_planner_id']
         macros_planner = MacrosPlanner.objects.get(id=macros_planner_id)
-
-        # Crie o objeto `Diet` sem passar `meals`
         diet = Diet.objects.create(macros_planner=macros_planner, **validated_data)
 
-        # Crie os objetos `Meal` associados ao `Diet`
+        context = self.context
+        context['diet_id'] = diet.id
+
         for meal_data in meals_data:
-            Meal.objects.create(diet=diet, **meal_data)
+            meal_serializer = MealSerializer(data=meal_data, context=context)
+            if meal_serializer.is_valid():
+                meal_serializer.save()
+            else:
+                raise serializers.ValidationError(meal_serializer.errors)
 
         return diet
 
     def update(self, instance, validated_data):
-        # Remove `meals` dos dados validados antes de atualizar o `Diet`
         meals_data = validated_data.pop('meals', [])
-
-        # Atualiza o objeto `Diet`
         instance = super().update(instance, validated_data)
 
-        # Atualize ou crie os objetos `Meal` associados ao `Diet`
         for meal_data in meals_data:
             meal_id = meal_data.get('id')
             if meal_id:
-                # Se o `meal` já existe, atualize-o
                 meal = Meal.objects.get(id=meal_id, diet=instance)
-                for key, value in meal_data.items():
-                    setattr(meal, key, value)
-                meal.save()
+                meal_serializer = MealSerializer(meal, data=meal_data, partial=True, context=self.context)
+                if meal_serializer.is_valid():
+                    meal_serializer.save()
+                    food_options_data = meal_data.get('food_options', [])
+                    for food_option_data in food_options_data:
+                        food_option_id = food_option_data.get('id')
+                        if food_option_id:
+                            food_option = FoodOptions.objects.get(id=food_option_id, meal=meal)
+                            for key, value in food_option_data.items():
+                                setattr(food_option, key, value)
+                            food_option.save()
+                        else:
+                            FoodOptions.objects.create(meal=meal, **food_option_data)
+                else:
+                    raise serializers.ValidationError(meal_serializer.errors)
             else:
-                # Se o `meal` não existe, crie um novo
-                Meal.objects.create(diet=instance, **meal_data)
+                meal_serializer = MealSerializer(data=meal_data, context=self.context)
+                if meal_serializer.is_valid():
+                    meal = meal_serializer.save(diet=instance)
+                    food_options_data = meal_data.get('food_options', [])
+                    for food_option_data in food_options_data:
+                        FoodOptions.objects.create(meal=meal, **food_option_data)
+                else:
+                    raise serializers.ValidationError(meal_serializer.errors)
 
         return instance

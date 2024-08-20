@@ -10,7 +10,6 @@ class FoodOptionsViewSet(viewsets.ModelViewSet):
     queryset = FoodOptions.objects.all()
     serializer_class = FoodOptionsSerializer
 
-    def get_permissions(self):
-        if self.request.method in SAFE_METHODS:
-            return [IsAuthenticated(), IsNutritionistUser()]
-        return [IsAuthenticated(), IsAthleteUser()]
+    def perform_create(self, serializer):
+        meal_id = self.kwargs['meal_id']  # Assumindo que o meal_id é passado na URL
+        serializer.save(context={'meal_id': meal_id})

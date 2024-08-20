@@ -15,12 +15,16 @@ class MacrosPlannerSerializer(serializers.ModelSerializer):
         diets_data = validated_data.pop('diets', [])
         macros_planner = MacrosPlanner.objects.create(**validated_data)
 
-        self.context['macros_planner_id'] = macros_planner.id
+        # Atualize o contexto com o novo ID do MacrosPlanner
+        context = self.context
+        context['macros_planner_id'] = macros_planner.id
 
+        # Crie as dietas associadas
         for diet_data in diets_data:
-            diet_serializer = DietSerializer(data=diet_data, context=self.context)
+            # Crie uma instância do DietSerializer com o contexto correto
+            diet_serializer = DietSerializer(data=diet_data, context=context)
             if diet_serializer.is_valid():
-                diet_serializer.save()
+                diet_serializer.save()  # Salve a dieta, que também criará meals
             else:
                 raise serializers.ValidationError(diet_serializer.errors)
 
