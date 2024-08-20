@@ -1,6 +1,5 @@
 from rest_framework import serializers
 
-from apps.diet.models import Diet
 from apps.diet.serializers import DietSerializer
 from apps.macros_planner.models import MacrosPlanner
 
@@ -15,24 +14,14 @@ class MacrosPlannerSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         diets_data = validated_data.pop('diets', [])
         macros_planner = MacrosPlanner.objects.create(**validated_data)
-        for diet_data in diets_data:
-            Diet.objects.create(macros_planner=macros_planner, **diet_data)
-        return macros_planner
 
-    def update(self, instance, validated_data):
-        diets_data = validated_data.pop('diets', [])
-        instance = super().update(instance, validated_data)
+        self.context['macros_planner_id'] = macros_planner.id
 
         for diet_data in diets_data:
-
-            diet_id = diet_data.get('id')
-            if diet_id:
-                diet = Diet.objects.get(id=diet_id, macros_planner=instance)
-                diet.name = diet_data.get('name', diet.name)
-                diet.calories = diet_data.get('calories', diet.calories)
-
-                diet.save()
+            diet_serializer = DietSerializer(data=diet_data, context=self.context)
+            if diet_serializer.is_valid():
+                diet_serializer.save()
             else:
-                Diet.objects.create(macros_planner=instance, **diet_data)
+                raise serializers.ValidationError(diet_serializer.errors)
 
-        return instance
+        return macros_planner
