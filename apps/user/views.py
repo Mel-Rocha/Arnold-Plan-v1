@@ -8,7 +8,7 @@ from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
 
 from apps.core import gateway
 from apps.core.gateway import response_log_user
-from apps.core.permissions import IsAthleteUser, IsNutritionistUser
+from apps.core.permissions import IsAthleteUser, IsNutritionistUser, IsNotAthleteUserAndIsNotNutritionist
 from apps.user.models import  Nutritionist, Athlete
 from apps.user.serializers import MyTokenObtainPairSerializer, UpdatePasswordSerializer, \
     UserSerializerCreateOrUpdate, AthleteSerializer, NutritionistSerializer
@@ -80,7 +80,9 @@ class AthleteViewSet(viewsets.ModelViewSet):
 
     def get_permissions(self):
         if self.request.method in SAFE_METHODS:
-            return [IsAuthenticated(),]
+            return [IsAuthenticated()]
+        if self.action == 'create':
+            return [IsAuthenticated(), IsNotAthleteUserAndIsNotNutritionist()]
         return [IsAuthenticated(), IsAthleteUser()]
 
 
@@ -96,5 +98,7 @@ class NutritionistViewSet(viewsets.ModelViewSet):
 
     def get_permissions(self):
         if self.request.method in SAFE_METHODS:
-            return [IsAuthenticated(),]
+            return [IsAuthenticated()]
+        if self.action == 'create':
+            return [IsAuthenticated(), IsNotAthleteUserAndIsNotNutritionist()]
         return [IsAuthenticated(), IsNutritionistUser()]
