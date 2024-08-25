@@ -2,6 +2,8 @@ from rest_framework import serializers
 
 from apps.diet.serializers import DietSerializer
 from apps.macros_planner.models import MacrosPlanner
+from apps.macros_sheet.models import MacrosSheet
+from apps.macros_sheet.serializers import MacrosSheetSerializer
 from apps.user.models import Nutritionist
 
 
@@ -29,6 +31,11 @@ class MacrosPlannerSerializer(serializers.ModelSerializer):
 
         # Crie o MacrosPlanner e associe o Nutritionist encontrado
         macros_planner = MacrosPlanner.objects.create(nutritionist=nutritionist, **validated_data)
+
+        # Crie as macros sheets baseadas em weeks
+        weeks = validated_data.get('weeks', 0)
+        for week in range(1, weeks + 1):
+            MacrosSheet.objects.create(macros_planner=macros_planner, week=week)
 
         # Atualize o contexto com o novo ID do MacrosPlanner
         context = self.context

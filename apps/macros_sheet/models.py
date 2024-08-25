@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 
 class MacrosSheet(models.Model):
-    macros_planner = models.ForeignKey(MacrosPlanner, on_delete=models.CASCADE, default=None)
+    macros_planner = models.ForeignKey(MacrosPlanner, related_name='macros_sheets', on_delete=models.CASCADE)
     week = models.PositiveIntegerField(default=0)
     cho = models.FloatField(default=1, validators=[MinValueValidator(1)])
     ptn = models.FloatField(default=1, validators=[MinValueValidator(1)])
@@ -59,27 +59,20 @@ class MacrosSheet(models.Model):
         proportions = ProportionGKG(self.weight, self.cho, self.ptn, self.fat)
         return round(proportions.fat_proportion, 2)
 
+
     def update_week_based_on_id(self):
         if self.week == 0 and self.macros_planner:
-            original_size = self.macros_planner.macrossheet_set.count()
-            print(f'Original: {original_size}')
+            # Obtém todos os MacrosSheet associados ao MacrosPlanner, ordenados por ID
+            macros_sheets = self.macros_planner.macros_sheets.all().order_by('id')
 
-            macros_sheets = self.macros_planner.macrossheet_set.all().order_by('id')
-
+            # Atualiza o campo week de cada MacrosSheet
             for index, macros_sheet in enumerate(macros_sheets):
                 macros_sheet.week = index + 1
                 macros_sheet.save()
 
-            macros_sheets = self.macros_planner.macrossheet_set.all().order_by('id')
-            current_size = macros_sheets.count()
-            print(f'Atual: {current_size}')
-
-            if current_size < original_size:
-                for index, macros_sheet in enumerate(macros_sheets):
-                    macros_sheet.week = index + 1
-                    macros_sheet.save()
-
-            self.week = macros_sheets.last().week + 1
+            # Define a semana do MacrosSheet atual como a última semana existente mais 1
+            new_week = macros_sheets.last().week + 1 if macros_sheets.exists() else 1
+            self.week = new_week
             self.macros_planner.save()
 
 
