@@ -33,6 +33,26 @@ class MacrosPlannerViewSet(viewsets.ModelViewSet):
         else:
             return MacrosPlanner.objects.none()
 
+    def list(self, request, *args, **kwargs):
+        """
+        Sobrescreve o método list para garantir que o usuário veja apenas
+        os MacrosPlanners aos quais ele está relacionado.
+        """
+        user = request.user
+
+        if user.is_nutritionist:
+            # Nutricionista vê todos os MacrosPlanners dos atletas que ele gerencia
+            queryset = MacrosPlanner.objects.filter(nutritionist__user=user)
+        elif user.is_athlete:
+            # Atleta vê apenas o seu próprio MacrosPlanners
+            queryset = MacrosPlanner.objects.filter(athlete__user=user)
+        else:
+            # Se o usuário não for nutricionista nem atleta, não há acesso
+            queryset = MacrosPlanner.objects.none()
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
     def retrieve(self, request, *args, **kwargs):
         """
         Sobrescreve o método retrieve para garantir que o usuário só consiga
