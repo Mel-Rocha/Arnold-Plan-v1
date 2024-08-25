@@ -64,72 +64,39 @@ class UserSerializerCreateOrUpdate(serializers.ModelSerializer):
 
 
 class AthleteSerializer(serializers.ModelSerializer):
-    user_id = serializers.UUIDField(source='user.id', read_only=True)
-    nutritionist_id = serializers.UUIDField(source='nutritionist.id', read_only=True)
 
     class Meta:
         model = Athlete
         fields = '__all__'
+        extra_kwargs = {
+            'user': {'read_only': True},
+        }
 
-    def to_representation(self, instance):
-        representation = super().to_representation(instance)
+    def create(self, validated_data):
+        validated_data['user'] = self.context['request'].user
+        return super().create(validated_data)
 
-        representation.pop('user', None)
-        representation.pop('nutritionist', None)
-        representation.pop('id', None)
+    def update(self, instance, validated_data):
+        validated_data.pop('user', None)
+        return super().update(instance, validated_data)
 
-        representation['athlete_id'] = instance.id
-        representation['user_id'] = instance.user.id
-        representation['nutritionist_id'] = instance.nutritionist.id if instance.nutritionist else None
-
-        return representation
-
-    def to_internal_value(self, data):
-        internal_data = super().to_internal_value(data)
-        user_id = data.get('user_id')
-        nutritionist_id = data.get('nutritionist_id')
-
-        if user_id:
-            try:
-                internal_data['user'] = User.objects.get(id=user_id)
-            except User.DoesNotExist:
-                raise serializers.ValidationError({'user_id': 'User with this ID does not exist.'})
-
-        if nutritionist_id:
-            try:
-                internal_data['nutritionist'] = Nutritionist.objects.get(id=nutritionist_id)
-            except Nutritionist.DoesNotExist:
-                raise serializers.ValidationError({'nutritionist_id': 'Nutritionist with this ID does not exist.'})
-
-        return internal_data
 
 
 class NutritionistSerializer(serializers.ModelSerializer):
-    user_id = serializers.UUIDField(source='user.id', read_only=True)
 
     class Meta:
         model = Nutritionist
         fields = '__all__'
+        extra_kwargs = {
+            'user': {'read_only': True},
+        }
 
-    def to_representation(self, instance):
-        representation = super().to_representation(instance)
+    def create(self, validated_data):
+        # Associa o usuário autenticado ao campo `user`
+        validated_data['user'] = self.context['request'].user
+        return super().create(validated_data)
 
-        representation.pop('user', None)
-        representation.pop('id', None)
-
-        representation['nutritionist_id'] = instance.id
-        representation['user_id'] = instance.user.id
-
-        return representation
-
-    def to_internal_value(self, data):
-        internal_data = super().to_internal_value(data)
-        user_id = data.get('user_id')
-
-        if user_id:
-            try:
-                internal_data['user'] = User.objects.get(id=user_id)
-            except User.DoesNotExist:
-                raise serializers.ValidationError({'user_id': 'User with this ID does not exist.'})
-
-        return internal_data
+    def update(self, instance, validated_data):
+        # Protege o campo `user` de alterações
+        validated_data.pop('user', None)
+        return super().update(instance, validated_data)
