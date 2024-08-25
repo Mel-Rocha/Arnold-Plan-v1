@@ -4,7 +4,9 @@ from rest_framework.routers import DefaultRouter
 from apps.macros_sheet.views import MacrosSheetViewSet
 
 router = DefaultRouter()
-router.register(r'', MacrosSheetViewSet, basename='macros_sheet')
+router.register(r'macros-planners/(?P<macros_planner_id>\d+)/macros-sheets', MacrosSheetViewSet,
+                basename='macros-sheet')
+
 
 urlpatterns = [
     path('', include(router.urls)),

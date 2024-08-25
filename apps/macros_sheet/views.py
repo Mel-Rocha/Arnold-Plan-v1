@@ -10,7 +10,16 @@ class MacrosSheetViewSet(viewsets.ModelViewSet):
     queryset = MacrosSheet.objects.all()
     serializer_class = MacrosSheetSerializer
 
+    def get_queryset(self):
+        macros_planner_id = self.kwargs.get('macros_planner_id')
+        return MacrosSheet.objects.filter(macros_planner_id=macros_planner_id)
+
+    def perform_create(self, serializer):
+        macros_planner_id = self.kwargs.get('macros_planner_id')
+        serializer.context['macros_planner_id'] = macros_planner_id
+        serializer.save()
+
     def get_permissions(self):
         if self.request.method in SAFE_METHODS:
-            return [IsAuthenticated(), IsAthleteUser()]
+            return [IsAuthenticated()]
         return [IsAuthenticated(), IsNutritionistUser()]
