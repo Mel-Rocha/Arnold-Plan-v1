@@ -35,5 +35,5 @@ class MacrosSheetSerializer(serializers.ModelSerializer):
         Custom representation to include the 'id' of the MacrosSheet.
         """
         representation = super().to_representation(instance)
-        representation['id'] = instance.id  
+        representation['id'] = instance.id
         return representation
