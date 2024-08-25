@@ -63,15 +63,12 @@ class MacrosSheet(Core):
 
     def update_week_based_on_id(self):
         if self.week == 0 and self.macros_planner:
-            # Obtém todos os MacrosSheet associados ao MacrosPlanner, ordenados por ID
             macros_sheets = self.macros_planner.macros_sheets.all().order_by('id')
 
-            # Atualiza o campo week de cada MacrosSheet
             for index, macros_sheet in enumerate(macros_sheets):
                 macros_sheet.week = index + 1
                 macros_sheet.save()
 
-            # Define a semana do MacrosSheet atual como a última semana existente mais 1
             new_week = macros_sheets.last().week + 1 if macros_sheets.exists() else 1
             self.week = new_week
             self.macros_planner.save()

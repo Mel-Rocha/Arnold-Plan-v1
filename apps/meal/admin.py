@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from apps.food_options.models import FoodOptions
 from apps.meal.models import Meal
+from apps.food_options.models import FoodOptions
 
 
 class FoodOptionsInline(admin.TabularInline):

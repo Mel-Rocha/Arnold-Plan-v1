@@ -1,9 +1,9 @@
 from rest_framework import serializers
 
+from apps.meal.models import Meal
 from apps.diet.models import Diet
 from apps.food_options.models import FoodOptions
 from apps.food_options.serializers import FoodOptionsSerializer
-from apps.meal.models import Meal
 
 
 class MealSerializer(serializers.ModelSerializer):

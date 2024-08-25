@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
-from apps.food_options.models import FoodOptions
 from apps.meal.models import Meal
+from apps.food_options.models import FoodOptions
 
 
 class FoodOptionsSerializer(serializers.ModelSerializer):
@@ -13,19 +13,17 @@ class FoodOptionsSerializer(serializers.ModelSerializer):
         }
 
     def create(self, validated_data):
-        meal_id = validated_data.pop('meal_id', None)  # Recuperando meal_id diretamente dos dados validados
+        meal_id = validated_data.pop('meal_id', None)
         if not meal_id:
             raise serializers.ValidationError("Meal ID is required.")
 
-        # Verifica se a Meal com o ID especificado existe
         try:
             meal = Meal.objects.get(id=meal_id)
         except Meal.DoesNotExist:
             raise serializers.ValidationError(f"Meal with id {meal_id} does not exist.")
 
-        # Criação do objeto FoodOptions com a refeição associada
         return FoodOptions.objects.create(meal=meal, **validated_data)
 
     def update(self, instance, validated_data):
-        validated_data.pop('meal', None)  # Certifica que 'meal' não será atualizado
+        validated_data.pop('meal', None)
         return super().update(instance, validated_data)

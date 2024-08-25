@@ -28,4 +28,3 @@ class DailyRecordsViewSet(viewsets.ModelViewSet):
         if self.request.method in SAFE_METHODS:
             return [IsAuthenticated()]
         return [IsAuthenticated(), IsAthleteUser()]
-    

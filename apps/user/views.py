@@ -8,9 +8,8 @@ from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
 
 from apps.core import gateway
 from apps.core.gateway import response_log_user
-from apps.core.permissions import IsAthleteUser, IsNutritionistUser, IsNotAthleteUserAndIsNotNutritionist, \
-    IsOwnerOrReadOnly
 from apps.user.models import  Nutritionist, Athlete
+from apps.core.permissions import IsNotAthleteUserAndIsNotNutritionist, IsOwnerOrReadOnly
 from apps.user.serializers import MyTokenObtainPairSerializer, UpdatePasswordSerializer, \
     UserSerializerCreateOrUpdate, AthleteSerializer, NutritionistSerializer
 

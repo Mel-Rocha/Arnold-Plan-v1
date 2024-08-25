@@ -1,10 +1,10 @@
 from rest_framework import serializers
 
+from apps.meal.models import Meal
 from apps.diet.models import Diet
+from apps.meal.serializers import MealSerializer
 from apps.food_options.models import FoodOptions
 from apps.macros_planner.models import MacrosPlanner
-from apps.meal.models import Meal
-from apps.meal.serializers import MealSerializer
 
 
 class DietSerializer(serializers.ModelSerializer):

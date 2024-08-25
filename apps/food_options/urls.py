@@ -5,7 +5,8 @@ from apps.food_options.views import FoodOptionsViewSet
 
 router = DefaultRouter()
 router.register(
-    r'macros-planner/(?P<macros_planner_id>[0-9a-f-]+)/diets/(?P<diet_id>[0-9a-f-]+)/meals/(?P<meal_id>[0-9a-f-]+)/food-options',
+    r'macros-planner/(?P<macros_planner_id>[0-9a-f-]+)/diets/(?P<diet_id>[0-9a-f-]+)/meals/(?P'
+    r'<meal_id>[0-9a-f-]+)/food-options',
     FoodOptionsViewSet,
     basename='food-options'
 )

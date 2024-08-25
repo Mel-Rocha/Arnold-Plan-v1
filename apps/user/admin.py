@@ -18,7 +18,8 @@ class UserAdmin(admin.ModelAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('username', 'email', 'password1', 'password2', 'is_staff', 'is_active', 'is_nutritionist', 'is_athlete'),
+            'fields': ('username', 'email', 'password1', 'password2', 'is_staff', 'is_active',
+                       'is_nutritionist', 'is_athlete'),
         }),
     )
 

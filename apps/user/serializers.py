@@ -39,7 +39,8 @@ class UpdatePasswordSerializer(serializers.Serializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'is_staff', 'is_superuser', 'is_active', 'is_nutritionist', 'is_athlete']
+        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'is_staff', 'is_superuser', 'is_active',
+                  'is_nutritionist', 'is_athlete']
 
 
 class UserSerializerCreateOrUpdate(serializers.ModelSerializer):
@@ -92,11 +93,9 @@ class NutritionistSerializer(serializers.ModelSerializer):
         }
 
     def create(self, validated_data):
-        # Associa o usuário autenticado ao campo `user`
         validated_data['user'] = self.context['request'].user
         return super().create(validated_data)
 
     def update(self, instance, validated_data):
-        # Protege o campo `user` de alterações
         validated_data.pop('user', None)
         return super().update(instance, validated_data)

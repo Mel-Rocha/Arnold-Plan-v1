@@ -11,7 +11,8 @@ class MealInline(admin.TabularInline):
 @admin.register(Diet)
 class DietAdmin(admin.ModelAdmin):
     list_display = ('id', 'athlete', 'nutritionist', 'goal', 'initial_date', 'final_date', 'type_of_diet')
-    list_filter = ('type_of_diet', 'initial_date', 'final_date', 'macros_planner__athlete', 'macros_planner__nutritionist')
+    list_filter = ('type_of_diet', 'initial_date', 'final_date', 'macros_planner__athlete',
+                   'macros_planner__nutritionist')
     search_fields = ('goal', 'observations')
     ordering = ('initial_date',)
     inlines = [MealInline]

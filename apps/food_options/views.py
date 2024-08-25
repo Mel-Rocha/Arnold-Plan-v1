@@ -1,10 +1,8 @@
-from django_rest_passwordreset import serializers
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated, SAFE_METHODS
+from django_rest_passwordreset import serializers
 
 from apps.food_options.models import FoodOptions
 from apps.food_options.serializers import FoodOptionsSerializer
-from apps.core.permissions import IsAthleteUser, IsNutritionistUser
 
 
 class FoodOptionsViewSet(viewsets.ModelViewSet):
@@ -12,8 +10,7 @@ class FoodOptionsViewSet(viewsets.ModelViewSet):
     serializer_class = FoodOptionsSerializer
 
     def perform_create(self, serializer):
-        meal_id = self.kwargs.get('meal_id')  # Use get para evitar KeyError
+        meal_id = self.kwargs.get('meal_id')
         if not meal_id:
             raise serializers.ValidationError("Meal ID is required.")
-        print(f"MELA ID: {meal_id}")
         serializer.save(meal_id=meal_id)
