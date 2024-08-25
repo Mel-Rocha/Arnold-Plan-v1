@@ -21,6 +21,9 @@ class MealSerializer(serializers.ModelSerializer):
         diet_id = self.context['diet_id']  # Assumes diet_id is passed in context
         diet = Diet.objects.get(id=diet_id)
 
+        # Remove 'diet' de validated_data se ele existir
+        validated_data.pop('diet', None)
+
         meal = Meal.objects.create(diet=diet, **validated_data)
 
         for food_option_data in food_options_data:
