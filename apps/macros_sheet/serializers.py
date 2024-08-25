@@ -28,3 +28,12 @@ class MacrosSheetSerializer(serializers.ModelSerializer):
         validated_data.pop('macros_planner', None)
 
         return MacrosSheet.objects.create(macros_planner=macros_planner, **validated_data)
+
+
+    def to_representation(self, instance):
+        """
+        Custom representation to include the 'id' of the MacrosSheet.
+        """
+        representation = super().to_representation(instance)
+        representation['id'] = instance.id  
+        return representation
