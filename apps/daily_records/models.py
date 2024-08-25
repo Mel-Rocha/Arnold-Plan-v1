@@ -1,9 +1,10 @@
 from django.db import models
 
+from apps.core.models import Core
 from apps.user.models import Athlete
 
 
-class DailyRecords(models.Model):
+class DailyRecords(Core):
     TIME_CHOICES = [
         ('morning', 'Morning'),
         ('afternoon', 'Afternoon'),

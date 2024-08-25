@@ -5,6 +5,7 @@ from django.dispatch import receiver
 from django.db.models.signals import pre_delete
 from django.core.validators import MinValueValidator
 
+from apps.core.models import Core
 from apps.macros_planner.models import MacrosPlanner
 from apps.macros_sheet.calcs import KcalLevel, CalcMacroLevel, ProportionGKG
 
@@ -12,7 +13,7 @@ from apps.macros_sheet.calcs import KcalLevel, CalcMacroLevel, ProportionGKG
 logger = logging.getLogger(__name__)
 
 
-class MacrosSheet(models.Model):
+class MacrosSheet(Core):
     macros_planner = models.ForeignKey(MacrosPlanner, related_name='macros_sheets', on_delete=models.CASCADE)
     week = models.PositiveIntegerField(default=0)
     cho = models.FloatField(default=1, validators=[MinValueValidator(1)])

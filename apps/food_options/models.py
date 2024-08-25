@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator
 
+from apps.core.models import Core
 from apps.meal.models import Meal
 
 
@@ -10,7 +11,7 @@ class UnitOfMeasurement(models.TextChoices):
     ML = 'ml', 'ml'
 
 
-class FoodOptions(models.Model):
+class FoodOptions(Core):
     meal = models.ForeignKey(Meal, on_delete=models.CASCADE, default=None)
     food = models.CharField(max_length=100)
     quantity = models.FloatField(default=1, validators=[MinValueValidator(1)])

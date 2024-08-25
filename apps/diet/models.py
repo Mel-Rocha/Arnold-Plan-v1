@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator
 
+from apps.core.models import Core
 from apps.macros_planner.models import MacrosPlanner
 
 
@@ -10,7 +11,7 @@ class TypeOfDiet(models.TextChoices):
     CUTTING = 'Cutting', 'Cutting'
 
 
-class Diet(models.Model):
+class Diet(Core):
     macros_planner = models.ForeignKey(MacrosPlanner, on_delete=models.CASCADE, default=None)
     goal = models.CharField(max_length=100, blank=True)
     observations = models.CharField(max_length=300, blank=True)

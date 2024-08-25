@@ -1,5 +1,6 @@
 from django.db import models
 
+from apps.core.models import Core
 from apps.diet.models import Diet
 
 
@@ -10,7 +11,7 @@ class TypeOfMeal(models.TextChoices):
     POST_WORKOUT = 'Post Workout', 'Post Workout'
 
 
-class Meal(models.Model):
+class Meal(Core):
     diet = models.ForeignKey(Diet, on_delete=models.CASCADE, default=None)
     name = models.CharField(max_length=100)
     time = models.TimeField(default='00:00:00')
