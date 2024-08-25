@@ -1,4 +1,5 @@
-from rest_framework.permissions import BasePermission
+from rest_framework.permissions import BasePermission, SAFE_METHODS
+
 
 class IsNutritionistUser(BasePermission):
     """
@@ -21,3 +22,14 @@ class IsNotAthleteUserAndIsNotNutritionist(BasePermission):
     """
     def has_permission(self, request, view):
         return not (request.user.is_athlete or request.user.is_nutritionist)
+
+
+class IsOwnerOrReadOnly(BasePermission):
+    def has_object_permission(self, request, view, obj):
+        """
+        SAFE_METHODS are allowed for any request,
+        but write permissions are only allowed to the owner of the object.
+        """
+        if request.method in SAFE_METHODS:
+            return True
+        return obj.user == request.user
