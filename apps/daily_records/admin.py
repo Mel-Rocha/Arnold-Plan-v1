@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import DailyRecords
+
+from apps.daily_records.models import DailyRecords
+
 
 @admin.register(DailyRecords)
 class DailyRecordsAdmin(admin.ModelAdmin):
