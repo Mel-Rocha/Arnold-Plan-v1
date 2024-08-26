@@ -19,7 +19,7 @@ class MacrosPlannerViewSet(viewsets.ModelViewSet):
             return [IsAuthenticated()]
         return [IsAuthenticated(), IsNutritionistUser()]
 
-    @swagger_safe
+    @swagger_safe(MacrosPlanner)
     def get_queryset(self):
 
         user = self.request.user

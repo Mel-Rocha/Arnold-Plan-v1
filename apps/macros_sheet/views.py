@@ -10,7 +10,7 @@ from config.urls import swagger_safe
 class MacrosSheetViewSet(viewsets.ModelViewSet):
     serializer_class = MacrosSheetSerializer
 
-    @swagger_safe
+    @swagger_safe(MacrosSheet)
     def get_queryset(self):
         macros_planner_id = self.kwargs.get('macros_planner_id')
         return MacrosSheet.objects.filter(macros_planner_id=macros_planner_id)

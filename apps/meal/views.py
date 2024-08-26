@@ -11,7 +11,7 @@ from config.urls import swagger_safe
 class MealViewSet(viewsets.ModelViewSet):
     serializer_class = MealSerializer
 
-    @swagger_safe
+    @swagger_safe(Meal)
     def get_queryset(self):
         macros_planner_id = self.kwargs.get('macros_planner_id')
         diet_id = self.kwargs.get('diet_id')

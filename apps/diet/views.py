@@ -8,7 +8,7 @@ from config.urls import swagger_safe
 class DietViewSet(viewsets.ModelViewSet):
     serializer_class = DietSerializer
 
-    @swagger_safe
+    @swagger_safe(Diet)
     def get_queryset(self):
         return Diet.objects.filter(macros_planner=self.kwargs['macros_planner_id'])
 

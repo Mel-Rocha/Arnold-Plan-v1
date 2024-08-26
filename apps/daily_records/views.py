@@ -11,7 +11,7 @@ from config.urls import swagger_safe
 class DailyRecordsViewSet(viewsets.ModelViewSet):
     serializer_class = DailyRecordsSerializer
 
-    @swagger_safe
+    @swagger_safe(DailyRecords)
     def get_queryset(self):
         user = self.request.user
 
