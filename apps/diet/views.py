@@ -2,11 +2,13 @@ from rest_framework import viewsets
 
 from apps.diet.models import Diet
 from apps.diet.serializers import DietSerializer
+from config.urls import swagger_safe
 
 
 class DietViewSet(viewsets.ModelViewSet):
     serializer_class = DietSerializer
 
+    @swagger_safe
     def get_queryset(self):
         return Diet.objects.filter(macros_planner=self.kwargs['macros_planner_id'])
 

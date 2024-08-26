@@ -5,11 +5,13 @@ from apps.user.models import Nutritionist
 from apps.core.permissions import IsAthleteUser
 from apps.daily_records.models import DailyRecords
 from apps.daily_records.serializers import DailyRecordsSerializer
+from config.urls import swagger_safe
 
 
 class DailyRecordsViewSet(viewsets.ModelViewSet):
     serializer_class = DailyRecordsSerializer
 
+    @swagger_safe
     def get_queryset(self):
         user = self.request.user
 

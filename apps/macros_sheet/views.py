@@ -4,12 +4,13 @@ from rest_framework.permissions import IsAuthenticated, SAFE_METHODS
 from apps.core.permissions import IsNutritionistUser
 from apps.macros_sheet.models import MacrosSheet
 from apps.macros_sheet.serializers import MacrosSheetSerializer
+from config.urls import swagger_safe
 
 
 class MacrosSheetViewSet(viewsets.ModelViewSet):
-    queryset = MacrosSheet.objects.all()
     serializer_class = MacrosSheetSerializer
 
+    @swagger_safe
     def get_queryset(self):
         macros_planner_id = self.kwargs.get('macros_planner_id')
         return MacrosSheet.objects.filter(macros_planner_id=macros_planner_id)

@@ -7,6 +7,7 @@ from apps.user.models import Nutritionist
 from apps.macros_planner.models import MacrosPlanner
 from apps.core.permissions import IsNutritionistUser
 from apps.macros_planner.serializers import MacrosPlannerSerializer
+from config.urls import swagger_safe
 
 
 class MacrosPlannerViewSet(viewsets.ModelViewSet):
@@ -18,7 +19,7 @@ class MacrosPlannerViewSet(viewsets.ModelViewSet):
             return [IsAuthenticated()]
         return [IsAuthenticated(), IsNutritionistUser()]
 
-
+    @swagger_safe
     def get_queryset(self):
 
         user = self.request.user
