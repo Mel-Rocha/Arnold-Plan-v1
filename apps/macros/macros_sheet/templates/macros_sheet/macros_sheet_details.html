@@ -1,0 +1,87 @@
+{% extends 'layouts/base_background.html' %}
+
+{% block content %}
+<style>
+  .button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+</style>
+
+<div style="display: flex; align-items: center; justify-content: center; margin-top: 200px;">
+<li style="margin-bottom: 20px; border: 1px solid black; border-radius: 8px; padding: 15px; background-color: white; max-width: 600px; margin-left: auto; margin-right: auto;">
+<h2 style="color: black;">Detalhes da Semana</h2>
+  <p>Macros Planner: {{ macros_sheet.macros_planner }}</p>
+ 
+  
+  <table>
+    <tr>
+      <th>Macros</th>
+      <th>Gramas</th>
+      <th>Proportion</th>
+      <th>Level</th>
+    </tr>
+    <tr>
+      <td>CHO</td>
+      <td>{{ macros_sheet.cho }}</td>
+      <td>{{ macros_sheet.cho_proportion }}</td>
+      <td>{{ macros_sheet.cho_level }}</td>
+    </tr>
+    <tr>
+      <td>PTN</td>
+      <td>{{ macros_sheet.ptn }}</td>
+      <td>{{ macros_sheet.ptn_proportion }}</td>
+      <td>{{ macros_sheet.ptn_level }}</td>
+    </tr>
+    <tr>
+      <td>FAT</td>
+      <td>{{ macros_sheet.fat }}</td>
+      <td>{{ macros_sheet.fat_proportion }}</td>
+      <td>{{ macros_sheet.fat_level }}</td>
+    </tr>
+    <tr>
+      <td>KCAL</td>
+      <td colspan="3">{{ macros_sheet.kcal }}</td>
+    </tr>
+    <tr>
+      <td>KCAL Level</td>
+      <td colspan="3">{{ macros_sheet.kcal_level }}</td>
+    </tr>
+  </table>
+
+<td>
+  <button onclick="window.location.href='{% url 'macros_sheet:macros_sheet_update' macros_sheet.pk %}'" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px;">Edit</button>
+
+  <button onclick="window.location.href='{% url 'macros_sheet:macros_sheet_delete' macros_sheet.pk %}'" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer;">Delete</button>
+</li>
+  
+</td>
+<p>
+    <button onclick="window.location.href='{% url 'macros_planner:macros_planner_details' macros_sheet.macros_planner.pk %}'" style="padding: 10px 20px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer;">Macros Planner Details</button>
+</p>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'layouts/base_background.html' %}
+
+{% block content %}
+
+<style>
+    /* Estilos globais para o formulário */
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    /* Estilos para os títulos h2 */
+    h2 {
+        color: black;
+    }
+
+    /* Estilos específicos para os botões dentro do formulário */
+    form button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: black;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+</style>
+
+
+<div style="display: flex; align-items: center; justify-content: center; height: 100vh;">
+    <div style="margin-bottom: 20px; border: 1px solid black; border-radius: 8px; padding: 15px; background-color: white; max-width: 800px; width: 100%;">
+<form method="post" action="{% url 'meal:meal_create' diet_id=diet.id %}" autocomplete="off">
+  {% csrf_token %}
+  
+  <h2>Informações Gerais da Refeição</h2>
+  {{ meal_general_info_form.as_p }}
+
+  <button type="submit">Criar Refeição</button>
+</form>
+    </div>
+</div>
+{% endblock %}

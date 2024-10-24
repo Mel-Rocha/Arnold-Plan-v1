@@ -1,0 +1,72 @@
+{% extends 'layouts/base_background.html' %}
+
+{% block content %}
+    <style>
+        /* Estilo para a divisão principal */
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #statistics-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid black;
+            border-radius: 10px;
+            padding: 20px;
+            margin: auto;
+            text-align: center;
+            max-width: 800px; /* Largura máxima definida */
+            height: 100vh; /* Altura igual à altura da janela de visualização */
+        }
+
+        /* Estilo para cada seção (Tabelas e Gráficos) */
+        .statistics-section {
+            margin: 20px;
+        }
+
+        /* Estilo para os botões */
+        .button {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Estilo para os títulos h1 */
+        h1 {
+            color: black;
+        }
+
+        /* Hover style para os botões */
+        .button:hover {
+            background-color: gray;
+        }
+    </style>
+
+<div style="display: flex; align-items: center; justify-content: center; height: 100vh;">
+        <div id="statistics-container">
+        <div class="statistics-section">
+            <h1>Tabelas</h1>
+            <p>
+                <button onclick="window.location.href='{% url 'macros_planner_kcal_tuples' pk=macros_planner.pk %}'" class="button">Tabela Calorias</button>
+                <button onclick="window.location.href='{% url 'macros_tuples' pk=macros_planner.pk %}'" class="button">Tabela Macros</button>
+            </p>
+        </div>
+
+        <div class="statistics-section">
+            <h1>Gráficos</h1>
+            <p>
+                <button onclick="window.location.href='{% url 'kcal_chart:kcal_chart' pk=macros_planner.id %}'" class="button">Gráfico Calorias</button>
+                <button onclick="window.location.href='{% url 'macros_chart:macros_chart' pk=macros_planner.id %}'" class="button">Gráfico Macros</button>
+            </p>
+        </div>
+    </div>
+    </div>
+{% endblock %}

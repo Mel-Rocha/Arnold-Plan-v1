@@ -1,0 +1,12 @@
+{% extends 'layouts/base_background.html' %}
+
+{% block content %}
+  <div style="max-width: 400px; margin: 0 auto; padding: 20px; background-color: rgba(0, 0, 0, 0); border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+    <h2 style="color: #000000;">Atualizar Food Options</h2>
+    <form method="post" style="display: flex; flex-direction: column;">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" style="padding: 12px 24px; font-size: 16px; background-color: black; color: white; border: none; border-radius: 4px; cursor: pointer;">Salvar</button>
+    </form>
+  </div>
+{% endblock %}

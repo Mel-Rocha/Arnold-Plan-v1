@@ -1,0 +1,42 @@
+{% extends 'layouts/base_background.html' %}
+
+{% block content %}
+
+<div style="display: flex; align-items: center; justify-content: center; height: 100vh;">
+  <li style="margin-bottom: 20px; border: 1px solid black; border-radius: 8px; padding: 15px; background-color: white; max-width: 600px; width: 100%; margin-left: auto; margin-right: auto;">
+    <h2 style="color: black;"> Gráfico de Calorias</h2>
+    <div id="container" style="width: 100%;">
+      <canvas id="kcalChart"></canvas>
+    </div>
+  </li>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  var config = {
+    type: 'line',
+    data: {
+      datasets: [{
+        data: {{ data.data|safe }},
+        label: 'Kcal por Semana',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1,
+      }],
+      labels: {{ data.labels|safe }},
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  };
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var ctx = document.getElementById('kcalChart').getContext('2d');
+    window.myLine = new Chart(ctx, config);
+  });
+</script>
+
+{% endblock %}
