@@ -30,7 +30,18 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-Passo 3 - Rode a aplicação
+* Passo 3 - De os comandos personalizados para criar e carregar o banco de informações nutricionais
+
+```bash 
+# Criar a tabela
+python manage.py create_taco
+
+# Carregar a tabela
+python manage.py insert_taco
+```
+
+
+Passo 4 - Rode a aplicação
 
 ```python
 python manage.py runserver

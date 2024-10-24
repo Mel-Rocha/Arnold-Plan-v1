@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os, random, string
 from pathlib import Path
 from dotenv import load_dotenv
+from decouple import config
 
 load_dotenv()  # take environment variables from .env.
 
@@ -119,6 +120,8 @@ PROJECT_APPS = [
     'apps.diet.meal_general_info',
     'apps.diet.food_options',
 
+    'apps.taco',
+
 ]
 
 INSTALLED_APPS = BASE_APPS + THIRD_PARTY_APPS + PROJECT_APPS
@@ -157,7 +160,16 @@ TEMPLATES = [
 WSGI_APPLICATION = "config.wsgi.application"
 
 # Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+
+
+# Retention
+DATABASE_RETENTION_CONFIG = {
+    "DATABASE_RETENTION": config("DATABASE_RETENTION"),
+    "PG_USER_RETENTION": config("PG_USER_RETENTION"),
+    "PG_PASSWORD_RETENTION": config("PG_PASSWORD_RETENTION"),
+    "PG_HOST_RETENTION": config("PG_HOST_RETENTION"),
+    "PG_PORT_RETENTION": config("PG_PORT_RETENTION"),
+}
 
 DB_ENGINE = os.getenv('DB_ENGINE', None)
 DB_USERNAME = os.getenv('DB_USERNAME', None)
